@@ -7,11 +7,17 @@ import store from "@/vuex/store"
 
 
 import 'element-ui/lib/theme-default/index.css'
+
 import { 
 	Form, FormItem,
 	Checkbox,CheckboxGroup,
 	Button, ButtonGroup ,
-	DatePicker, Input, Select, Option, Upload,  Tabs,TabPane,Radio, RadioGroup, Tag, Step, Steps } from 'element-ui'
+	DatePicker, 
+	Input, Select, Option, 
+	Upload,  Tabs,TabPane,
+	Radio, RadioGroup, Tag, 
+	Step, Steps 
+} from 'element-ui'
 
 
 Vue.use(Form)

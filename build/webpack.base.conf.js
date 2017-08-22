@@ -6,8 +6,6 @@ var vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
-console.log(11111)
-console.log(vueLoaderConfig)
 module.exports = {
   entry: {
     app: ['babel-polyfill', './src/main.js'],
@@ -57,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
