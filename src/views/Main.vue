@@ -17,6 +17,8 @@
 
 <script>
 
+    import { mapActions, mapGetters } from 'vuex'
+
     export default {
         data() {
             return {
@@ -26,6 +28,8 @@
         methods: {
         },
         created() {
+            console.log(this.$store.getters.count)
+            console.log(this.$store.getters.m)
         },
         computed: {
         },

@@ -1,2 +1,0 @@
-export const MUTATION_ACTION = 'MUTATION_ACTION'
-export const DATE_TIME = 'DATE_TIME'

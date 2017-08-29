@@ -80,7 +80,8 @@
       }
     },
     created() {
-
+        console.log(this.$store.getters.count)
+        console.log(this.$store.getters.m)
 
     }
   }
