@@ -14,9 +14,10 @@ import {
 	Button, ButtonGroup ,
 	DatePicker, 
 	Input, Select, Option, 
-	Upload,  Tabs,TabPane,
+	Upload,  Tabs, TabPane,
 	Radio, RadioGroup, Tag, 
-	Step, Steps 
+	Step, Steps,
+	Menu, Submenu, MenuItem, MenuItemGroup
 } from 'element-ui'
 
 
@@ -42,6 +43,11 @@ Vue.use(RadioGroup)
 Vue.use(Tag)
 Vue.use(Steps)
 Vue.use(Step)
+
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
 
 
 

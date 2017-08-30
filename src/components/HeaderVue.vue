@@ -1,17 +1,22 @@
 <template>  
-    <div class="main-vue">
-        <HeaderVue></HeaderVue>
-        <AsideMenu></AsideMenu>
-    </div>
+   
+    <header class="header-menu"></header>
+  
 </template>
-<style  lang="scss" scoped>
-      
 
-      
+
+<style  lang="scss" scoped>
+
+    .header-menu {
+        height: 60px;
+        width: 100%;
+        background-color: #4397e6;
+    } 
+    
+
 </style>
+
 <script>
-    import HeaderVue from '@/components/HeaderVue'
-    import AsideMenu from '@/components/AsideMenu'
 
     import { mapActions, mapGetters } from 'vuex'
 
@@ -24,8 +29,6 @@
         methods: {
         },
         created() {
-            console.log(this.$store.getters.count)
-            console.log(this.$store.getters.m)
         },
         computed: {
         },
@@ -34,8 +37,7 @@
         watch: {  
         },
         updated() {
-        },
-        components: { AsideMenu, HeaderVue }
+        }
     }
 
 

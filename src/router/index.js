@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+Vue.use(Router)
+
 
 
 
@@ -8,16 +10,14 @@ import MainVue from '@/views/Main.vue'
 
 
 
-Vue.use(Router)
-
-
-
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'MainVue',
-      component: MainVue
+      component: MainVue,
+      children: [
+      ]
     },{
       path: '/login',
       name: 'LoginVue',
