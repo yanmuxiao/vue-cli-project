@@ -3,25 +3,23 @@
     <aside class="el-aside">
         <div class="el-aside-x">
             <div class="el-aside-scroll">
-                <el-menu :default-active="index" class="el-menu-vertical-demo" unique-opened router>
+                <el-menu :default-active="$route.path == '/main' ? 'index' : $route.path.replace('/','')" class="el-menu-vertical-demo" unique-opened router>
 
-                    <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
+                    <!-- <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
                     <el-menu-item index="syncTask"><i class="el-icon-document"></i>用户列表</el-menu-item>
                     <el-menu-item index="editForm"><i class="el-icon-plus"></i>添加用户</el-menu-item>
 
-                    <el-submenu index="2">
-
+                    <el-submenu index="basic">
                         <template slot="title"><i class="el-icon-message"></i>基本</template>
                         <el-menu-item index="layout">布局</el-menu-item>
                         <el-menu-item index="color">色彩</el-menu-item>
                         <el-menu-item index="typography">字体</el-menu-item>
                         <el-menu-item index="icon">图标</el-menu-item>
                         <el-menu-item index="button">按钮</el-menu-item>
-
                     </el-submenu>
 
-                    <el-submenu index="3">
-                      <template slot="title"><i class="el-icon-setting"></i>表单</template>
+                    <el-submenu index="form">
+                        <template slot="title"><i class="el-icon-setting"></i>表单</template>
                         <el-menu-item index="radio">单选框</el-menu-item>
                         <el-menu-item index="checkbox">多选框</el-menu-item>
                         <el-menu-item index="input">输入框</el-menu-item>
@@ -37,8 +35,17 @@
                         <el-menu-item index="rate">评分</el-menu-item>
                         <el-menu-item index="colorPicker">颜色选择器</el-menu-item>
                         <el-menu-item index="form">表单</el-menu-item>
-                    </el-submenu>
-                  </el-menu>
+                    </el-submenu> -->
+                    
+                    <template v-for="singleList in asideList">
+                        <el-submenu v-if="singleList.subMenu" :index="singleList.index">
+                            <template slot="title"><i :class="singleList.className"></i>{{singleList.name}}</template>
+                            <el-menu-item v-for="subList in singleList.children" :index="subList.index">{{subList.name}}</el-menu-item>
+                        </el-submenu>
+                        <el-menu-item v-else :index="singleList.index"><i :class="singleList.className"></i>{{singleList.name}}</el-menu-item>
+                    </template>
+
+                </el-menu>
             </div>
 
         </div>
@@ -61,7 +68,7 @@
         bottom: 0;
         width: 200px;
         z-index: 1002;
-        background-color: rgba(0,0,0,.5);;
+        background-color: rgba(0,0,0,.5);
         overflow: hidden;
     
         .el-aside-x {
@@ -112,28 +119,49 @@
         }
 
     }
-
-</style>
-<style type="scss">
-	.el-aside-x .el-menu-item, .el-aside-x .el-submenu__title {
-		text-align: left;
-	}
-
 </style>
 
 <script>
 
-    import { mapActions, mapGetters } from 'vuex'
-
     export default {
         data() {
             return {
-                
+                asideList: [
+                    { index: 'index', className: 'el-icon-message',name: '控制台', subMenu: false },
+                    { index: 'syncTask', className: 'el-icon-document',name: '用户列表', subMenu: false },
+                    { index: 'editForm', className: 'el-icon-plus',name: '添加用户', subMenu: false },
+                    { index: 'basicList', className: 'el-icon-message',name: '基本', subMenu: true, children: [
+                        { index: 'layout',name: '布局' },
+                        { index: 'color',name: '色彩' },
+                        { index: 'typography',name: '字体' },
+                        { index: 'icon',name: '图标' },
+                        { index: 'button',name: '按钮' },
+                    ]},
+                    { index: 'formList', className: 'el-icon-setting',name: '表单', subMenu: true, children: [
+                        { index: 'radio',name: '单选框' },
+                        { index: 'checkbox',name: '多选框' },
+                        { index: 'input',name: '输入框' },
+                        { index: 'inputNumber',name: '计数器' },
+                        { index: 'select',name: '选择器' },
+                        { index: 'cascader',name: '级联选择器' },
+                        { index: 'switch',name: '开关' },
+                        { index: 'slider',name: '滑块' },
+                        { index: 'timePicker',name: '时间选择器' },
+                        { index: 'datePicker',name: '日期选择器' },
+                        { index: 'dateTimePicker',name: '日期时间选择器' },
+                        { index: 'upload',name: '上传' },
+                        { index: 'rate',name: '评分' },
+                        { index: 'colorPicker',name: '颜色选择器' },
+                        { index: 'form',name: '表单' },
+                    ]}
+                ]
             }
         },
         methods: {
         },
         created() {
+            console.log(this.$store.getters.m)
+            console.log(this.$store.getters.count)
         },
         computed: {
         },
