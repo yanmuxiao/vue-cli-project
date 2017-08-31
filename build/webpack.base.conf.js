@@ -54,8 +54,8 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"]
+        test: /\.(scss|css)$/,
+        loaders: ["style-loader", "css-loader", "sass-loader", 'postcss-loader']
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

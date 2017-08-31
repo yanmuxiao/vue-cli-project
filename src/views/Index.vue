@@ -3,7 +3,7 @@
 	<div class="">
 		
 		<h2 class="control">控制台</h2>
-
+		<div class="flex"></div>
 
 	</div>
 
@@ -15,9 +15,15 @@ $color: #f00;
 .control {
 	color: $color
 }
-
+.flex {
+	display: flex;
+}
 </style>
+<style type="text/css">
+	
 
+	
+</style>
 
 <script>
 	

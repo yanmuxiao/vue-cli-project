@@ -3,7 +3,7 @@
     <aside class="el-aside">
         <div class="el-aside-x">
             <div class="el-aside-scroll">
-                <el-menu :default-active="$route.path == '/main' ? 'index' : $route.path.replace('/','')" class="el-menu-vertical-demo" unique-opened router>
+                <el-menu :default-active="$route.path == '/' ? 'index' : $route.path.replace('/','')" class="el-menu-vertical-demo" unique-opened router>
 
                     <!-- <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
                     <el-menu-item index="syncTask"><i class="el-icon-document"></i>用户列表</el-menu-item>

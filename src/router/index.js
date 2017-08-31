@@ -44,7 +44,7 @@ import FormVue from '@/views/form/Form.vue'
 export default new Router({
   routes: [
     {
-      path: 'main',
+      path: '/',
       name: 'MainVue',
       component: MainVue,
       children: [
