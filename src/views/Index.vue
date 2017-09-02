@@ -15,12 +15,12 @@ $color: #f00;
 .control {
 	color: $color
 }
+
+</style>
+<style>
 .flex {
 	display: flex;
-}
-</style>
-<style type="text/css">
-	
+}	
 
 	
 </style>

@@ -7,6 +7,8 @@ import store from "@/vuex/store"
 
 
 import 'element-ui/lib/theme-default/index.css'
+// import '@/assets/style.css'
+
 
 import {
   Pagination,

@@ -32,7 +32,7 @@
         <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll"  @change="handleCheckAllChange">全选</el-checkbox>
         <div style="margin: 15px 0;"></div>
         <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
-          <el-checkbox v-for="city in cities" :label="city">{{city}}</el-checkbox>
+          <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
         </el-checkbox-group>
       </template>
 
@@ -43,7 +43,7 @@
 	    v-model="checkedCities1"
 	    :min="1"
 	    :max="2">
-	    <el-checkbox v-for="city2 in cities2" :label="city2" :key="city2">{{city2}}</el-checkbox>
+	    <el-checkbox v-for="(city2, index) in cities2"  :label="city2" :key="'city' + index">{{city2}}</el-checkbox>
 	  </el-checkbox-group>
 
 

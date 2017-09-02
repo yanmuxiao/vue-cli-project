@@ -38,11 +38,16 @@
                     </el-submenu> -->
                     
                     <template v-for="singleList in asideList">
+
                         <el-submenu v-if="singleList.subMenu" :index="singleList.index">
+
                             <template slot="title"><i :class="singleList.className"></i>{{singleList.name}}</template>
-                            <el-menu-item v-for="subList in singleList.children" :index="subList.index">{{subList.name}}</el-menu-item>
+                            <el-menu-item v-for="subList in singleList.children" :key="subList.index" :index="subList.index">{{subList.name}}</el-menu-item>
+
                         </el-submenu>
+
                         <el-menu-item v-else :index="singleList.index"><i :class="singleList.className"></i>{{singleList.name}}</el-menu-item>
+
                     </template>
 
                 </el-menu>
