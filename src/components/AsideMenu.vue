@@ -1,41 +1,12 @@
 <template>  
    
     <aside class="el-aside">
+        <div class="mobileMask" @click="mobileMaskFn"></div>
         <div class="el-aside-x">
+            <h1 class="aside-logo"><a href="javascript:;">LOGO</a></h1>
             <div class="el-aside-scroll">
                 <el-menu :default-active="$route.path == '/' ? 'index' : $route.path.replace('/','')" class="el-menu-vertical-demo" unique-opened router>
 
-                    <!-- <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
-                    <el-menu-item index="syncTask"><i class="el-icon-document"></i>用户列表</el-menu-item>
-                    <el-menu-item index="editForm"><i class="el-icon-plus"></i>添加用户</el-menu-item>
-
-                    <el-submenu index="basic">
-                        <template slot="title"><i class="el-icon-message"></i>基本</template>
-                        <el-menu-item index="layout">布局</el-menu-item>
-                        <el-menu-item index="color">色彩</el-menu-item>
-                        <el-menu-item index="typography">字体</el-menu-item>
-                        <el-menu-item index="icon">图标</el-menu-item>
-                        <el-menu-item index="button">按钮</el-menu-item>
-                    </el-submenu>
-
-                    <el-submenu index="form">
-                        <template slot="title"><i class="el-icon-setting"></i>表单</template>
-                        <el-menu-item index="radio">单选框</el-menu-item>
-                        <el-menu-item index="checkbox">多选框</el-menu-item>
-                        <el-menu-item index="input">输入框</el-menu-item>
-                        <el-menu-item index="inputNumber">计数器</el-menu-item>
-                        <el-menu-item index="select">选择器</el-menu-item>
-                        <el-menu-item index="cascader">级联选择器</el-menu-item>
-                        <el-menu-item index="switch">开关</el-menu-item>
-                        <el-menu-item index="slider">滑块</el-menu-item>
-                        <el-menu-item index="timePicker">时间选择器</el-menu-item>
-                        <el-menu-item index="datePicker">日期选择器</el-menu-item>
-                        <el-menu-item index="dateTimePicker">日期时间选择器</el-menu-item>
-                        <el-menu-item index="upload">上传</el-menu-item>
-                        <el-menu-item index="rate">评分</el-menu-item>
-                        <el-menu-item index="colorPicker">颜色选择器</el-menu-item>
-                        <el-menu-item index="form">表单</el-menu-item>
-                    </el-submenu> -->
                     
                     <template v-for="singleList in asideList">
 
@@ -61,11 +32,6 @@
 
 <style  lang="scss">
 	$rgba0: rgba(0,0,0,0);
-    .main-vue {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
     .el-aside {
         position: absolute;
         left: 0;
@@ -73,8 +39,9 @@
         bottom: 0;
         width: 200px;
         z-index: 1002;
-        background-color: rgba(0,0,0,.5);
+        background-color: rgba(0,0,0,.2);
         overflow: hidden;
+        transition: left .3s ease;
     
         .el-aside-x {
             width: 200px;
@@ -96,7 +63,7 @@
 
 
         .el-menu {
-            background: $rgba0;
+            background: #242f35;
         }
         .is-opened .el-submenu__title {
             color: rgba(255,255,255,.7);
@@ -121,6 +88,32 @@
 
         .el-menu .el-submenu__icon-arrow {
             font-size: 12px;
+        }
+
+
+        .aside-logo {
+            display: none;
+            height: 60px;
+            text-align: center;
+            margin: 0;
+            background-color: #293c55;
+            a {
+                display: block;
+                font-size: 22px;
+                color: #fff;
+                font-weight: 400;
+                line-height: 60px;
+                text-align: center;
+                text-decoration: none;
+            }
+        }
+        .mobileMask {
+            background-color: rgba(0,0,0,.2);
+            position: absolute;
+            left: 200px;
+            top: 0;
+            right: 0;
+            bottom: 0;
         }
 
     }
@@ -163,10 +156,11 @@
             }
         },
         methods: {
+            mobileMaskFn() {
+                this.$store.commit('ASIDE_SH', false);
+            }
         },
         created() {
-            console.log(this.$store.getters.m)
-            console.log(this.$store.getters.count)
         },
         computed: {
         },

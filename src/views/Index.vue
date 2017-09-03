@@ -4,6 +4,7 @@
 		
 		<h2 class="control">控制台</h2>
 		<div class="flex"></div>
+		<i class="el-icon-fa-heart"></i>
 
 	</div>
 

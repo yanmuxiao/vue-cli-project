@@ -3,143 +3,23 @@
 	
 
 	<div class="el-icon-w">
-		<div class="icon-w">
-			<i class="el-icon-caret-right"></i>
-			<p>el-icon-caret-right</p>
+		
+		<div v-for="(icon, index) in icons" :key="index" class="icon-w">
+			<i :class="icon"></i>
+			<p>{{icon}}</p>
 		</div>
-	    <div class="icon-w">
-	    	<i class="el-icon-caret-top"></i>
-	    	<p>el-icon-caret-top</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-check"></i>
-	    	<p>el-icon-check</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-circle-check"></i>
-	    	<p>el-icon-circle-check</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-circle-close"></i>
-	    	<p>el-icon-circle-close</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-circle-cross"></i>
-	    	<p>el-icon-circle-cross</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-close"></i>
-	    	<p>el-icon-close</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-upload"></i>
-	    	<p>el-icon-upload</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-d-arrow-left"></i>
-	    	<p>el-icon-d-arrow-left</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-d-arrow-right"></i>
-	    	<p>el-icon-d-arrow-right</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-d-caret"></i>
-	    	<p>el-icon-d-caret</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-date"></i>
-	    	<p>el-icon-date</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-delete"></i>
-	    	<p>el-icon-delete</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-document"></i>
-	    	<p>el-icon-document</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-edit"></i>
-	    	<p>el-icon-edit</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-information"></i>
-	    	<p>el-icon-information</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-loading"></i>
-	    	<p>el-icon-loading</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-menu"></i>
-	    	<p>el-icon-menu</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-message"></i>
-	    	<p>el-icon-message</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-minus"></i>
-	    	<p>el-icon-minus</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-more"></i>
-	    	<p>el-icon-more</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-picture"></i>
-	    	<p>el-icon-picture</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-plus"></i>
-	    	<p>el-icon-plus</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-search"></i>
-	    	<p>el-icon-search</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-setting"></i>
-	    	<p>el-icon-setting</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-share"></i>
-	    	<p>el-icon-share</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-star-off"></i>
-	    	<p>el-icon-star-off</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-star-on"></i>
-	    	<p>el-icon-star-on</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-time"></i>
-	    	<p>el-icon-time</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-warning"></i>
-	    	<p>el-icon-warning</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-delete2"></i>
-	    	<p>el-icon-delete2</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-upload2"></i>
-	    	<p>el-icon-upload2</p>
-	    </div>
-	    <div class="icon-w">
-	    	<i class="el-icon-view"></i>
-	    	<p>el-icon-view</p>
-	    </div>
+
+
+
+
 	    
-	    <i class="el-icon-edit"></i>
-		<i class="el-icon-share"></i>
-		<i class="el-icon-delete"></i>
+
 		<el-button type="primary" icon="search">搜索</el-button>
+		<el-button type="primary" icon="fa-navicon">搜索</el-button>
+		
+
+
+
 
 	</div>
 
@@ -179,7 +59,9 @@
 	export default {
 		data() {
 			return {
-			
+				icons: ['el-icon-caret-right', 'el-icon-caret-top','el-icon-check','el-icon-circle-check','el-icon-circle-close','el-icon-circle-cross','el-icon-close','el-icon-upload','el-icon-d-arrow-left','el-icon-d-arrow-right','el-icon-d-caret','el-icon-date','el-icon-delete','el-icon-document','el-icon-edit','el-icon-information','el-icon-loading','el-icon-menu','el-icon-message','el-icon-minus','el-icon-more','el-icon-picture','el-icon-plus','el-icon-search','el-icon-setting','el-icon-share','el-icon-star-off','el-icon-star-on','el-icon-time','el-icon-warning','el-icon-delete2','el-icon-upload2','el-icon-view','el-icon-fa-close','el-icon-fa-navicon'
+					// ,'el-icon-fa-glass','el-icon-fa-music','el-icon-fa-search','el-icon-fa-envelope-o','el-icon-fa-heart','el-icon-fa-star-o','el-icon-fa-user','el-icon-fa-star-o','el-icon-fa-user','el-icon-fa-film','el-icon-fa-th-large','el-icon-fa-th','el-icon-fa-th-list','el-icon-fa-check','el-icon-fa-remove','el-icon-fa-close','el-icon-fa-times','el-icon-fa-search-plus','el-icon-fa-search-minus','el-icon-fa-power-off','el-icon-fa-signal','el-icon-fa-gear','el-icon-fa-cog','el-icon-fa-trash-o','el-icon-fa-home','el-icon-fa-file-o','el-icon-fa-clock-o','el-icon-fa-road','el-icon-fa-download','el-icon-fa-arrow-circle-o-down','el-icon-fa-arrow-circle-o-up','el-icon-fa-inbox','el-icon-fa-play-circle-o','el-icon-fa-rotate-right','el-icon-fa-repeat','el-icon-fa-refresh','el-icon-fa-list-alt','el-icon-fa-lock','el-icon-fa-flag','el-icon-fa-headphones','el-icon-fa-volume-off','el-icon-fa-volume-down','el-icon-fa-volume-up','el-icon-fa-qrcode','el-icon-fa-barcode','el-icon-fa-tag','el-icon-fa-tags','el-icon-fa-book','el-icon-fa-bookmark','el-icon-fa-print','el-icon-fa-camera','el-icon-fa-font','el-icon-fa-bold','el-icon-fa-italic','el-icon-fa-text-height','el-icon-fa-text-width','el-icon-fa-align-left','el-icon-fa-align-center','el-icon-fa-align-right','el-icon-fa-align-justify','el-icon-fa-list','el-icon-fa-dedent','el-icon-fa-outdent','el-icon-fa-indent','el-icon-fa-video-camera','el-icon-fa-photo','el-icon-fa-image','el-icon-fa-picture-o','el-icon-fa-pencil','el-icon-fa-map-marker','el-icon-fa-adjust','el-icon-fa-tint','el-icon-fa-edit','el-icon-fa-pencil-square-o','el-icon-fa-share-square-o','el-icon-fa-check-square-o','el-icon-fa-arrows','el-icon-fa-step-backward','el-icon-fa-fast-backward','el-icon-fa-backward','el-icon-fa-play','el-icon-fa-pause','el-icon-fa-stop','el-icon-fa-forward','el-icon-fa-fast-forward','el-icon-fa-step-forward','el-icon-fa-eject','el-icon-fa-chevron-left','el-icon-fa-chevron-right','el-icon-fa-plus-circle','el-icon-fa-minus-circle','el-icon-fa-times-circle','el-icon-fa-check-circle','el-icon-fa-question-circle','el-icon-fa-info-circle','el-icon-fa-crosshairs','el-icon-fa-times-circle-o','el-icon-fa-check-circle-o','el-icon-fa-ban','el-icon-fa-arrow-left','el-icon-fa-arrow-right','el-icon-fa-arrow-up','el-icon-fa-arrow-down','el-icon-fa-mail-forward','el-icon-fa-share','el-icon-fa-expand','el-icon-fa-compress','el-icon-fa-plus','el-icon-fa-minus','el-icon-fa-asterisk','el-icon-fa-exclamation-circle','el-icon-fa-gift','el-icon-fa-leaf','el-icon-fa-fire','el-icon-fa-eye','el-icon-fa-eye-slash','el-icon-fa-warning','el-icon-fa-exclamation-triangle','el-icon-fa-plane','el-icon-fa-calendar','el-icon-fa-random','el-icon-fa-comment','el-icon-fa-magnet','el-icon-fa-chevron-up','el-icon-fa-chevron-down','el-icon-fa-retweet','el-icon-fa-shopping-cart','el-icon-fa-folder','el-icon-fa-folder-open','el-icon-fa-arrows-v','el-icon-fa-arrows-h','el-icon-fa-bar-chart-o','el-icon-fa-bar-chart','el-icon-fa-twitter-square','el-icon-fa-facebook-square','el-icon-fa-camera-retro','el-icon-fa-key','el-icon-fa-gears','el-icon-fa-cogs','el-icon-fa-comments','el-icon-fa-thumbs-o-up','el-icon-fa-thumbs-o-down','el-icon-fa-star-half','el-icon-fa-heart-o','el-icon-fa-sign-out','el-icon-fa-linkedin-square','el-icon-fa-thumb-tack','el-icon-fa-external-link','el-icon-fa-sign-in','el-icon-fa-trophy','el-icon-fa-github-square','el-icon-fa-upload','el-icon-fa-lemon-o','el-icon-fa-phone','el-icon-fa-square-o','el-icon-fa-bookmark-o','el-icon-fa-phone-square','el-icon-fa-twitter','el-icon-fa-facebook-f','el-icon-fa-facebook','el-icon-fa-github','el-icon-fa-unlock','el-icon-fa-credit-card','el-icon-fa-feed','el-icon-fa-rss','el-icon-fa-hdd-o','el-icon-fa-bullhorn','el-icon-fa-bell','el-icon-fa-certificate','el-icon-fa-hand-o-right','el-icon-fa-hand-o-left','el-icon-fa-hand-o-up','el-icon-fa-hand-o-down','el-icon-fa-arrow-circle-left','el-icon-fa-arrow-circle-right','el-icon-fa-arrow-circle-up','el-icon-fa-arrow-circle-down','el-icon-fa-globe','el-icon-fa-wrench','el-icon-fa-tasks','el-icon-fa-filter','el-icon-fa-briefcase','el-icon-fa-arrows-alt','el-icon-fa-group','el-icon-fa-users','el-icon-fa-chain','el-icon-fa-link','el-icon-fa-cloud','el-icon-fa-flask','el-icon-fa-cut','el-icon-fa-scissors','el-icon-fa-copy','el-icon-fa-files-o','el-icon-fa-paperclip','el-icon-fa-save','el-icon-fa-floppy-o','el-icon-fa-square','el-icon-fa-navicon','el-icon-fa-reorder','el-icon-fa-bars','el-icon-fa-list-ul','el-icon-fa-list-ol','el-icon-fa-strikethrough','el-icon-fa-underline','el-icon-fa-table','el-icon-fa-magic','el-icon-fa-truck','el-icon-fa-pinterest','el-icon-fa-pinterest-square','el-icon-fa-google-plus-square','el-icon-fa-google-plus','el-icon-fa-money','el-icon-fa-caret-down','el-icon-fa-caret-up','el-icon-fa-caret-left','el-icon-fa-caret-right','el-icon-fa-columns','el-icon-fa-unsorted','el-icon-fa-sort','el-icon-fa-sort-down','el-icon-fa-sort-desc','el-icon-fa-sort-up','el-icon-fa-sort-asc','el-icon-fa-envelope','el-icon-fa-linkedin','el-icon-fa-rotate-left','el-icon-fa-undo','el-icon-fa-legal','el-icon-fa-gavel','el-icon-fa-dashboard','el-icon-fa-tachometer','el-icon-fa-comment-o','el-icon-fa-comments-o','el-icon-fa-flash','el-icon-fa-bolt','el-icon-fa-sitemap','el-icon-fa-umbrella','el-icon-fa-paste','el-icon-fa-clipboard','el-icon-fa-lightbulb-o','el-icon-fa-exchange','el-icon-fa-cloud-download','el-icon-fa-cloud-upload','el-icon-fa-user-md','el-icon-fa-stethoscope','el-icon-fa-suitcase','el-icon-fa-bell-o','el-icon-fa-coffee','el-icon-fa-cutlery','el-icon-fa-file-text-o','el-icon-fa-building-o','el-icon-fa-hospital-o','el-icon-fa-ambulance','el-icon-fa-medkit','el-icon-fa-fighter-jet','el-icon-fa-beer','el-icon-fa-h-square','el-icon-fa-plus-square','el-icon-fa-angle-double-left','el-icon-fa-angle-double-right','el-icon-fa-angle-double-up','el-icon-fa-angle-double-down','el-icon-fa-angle-left','el-icon-fa-angle-right','el-icon-fa-angle-up','el-icon-fa-angle-down','el-icon-fa-desktop','el-icon-fa-laptop','el-icon-fa-tablet','el-icon-fa-mobile-phone','el-icon-fa-mobile','el-icon-fa-circle-o','el-icon-fa-quote-left','el-icon-fa-quote-right','el-icon-fa-spinner','el-icon-fa-circle','el-icon-fa-mail-reply','el-icon-fa-reply','el-icon-fa-github-alt','el-icon-fa-folder-o','el-icon-fa-folder-open-o','el-icon-fa-smile-o','el-icon-fa-frown-o','el-icon-fa-meh-o','el-icon-fa-gamepad','el-icon-fa-keyboard-o','el-icon-fa-flag-o','el-icon-fa-flag-checkered','el-icon-fa-terminal','el-icon-fa-code','el-icon-fa-mail-reply-all','el-icon-fa-reply-all','el-icon-fa-star-half-empty','el-icon-fa-star-half-full','el-icon-fa-star-half-o','el-icon-fa-location-arrow','el-icon-fa-crop','el-icon-fa-code-fork','el-icon-fa-unlink','el-icon-fa-chain-broken','el-icon-fa-question','el-icon-fa-info','el-icon-fa-exclamation','el-icon-fa-superscript','el-icon-fa-subscript','el-icon-fa-eraser','el-icon-fa-puzzle-piece','el-icon-fa-microphone','el-icon-fa-microphone-slash','el-icon-fa-shield','el-icon-fa-calendar-o','el-icon-fa-fire-extinguisher','el-icon-fa-rocket','el-icon-fa-maxcdn','el-icon-fa-chevron-circle-left','el-icon-fa-chevron-circle-right','el-icon-fa-chevron-circle-up','el-icon-fa-chevron-circle-down','el-icon-fa-html5','el-icon-fa-css3','el-icon-fa-anchor','el-icon-fa-unlock-alt','el-icon-fa-bullseye','el-icon-fa-ellipsis-h','el-icon-fa-ellipsis-v','el-icon-fa-rss-square','el-icon-fa-play-circle','el-icon-fa-ticket','el-icon-fa-minus-square','el-icon-fa-minus-square-o','el-icon-fa-level-up','el-icon-fa-level-down','el-icon-fa-check-square','el-icon-fa-pencil-square','el-icon-fa-external-link-square','el-icon-fa-share-square','el-icon-fa-compass','el-icon-fa-toggle-down','el-icon-fa-caret-square-o-down','el-icon-fa-toggle-up','el-icon-fa-caret-square-o-up','el-icon-fa-toggle-right','el-icon-fa-caret-square-o-right','el-icon-fa-euro','el-icon-fa-eur','el-icon-fa-gbp','el-icon-fa-dollar','el-icon-fa-usd','el-icon-fa-rupee','el-icon-fa-inr','el-icon-fa-cny','el-icon-fa-rmb','el-icon-fa-yen','el-icon-fa-jpy','el-icon-fa-ruble','el-icon-fa-rouble','el-icon-fa-rub','el-icon-fa-won','el-icon-fa-krw','el-icon-fa-bitcoin','el-icon-fa-btc','el-icon-fa-file','el-icon-fa-file-text','el-icon-fa-sort-alpha-asc','el-icon-fa-sort-alpha-desc','el-icon-fa-sort-amount-asc','el-icon-fa-sort-amount-desc','el-icon-fa-sort-numeric-asc','el-icon-fa-sort-numeric-desc','el-icon-fa-thumbs-up','el-icon-fa-thumbs-down','el-icon-fa-youtube-square','el-icon-fa-youtube','el-icon-fa-xing','el-icon-fa-xing-square','el-icon-fa-youtube-play','el-icon-fa-dropbox','el-icon-fa-stack-overflow','el-icon-fa-instagram','el-icon-fa-flickr','el-icon-fa-adn','el-icon-fa-bitbucket','el-icon-fa-bitbucket-square','el-icon-fa-tumblr','el-icon-fa-tumblr-square','el-icon-fa-long-arrow-down','el-icon-fa-long-arrow-up','el-icon-fa-long-arrow-left','el-icon-fa-long-arrow-right','el-icon-fa-apple','el-icon-fa-windows','el-icon-fa-android','el-icon-fa-linux','el-icon-fa-dribbble','el-icon-fa-skype','el-icon-fa-foursquare','el-icon-fa-trello','el-icon-fa-female','el-icon-fa-male','el-icon-fa-gittip','el-icon-fa-gratipay','el-icon-fa-sun-o','el-icon-fa-moon-o','el-icon-fa-archive','el-icon-fa-bug','el-icon-fa-vk','el-icon-fa-weibo','el-icon-fa-renren','el-icon-fa-pagelines','el-icon-fa-stack-exchange','el-icon-fa-arrow-circle-o-right','el-icon-fa-arrow-circle-o-left','el-icon-fa-toggle-left','el-icon-fa-caret-square-o-left','el-icon-fa-dot-circle-o','el-icon-fa-wheelchair','el-icon-fa-vimeo-square','el-icon-fa-turkish-lira','el-icon-fa-try','el-icon-fa-plus-square-o','el-icon-fa-space-shuttle','el-icon-fa-slack','el-icon-fa-envelope-square','el-icon-fa-wordpress','el-icon-fa-openid','el-icon-fa-institution','el-icon-fa-bank','el-icon-fa-university','el-icon-fa-mortar-board','el-icon-fa-graduation-cap','el-icon-fa-yahoo','el-icon-fa-google','el-icon-fa-reddit','el-icon-fa-reddit-square','el-icon-fa-stumbleupon-circle','el-icon-fa-stumbleupon','el-icon-fa-delicious','el-icon-fa-digg','el-icon-fa-pied-piper-pp','el-icon-fa-pied-piper-alt','el-icon-fa-drupal','el-icon-fa-joomla','el-icon-fa-language','el-icon-fa-fax','el-icon-fa-building','el-icon-fa-child','el-icon-fa-paw','el-icon-fa-spoon','el-icon-fa-cube','el-icon-fa-cubes','el-icon-fa-behance','el-icon-fa-behance-square','el-icon-fa-steam','el-icon-fa-steam-square','el-icon-fa-recycle','el-icon-fa-automobile','el-icon-fa-car','el-icon-fa-cab','el-icon-fa-taxi','el-icon-fa-tree','el-icon-fa-spotify','el-icon-fa-deviantart','el-icon-fa-soundcloud','el-icon-fa-database','el-icon-fa-file-pdf-o','el-icon-fa-file-word-o','el-icon-fa-file-excel-o','el-icon-fa-file-powerpoint-o','el-icon-fa-file-photo-o','el-icon-fa-file-picture-o','el-icon-fa-file-image-o','el-icon-fa-file-zip-o','el-icon-fa-file-archive-o','el-icon-fa-file-sound-o','el-icon-fa-file-audio-o','el-icon-fa-file-movie-o','el-icon-fa-file-video-o','el-icon-fa-file-code-o','el-icon-fa-vine','el-icon-fa-codepen','el-icon-fa-jsfiddle','el-icon-fa-life-bouy','el-icon-fa-life-buoy','el-icon-fa-life-saver','el-icon-fa-support','el-icon-fa-life-ring','el-icon-fa-circle-o-notch','el-icon-fa-ra','el-icon-fa-resistance','el-icon-fa-rebel','el-icon-fa-ge','el-icon-fa-empire','el-icon-fa-git-square','el-icon-fa-git','el-icon-fa-y-combinator-square','el-icon-fa-yc-square','el-icon-fa-hacker-news','el-icon-fa-tencent-weibo','el-icon-fa-qq','el-icon-fa-wechat','el-icon-fa-weixin','el-icon-fa-send','el-icon-fa-paper-plane','el-icon-fa-send-o','el-icon-fa-paper-plane-o','el-icon-fa-history','el-icon-fa-circle-thin','el-icon-fa-header','el-icon-fa-paragraph','el-icon-fa-sliders','el-icon-fa-share-alt','el-icon-fa-share-alt-square','el-icon-fa-bomb','el-icon-fa-soccer-ball-o','el-icon-fa-futbol-o','el-icon-fa-tty','el-icon-fa-binoculars','el-icon-fa-plug','el-icon-fa-slideshare','el-icon-fa-twitch','el-icon-fa-yelp','el-icon-fa-newspaper-o','el-icon-fa-wifi','el-icon-fa-calculator','el-icon-fa-paypal','el-icon-fa-google-wallet','el-icon-fa-cc-visa','el-icon-fa-cc-mastercard','el-icon-fa-cc-discover','el-icon-fa-cc-amex','el-icon-fa-cc-paypal','el-icon-fa-cc-stripe','el-icon-fa-bell-slash','el-icon-fa-bell-slash-o','el-icon-fa-trash','el-icon-fa-copyright','el-icon-fa-at','el-icon-fa-eyedropper','el-icon-fa-paint-brush','el-icon-fa-birthday-cake','el-icon-fa-area-chart','el-icon-fa-pie-chart','el-icon-fa-line-chart','el-icon-fa-lastfm','el-icon-fa-lastfm-square','el-icon-fa-toggle-off','el-icon-fa-toggle-on','el-icon-fa-bicycle','el-icon-fa-bus','el-icon-fa-ioxhost','el-icon-fa-angellist','el-icon-fa-cc','el-icon-fa-shekel','el-icon-fa-sheqel','el-icon-fa-ils','el-icon-fa-meanpath','el-icon-fa-buysellads','el-icon-fa-connectdevelop','el-icon-fa-dashcube','el-icon-fa-forumbee','el-icon-fa-leanpub','el-icon-fa-sellsy','el-icon-fa-shirtsinbulk','el-icon-fa-simplybuilt','el-icon-fa-skyatlas','el-icon-fa-cart-plus','el-icon-fa-cart-arrow-down','el-icon-fa-diamond','el-icon-fa-ship','el-icon-fa-user-secret','el-icon-fa-motorcycle','el-icon-fa-street-view','el-icon-fa-heartbeat','el-icon-fa-venus','el-icon-fa-mars','el-icon-fa-mercury','el-icon-fa-intersex','el-icon-fa-transgender','el-icon-fa-transgender-alt','el-icon-fa-venus-double','el-icon-fa-mars-double','el-icon-fa-venus-mars','el-icon-fa-mars-stroke','el-icon-fa-mars-stroke-v','el-icon-fa-mars-stroke-h','el-icon-fa-neuter','el-icon-fa-genderless','el-icon-fa-facebook-official','el-icon-fa-pinterest-p','el-icon-fa-whatsapp','el-icon-fa-server','el-icon-fa-user-plus','el-icon-fa-user-times','el-icon-fa-hotel','el-icon-fa-bed','el-icon-fa-viacoin','el-icon-fa-train','el-icon-fa-subway','el-icon-fa-medium','el-icon-fa-yc','el-icon-fa-y-combinator','el-icon-fa-optin-monster','el-icon-fa-opencart','el-icon-fa-expeditedssl','el-icon-fa-battery-4','el-icon-fa-battery','el-icon-fa-battery-full','el-icon-fa-battery-3','el-icon-fa-battery-three-quarters','el-icon-fa-battery-2','el-icon-fa-battery-half','el-icon-fa-battery-1','el-icon-fa-battery-quarter','el-icon-fa-battery-0','el-icon-fa-battery-empty','el-icon-fa-mouse-pointer','el-icon-fa-i-cursor','el-icon-fa-object-group','el-icon-fa-object-ungroup','el-icon-fa-sticky-note','el-icon-fa-sticky-note-o','el-icon-fa-cc-jcb','el-icon-fa-cc-diners-club','el-icon-fa-clone','el-icon-fa-balance-scale','el-icon-fa-hourglass-o','el-icon-fa-hourglass-1','el-icon-fa-hourglass-start','el-icon-fa-hourglass-2','el-icon-fa-hourglass-half','el-icon-fa-hourglass-3','el-icon-fa-hourglass-end','el-icon-fa-hourglass','el-icon-fa-hand-grab-o','el-icon-fa-hand-rock-o','el-icon-fa-hand-stop-o','el-icon-fa-hand-paper-o','el-icon-fa-hand-scissors-o','el-icon-fa-hand-lizard-o','el-icon-fa-hand-spock-o','el-icon-fa-hand-pointer-o','el-icon-fa-hand-peace-o','el-icon-fa-trademark','el-icon-fa-registered','el-icon-fa-creative-commons','el-icon-fa-gg','el-icon-fa-gg-circle','el-icon-fa-tripadvisor','el-icon-fa-odnoklassniki','el-icon-fa-odnoklassniki-square','el-icon-fa-get-pocket','el-icon-fa-wikipedia-w','el-icon-fa-safari','el-icon-fa-chrome','el-icon-fa-firefox','el-icon-fa-opera','el-icon-fa-internet-explorer','el-icon-fa-tv','el-icon-fa-television','el-icon-fa-contao','el-icon-fa-500px','el-icon-fa-amazon','el-icon-fa-calendar-plus-o','el-icon-fa-calendar-minus-o','el-icon-fa-calendar-times-o','el-icon-fa-calendar-check-o','el-icon-fa-industry','el-icon-fa-map-pin','el-icon-fa-map-signs','el-icon-fa-map-o','el-icon-fa-map','el-icon-fa-commenting','el-icon-fa-commenting-o','el-icon-fa-houzz','el-icon-fa-vimeo','el-icon-fa-black-tie','el-icon-fa-thermometer-1','el-icon-fa-thermometer-quarter','el-icon-fa-thermometer-0','el-icon-fa-thermometer-empty','el-icon-fa-shower','el-icon-fa-bathtub','el-icon-fa-s15','el-icon-fa-bath','el-icon-fa-podcast','el-icon-fa-window-close','el-icon-fa-times-rectangle-o','el-icon-fa-grav'
+					]
 			}
 		},
 		methods: {

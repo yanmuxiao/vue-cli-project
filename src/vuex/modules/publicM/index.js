@@ -5,6 +5,9 @@ import mutations from './mutations'
 
 
 const state = {
+	asideMenu: true,
+	mobileType: false,
+	mobileAside: false,
 	count: 8800
 }
 
