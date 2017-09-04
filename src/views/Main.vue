@@ -26,7 +26,7 @@
         overflow-x: hidden;
         box-sizing: border-box;
         padding: 15px;
-        transition: left .2s ease;
+        transition: left .3s ease;
     }
 
     .asideMenu {
