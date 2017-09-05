@@ -5,20 +5,21 @@
         <!-- LOGO -->
         <h1 class="el-logo"><a href="javascript:;">LOGO</a></h1>
         
+
         <!-- aside Button -->
         <div class="nav-list" v-show="!$store.getters.mobileType" @click="navSHFn">
             <i :class="{navClass: true, 'el-icon-fa-navicon': navSH, 'el-icon-close': !navSH}"></i>
         </div>
+
         
+        <!-- 导航模块 -->
         <nav class="header-navTxt">
-            <a href="javascript:;" class="active">首页</a>
-            <a href="javascript:;">购买</a>
-            <a href="javascript:;">演示</a>
-            <a href="javascript:;" target="_blank">帮助</a>
-            <a href="javascript:;" target="_blank">开发文档</a>
-            <a href="javascript:;" target="_blank">BSify</a>
+
+            <a href="javascript:;"v-for="(value, index) in navModules" :class="{active: value.cur}" @click="navClicked(value.navMName)" :key="index"  :navMName="value.navMName">{{value.nameLabel}}</a>
+
         </nav>
         
+
         <nav class="header-navIcon">
             <a href="javascript:;" class="active">
                 <i class="el-icon-fa-envelope"></i>
@@ -175,14 +176,30 @@
     export default {
         data() {
             return {
+                navModules: [
+                    { navMName: 'basicList', nameLabel: '基本', cur: true },
+                    { navMName: 'formList', nameLabel: '表单', cur: false },
+                    { navMName: 'Module3', nameLabel: '演示', cur: false },
+                    { navMName: 'Module4', nameLabel: '帮助', cur: false },
+                    { navMName: 'Module5', nameLabel: '开发文档', cur: false },
+                    { navMName: 'Module6', nameLabel: 'BSify', cur: false },
+                ]
             }
         },
         methods: {
             navSHFn(){
                 this.$store.commit('ASIDE_MENU', this.navSH);
+            },
+            // 导航模块切换
+            navClicked(navMName) {
+                this.navModules.forEach((value, index, arr) => {
+                    value.cur = value.navMName == navMName ? true : false;
+                });
+                this.$emit('sendNavModule', navMName);
             }
         },
         created() {
+            console.log(this.$route.path);
         },
         computed: {
             navSH() {

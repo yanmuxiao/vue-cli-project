@@ -8,6 +8,9 @@
                 <el-menu :default-active="$route.path == '/' ? 'index' : $route.path.replace('/','')" class="el-menu-vertical-demo" unique-opened router>
 
                     
+                    <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
+
+
                     <template v-for="singleList in asideList">
 
                         <el-submenu v-if="singleList.subMenu" :index="singleList.index">
@@ -121,40 +124,15 @@
 
 <script>
 
+    import navModules from '@/lib/navModules.js'
+
     export default {
         data() {
             return {
-                asideList: [
-                    { index: 'index', className: 'el-icon-message',name: '控制台', subMenu: false },
-                    { index: 'syncTask', className: 'el-icon-document',name: '用户列表', subMenu: false },
-                    { index: 'editForm', className: 'el-icon-plus',name: '添加用户', subMenu: false },
-                    { index: 'basicList', className: 'el-icon-message',name: '基本', subMenu: true, children: [
-                        { index: 'layout',name: '布局' },
-                        { index: 'color',name: '色彩' },
-                        { index: 'typography',name: '字体' },
-                        { index: 'icon',name: '图标' },
-                        { index: 'button',name: '按钮' },
-                    ]},
-                    { index: 'formList', className: 'el-icon-setting',name: '表单', subMenu: true, children: [
-                        { index: 'radio',name: '单选框' },
-                        { index: 'checkbox',name: '多选框' },
-                        { index: 'input',name: '输入框' },
-                        { index: 'inputNumber',name: '计数器' },
-                        { index: 'select',name: '选择器' },
-                        { index: 'cascader',name: '级联选择器' },
-                        { index: 'switch',name: '开关' },
-                        { index: 'slider',name: '滑块' },
-                        { index: 'timePicker',name: '时间选择器' },
-                        { index: 'datePicker',name: '日期选择器' },
-                        { index: 'dateTimePicker',name: '日期时间选择器' },
-                        { index: 'upload',name: '上传' },
-                        { index: 'rate',name: '评分' },
-                        { index: 'colorPicker',name: '颜色选择器' },
-                        { index: 'form',name: '表单' },
-                    ]}
-                ]
+                asideNavModule: ''
             }
         },
+        props:['navModule'],
         methods: {
             mobileMaskFn() {
                 this.$store.commit('ASIDE_SH', false);
@@ -163,6 +141,14 @@
         created() {
         },
         computed: {
+            asideList() {
+                if(navModules[this.navModule]) {
+                    this.asideNavModule = this.navModule;
+                    return navModules[this.navModule]
+                }else{
+                    return navModules[this.asideNavModule]
+                }
+            }
         },
         mounted () {
         },

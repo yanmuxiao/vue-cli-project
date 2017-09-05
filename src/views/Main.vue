@@ -1,7 +1,7 @@
 <template>  
     <div class="main-vue" :class="{asideMenu: !$store.getters.asideMenu, mobileType: mobileType}">
-        <HeaderVue></HeaderVue>
-        <AsideMenu :class="{mobileAside: mobileAside}"></AsideMenu>
+        <HeaderVue @sendNavModule = 'getNavModule'></HeaderVue>
+        <AsideMenu :navModule = 'navModule'  :class="{mobileAside: mobileAside}"></AsideMenu>
         <main class="el-main">
              <transition name="fade" mode="out-in">
                 <router-view></router-view>
@@ -90,12 +90,16 @@
     export default {
         data() {
             return {
-                screenWidth: document.body.clientWidth
+                screenWidth: document.body.clientWidth,
+                navModule: 'basicList'
             }
         },
         methods: {
             mobileAsideFn() {
                 this.$store.commit('ASIDE_SH', true);
+            },
+            getNavModule(navModule) {
+                this.navModule = navModule;
             }
         },
         created() {
