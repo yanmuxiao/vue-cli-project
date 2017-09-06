@@ -36,6 +36,15 @@ import TransferVue from '@/views/form/Transfer.vue'
 import FormVue from '@/views/form/Form.vue'
 
 
+// data
+import TableVue from '@/views/data/Table.vue'
+import TagVue from '@/views/data/Tag.vue'
+import ProgressVue from '@/views/data/Progress.vue'
+import TreeVue from '@/views/data/Tree.vue'
+import PaginationVue from '@/views/data/Pagination.vue'
+import BadgeVue from '@/views/data/Badge.vue'
+
+
 // import syncTask from '@/views/sync-task.vue'
 // import editForm from '@/views/edit-form.vue'
 
@@ -45,7 +54,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'MainVue',
       component: MainVue,
       children: [
           { path: '', component: IndexVue},
@@ -73,6 +81,14 @@ export default new Router({
           { path: 'colorPicker', component: ColorPickerVue, name: 'colorPicker'},
           { path: 'transfer', component: TransferVue, name: 'transfer'},
           { path: 'form', component: FormVue, name: 'form'},
+
+
+          { path: 'table', component: TableVue, name: 'table'},
+          { path: 'tag', component: TagVue, name: 'tag'},
+          { path: 'progress', component: ProgressVue, name: 'progress'},
+          { path: 'tree', component: TreeVue, name: 'tree'},
+          { path: 'pagination', component: PaginationVue, name: 'pagination'},
+          { path: 'badge', component: BadgeVue, name: 'badge'},
       ]
     },{
       path: '/login',

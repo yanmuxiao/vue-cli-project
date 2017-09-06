@@ -179,7 +179,7 @@
                 navModules: [
                     { navMName: 'basicList', nameLabel: '基本', cur: true },
                     { navMName: 'formList', nameLabel: '表单', cur: false },
-                    { navMName: 'Module3', nameLabel: '演示', cur: false },
+                    { navMName: 'dataList', nameLabel: '数据', cur: false },
                     { navMName: 'Module4', nameLabel: '帮助', cur: false },
                     { navMName: 'Module5', nameLabel: '开发文档', cur: false },
                     { navMName: 'Module6', nameLabel: 'BSify', cur: false },
