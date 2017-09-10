@@ -38,7 +38,7 @@ $color: #f00;
 
 		},
 		created() {
-			console.log('Index导航完成后获取数据填充');
+			// console.log('Index导航完成后获取数据填充');
 		}
 	}
 

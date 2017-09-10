@@ -5,45 +5,6 @@ Vue.use(Router)
 
 
 
-import LoginVue from '@/views/Login.vue'
-import MainVue from '@/views/Main.vue'
-import IndexVue from '@/views/Index.vue'
-
-// basic
-import LayoutVue from '@/views/basic/Layout.vue'
-import ColorVue from '@/views/basic/Color.vue'
-import TypographyVue from '@/views/basic/Typography.vue'
-import IconVue from '@/views/basic/Icon.vue'
-import ButtonVue from '@/views/basic/Button.vue'
-
-
-// form
-import RadioVue from '@/views/form/Radio.vue'
-import CheckboxVue from '@/views/form/Checkbox.vue'
-import InputVue from '@/views/form/Input.vue'
-import InputNumberVue from '@/views/form/InputNumber.vue'
-import SelectVue from '@/views/form/SelectLabel.vue'
-import CascaderVue from '@/views/form/Cascader.vue'
-import SwitchVue from '@/views/form/Switch.vue'
-import SliderVue from '@/views/form/Slider.vue'
-import TimePickerVue from '@/views/form/TimePicker.vue'
-import DatePickerVue from '@/views/form/DatePicker.vue'
-import DateTimePickerVue from '@/views/form/DateTimePicker.vue'
-import UploadVue from '@/views/form/Upload.vue'
-import RateVue from '@/views/form/Rate.vue'
-import ColorPickerVue from '@/views/form/ColorPicker.vue'
-import TransferVue from '@/views/form/Transfer.vue'
-import FormVue from '@/views/form/Form.vue'
-
-
-// data
-import TableVue from '@/views/data/Table.vue'
-import TagVue from '@/views/data/Tag.vue'
-import ProgressVue from '@/views/data/Progress.vue'
-import TreeVue from '@/views/data/Tree.vue'
-import PaginationVue from '@/views/data/Pagination.vue'
-import BadgeVue from '@/views/data/Badge.vue'
-
 
 // import syncTask from '@/views/sync-task.vue'
 // import editForm from '@/views/edit-form.vue'
@@ -54,46 +15,58 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: MainVue,
+      component: resolve => require(['@/views/Main'], resolve),
       children: [
-          { path: '', component: IndexVue},
-          { path: 'index', component: IndexVue},
-          { path: 'layout', component: LayoutVue, name: 'layout'},
-          { path: 'color', component: ColorVue, name: 'color'},
-          { path: 'typography', component: TypographyVue, name: 'typography'},
-          { path: 'icon', component: IconVue, name: 'icon'},
-          { path: 'button', component: ButtonVue, name: 'button'},
+          { path: '', component: resolve => require(['@/views/Index'], resolve)},
+          { path: 'index', component: resolve => require(['@/views/Index'], resolve)},
+          { path: 'layout', component: resolve => require(['@/views/basic/Layout'], resolve), name: 'layout'},
+          { path: 'color', component: resolve => require(['@/views/basic/Color'], resolve), name: 'color'},
+          { path: 'typography', component: resolve => require(['@/views/basic/Typography'], resolve), name: 'typography'},
+          { path: 'icon', component: resolve => require(['@/views/basic/Icon'], resolve), name: 'icon'},
+          { path: 'button', component: resolve => require(['@/views/basic/Button'], resolve), name: 'button'},
 
 
-          { path: 'radio', component: RadioVue, name: 'radio'},
-          { path: 'checkbox', component: CheckboxVue, name: 'checkbox'},
-          { path: 'input', component: InputVue, name: 'input'},
-          { path: 'inputNumber', component: InputNumberVue, name: 'inputNumber'},
-          { path: 'select', component: SelectVue, name: 'select'},
-          { path: 'cascader', component: CascaderVue, name: 'cascader'},
-          { path: 'switch', component: SwitchVue, name: 'switch'},
-          { path: 'slider', component: SliderVue, name: 'slider'},
-          { path: 'timePicker', component: TimePickerVue, name: 'timePicker'},
-          { path: 'datePicker', component: DatePickerVue, name: 'datePicker'},
-          { path: 'dateTimePicker', component: DateTimePickerVue, name: 'dateTimePicker'},
-          { path: 'upload', component: UploadVue, name: 'upload'},
-          { path: 'rate', component: RateVue, name: 'rate'},
-          { path: 'colorPicker', component: ColorPickerVue, name: 'colorPicker'},
-          { path: 'transfer', component: TransferVue, name: 'transfer'},
-          { path: 'form', component: FormVue, name: 'form'},
+          { path: 'radio', component: resolve => require(['@/views/form/Radio'], resolve), name: 'radio'},
+          { path: 'checkbox', component: resolve => require(['@/views/form/Checkbox'], resolve), name: 'checkbox'},
+          { path: 'input', component: resolve => require(['@/views/form/Input'], resolve), name: 'input'},
+          { path: 'inputNumber', component: resolve => require(['@/views/form/InputNumber'], resolve), name: 'inputNumber'},
+          { path: 'select', component: resolve => require(['@/views/form/SelectLabel'], resolve), name: 'select'},
+          { path: 'cascader', component: resolve => require(['@/views/form/Cascader'], resolve), name: 'cascader'},
+          { path: 'switch', component: resolve => require(['@/views/form/Switch'], resolve), name: 'switch'},
+          { path: 'slider', component: resolve => require(['@/views/form/Slider'], resolve), name: 'slider'},
+          { path: 'timePicker', component: resolve => require(['@/views/form/TimePicker'], resolve), name: 'timePicker'},
+          { path: 'datePicker', component: resolve => require(['@/views/form/DatePicker'], resolve), name: 'datePicker'},
+          { path: 'dateTimePicker', component: resolve => require(['@/views/form/DateTimePicker'], resolve), name: 'dateTimePicker'},
+          { path: 'upload', component: resolve => require(['@/views/form/Upload'], resolve), name: 'upload'},
+          { path: 'rate', component: resolve => require(['@/views/form/Rate'], resolve), name: 'rate'},
+          { path: 'colorPicker', component: resolve => require(['@/views/form/ColorPicker'], resolve), name: 'colorPicker'},
+          { path: 'transfer', component: resolve => require(['@/views/form/Transfer'], resolve), name: 'transfer'},
+          { path: 'form', component: resolve => require(['@/views/form/FormVue'], resolve), name: 'form'},
 
 
-          { path: 'table', component: TableVue, name: 'table'},
-          { path: 'tag', component: TagVue, name: 'tag'},
-          { path: 'progress', component: ProgressVue, name: 'progress'},
-          { path: 'tree', component: TreeVue, name: 'tree'},
-          { path: 'pagination', component: PaginationVue, name: 'pagination'},
-          { path: 'badge', component: BadgeVue, name: 'badge'},
+          { path: 'table', component: resolve => require(['@/views/data/Table'], resolve), name: 'table'},
+          { path: 'tag', component: resolve => require(['@/views/data/Tag'], resolve), name: 'tag'},
+          { path: 'progress', component: resolve => require(['@/views/data/Progress'], resolve), name: 'progress'},
+          { path: 'tree', component: resolve => require(['@/views/data/Tree'], resolve), name: 'tree'},
+          { path: 'pagination', component: resolve => require(['@/views/data/Pagination'], resolve), name: 'pagination'},
+          { path: 'badge', component: resolve => require(['@/views/data/Badge'], resolve), name: 'badge'},
+          
+          { path: 'alert', component: resolve => require(['@/views/notice/Alert'], resolve), name: 'alert'},
+          { path: 'loading', component: resolve => require(['@/views/notice/Loading'], resolve), name: 'loading'},
+          { path: 'message', component: resolve => require(['@/views/notice/Message'], resolve), name: 'message'},
+          { path: 'messageBox', component: resolve => require(['@/views/notice/MessageBox'], resolve), name: 'messageBox'},
+          { path: 'notification', component: resolve => require(['@/views/notice/Notification'], resolve), name: 'notification'},
       ]
-    },{
+    },
+    {
       path: '/login',
       name: 'LoginVue',
-      component: LoginVue
+      component: resolve => require(['@/views/Login'], resolve)
     }
+    // ,{
+    //   path: '/editForm',
+    //   name: 'editForm',
+    //   component: resolve => require(['@/views/edit-form'], resolve)
+    // }
   ]
 })

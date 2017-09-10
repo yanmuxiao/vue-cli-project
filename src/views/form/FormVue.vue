@@ -71,13 +71,19 @@
 	          type: [],
 	          resource: '',
 	          desc: ''
-	        }
+	        },
 	      }
 	    },
+        beforeRouteLeave(to, from, next) {
+        	
+    		next()
+    		console.log('beforeRouteLeave');
+        	
+        },
 	    methods: {
 	    	onSubmit() {
-		        console.log('submit!');
-		      }
+		        // this.$router.push('form1');
+		    }
 	    }
 	  };
 

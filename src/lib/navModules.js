@@ -42,5 +42,17 @@ export default {
             { index: 'pagination',name: '分页' },
             { index: 'badge',name: '标记' },
         ]}
+	],
+	noticeList: [
+		{ index: 'syncTask3', className: 'el-icon-document',name: '用户列表', subMenu: false },
+        { index: 'editForm3', className: 'el-icon-plus',name: '添加用户', subMenu: false },
+        { index: 'noticeList', className: 'el-icon-message',name: 'Notice', subMenu: true, children: [
+            { index: 'alert',name: '警告' },
+            { index: 'loading',name: 'loading' },
+            { index: 'message',name: '消息提示' },
+            { index: 'messageBox',name: '弹框' },
+            { index: 'notification',name: '通知' },
+            { index: 'badge',name: '标记' },
+        ]}
 	]
 }

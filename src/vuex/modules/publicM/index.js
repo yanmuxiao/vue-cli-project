@@ -5,6 +5,7 @@ import mutations from './mutations'
 
 
 const state = {
+	loading: false,
 	asideMenu: true,
 	mobileType: false,
 	mobileAside: false,

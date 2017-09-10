@@ -33,14 +33,14 @@
             <a href="javascript:;" class="active">
                 <i class="el-icon-share"></i>
             </a>
-            <el-dropdown>
+            <el-dropdown @command="handleCommand">
               <span class="el-dropdown-link">
                 <i class="el-icon-fa-user-o"></i>
               </span>
               <el-dropdown-menu slot="dropdown" class="header-dropdown">
                 <el-dropdown-item>我的消息</el-dropdown-item>
                 <el-dropdown-item>设置</el-dropdown-item>
-                <el-dropdown-item>退出登录</el-dropdown-item>
+                <el-dropdown-item  command="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
         </nav>
@@ -171,18 +171,16 @@
 
 <script>
 
-    // import { mapActions, mapGetters } from 'vuex'
+    import navModules from '@/lib/navModules.js'
 
     export default {
         data() {
             return {
                 navModules: [
-                    { navMName: 'basicList', nameLabel: '基本', cur: true },
+                    { navMName: 'basicList', nameLabel: '基本', cur: false },
                     { navMName: 'formList', nameLabel: '表单', cur: false },
                     { navMName: 'dataList', nameLabel: '数据', cur: false },
-                    { navMName: 'Module4', nameLabel: '帮助', cur: false },
-                    { navMName: 'Module5', nameLabel: '开发文档', cur: false },
-                    { navMName: 'Module6', nameLabel: 'BSify', cur: false },
+                    { navMName: 'noticeList', nameLabel: 'Notice', cur: false }
                 ]
             }
         },
@@ -196,10 +194,54 @@
                     value.cur = value.navMName == navMName ? true : false;
                 });
                 this.$emit('sendNavModule', navMName);
+            },
+            handleCommand(command) {
+                if(command === 'logout') {
+                    this.$router.push('login')
+                }
             }
         },
         created() {
-            console.log(this.$route.path);
+
+            // 刷新页面回到指定的导航
+            let path = this.$route.path.replace('/', '');
+            if(path === '' || path === 'index') {
+                this.navModules[0].cur = true;
+                return;
+            }
+            let cur = 'basicList';
+            for(let obj in navModules) {
+                for(let arrVal in navModules[obj]) {
+                    let newValue = navModules[obj][arrVal];
+                    if(newValue.subMenu){
+                        for(let arrVal1 in newValue.children) {
+                            if(newValue.children[arrVal1].index === path) {
+                                cur = obj;
+                                this.navModules.forEach(val => {
+                                    if(val.navMName === cur) {
+                                        val.cur = true;
+                                        return false;
+                                    }
+                                })
+                                this.navClicked(cur);
+                                return false;
+                            }
+                        }
+                    }else{
+                        if(newValue.index === path) {
+                            cur = obj;
+                            this.navModules.forEach(val => {
+                                if(val.navMName === cur) {
+                                    val.cur = true;
+                                    return false;
+                                }
+                            })
+                            this.navClicked(cur);
+                            return false;
+                        }
+                    }
+                }
+            }
         },
         computed: {
             navSH() {

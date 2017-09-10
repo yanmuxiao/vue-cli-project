@@ -84,6 +84,7 @@
 </style>
 <script>
 
+    import { mapGetters, mapActions } from 'vuex'
     import HeaderVue from '@/components/HeaderVue'
     import AsideMenu from '@/components/AsideMenu'
 
@@ -94,7 +95,30 @@
                 navModule: 'basicList'
             }
         },
+        beforeRouteEnter(to, from, next) {
+
+            console.log('beforeRouteEnter');
+            // 不能访问this
+            // 可以通过给next传入一个函数传参访问
+            next(vm => {
+                // console.log(vm.screenWidth)
+            });
+        },
+        beforeRouteUpdate(to, from, next) {
+            this.loading_action(true);
+            setTimeout(() => {
+                this.loading_action(false);
+            }, 1000)
+            // 通常用来禁止用户在还没保存修改前突然离开
+            console.log('beforeRouteUpdate');
+            next();
+        },
+        beforeRouteLeave(to, from, next) {
+            console.log('beforeRouteLeave');
+            next();
+        },
         methods: {
+            ...mapActions(['loading_action']),
             mobileAsideFn() {
                 this.$store.commit('ASIDE_SH', true);
             },
@@ -103,6 +127,12 @@
             }
         },
         created() {
+            
+            this.loading_action(true);
+            setTimeout(() => {
+                this.loading_action(false);
+            }, 1000)
+            
             if(this.screenWidth <= 800) {
                 this.$store.commit('MOBILE_TYPE', true);
                 this.$store.commit('ASIDE_SH', false);

@@ -102,7 +102,14 @@
 		},
 		methods: {
 
-		}
+		},
+        beforeRouteEnter(to, from, next) {
+
+            console.log('buttonEnter');
+            // 不能访问this
+            // 可以通过给next传入一个函数传参访问
+            next();
+        }
 	}
 
 </script>

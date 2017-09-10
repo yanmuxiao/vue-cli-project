@@ -1,4 +1,5 @@
 import {
+	LOADING,
 	ASIDE_MENU,
 	MOBILE_TYPE,
 	ASIDE_SH,
@@ -7,6 +8,9 @@ import {
 
 
 const mutations = {
+	[LOADING](state, data) {
+		state.loading = data;
+	},
 	[ASIDE_MENU](state, data) {
 		state.asideMenu = data;
 	},

@@ -159,6 +159,13 @@ import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate)
 
 
+router.beforeEach((to, from, next) => {
+  // console.log(from.path + ' ==> ' + to.path);
+  next();
+})
+
+
+
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

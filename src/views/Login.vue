@@ -16,7 +16,7 @@
 
 
         <el-form-item style="width:100%;">
-          <el-button type="primary" style="width:100%;"  :loading="logining" @click="loginFn">登录</el-button>
+          <el-button type="primary" style="width:100%;" @click="loginFn">登录</el-button>
         </el-form-item>
       </el-form>
   </div>
@@ -37,7 +37,8 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%,-50%)
+        margin: -160px 0 0 -211px;
+        /*transform: translate(-50%,-50%)*/
     }
     .model-title {
         margin: 0 auto 20px;
@@ -69,12 +70,18 @@
         },
         checked: false,// 是否记住密码
         loginAuto: false,
-        logining: false
       }
     },
     methods: {
       loginFn() {
- 
+          let loadingInstance = this.$loading({ 
+            fullscreen: true,
+            customClass: 'loadingClass'
+          });
+          setTimeout(() => {
+              loadingInstance.close();
+              this.$router.replace('/')
+          }, 3000)
       },
       loginAutoFlase() {
       }
