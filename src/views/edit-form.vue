@@ -1,5 +1,5 @@
 <template>
-    <div><p>{{count}}</p>
+    <div>
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="活动名称">
         <el-input v-model="form.name"></el-input>
@@ -65,7 +65,7 @@
 <script>
 
   
-  import Mock from 'mockjs/dist/mock-min.js'
+  import Mock from 'mockjs'
   import axios from 'axios'
 
   let taskListObj = Mock.mock({
@@ -86,7 +86,6 @@
 
 
   export default {
-    props: ['message'],
     data() {
       return {
         form: {
@@ -111,7 +110,7 @@
       fetchData() {
           let _this = this;
           axios.get('http://editform.cn')
-          .then((respone) => {
+          .then((respone) => {console.log(respone.data)
               _this.form = respone.data;
           })
           .catch((error) => {
@@ -119,22 +118,13 @@
           })
       },
       childFn() {
-          //this.$emit('incrementt');
-          //this.$store.state.count++;
-          this.$store.commit("INCREMENT");
       }
     },
     created() {
         this.fetchData();// 导航完成之后获取数据
-        console.log(this.$store.state.count)
-
-        console.log(this.$parent.$data.userInfo.nickName);
-
     },
     computed: {
-      count () {
-        return this.$store.state.count
-      }
+      
     }
   }
 </script>

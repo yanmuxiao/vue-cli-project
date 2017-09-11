@@ -30,32 +30,38 @@
             <el-table-column
               fixed
               type="selection"
-              width="55">
+              width="48">
             </el-table-column>
 
             <el-table-column
               prop="date"
-              label="日期">
+              label="日期"
+              min-width="120">
             </el-table-column>
             <el-table-column
               prop="name"
-              label="姓名">
+              label="姓名"
+              min-width="120">
             </el-table-column>
             <el-table-column
               prop="province"
-              label="省份">
+              label="省份"
+              min-width="120">
             </el-table-column>
             <el-table-column
               prop="city"
-              label="市区">
+              label="市区"
+              min-width="120">
             </el-table-column>
             <el-table-column
               prop="address"
-              label="地址">
+              label="地址"
+              min-width="180">
             </el-table-column>
             <el-table-column
               prop="zip"
-              label="邮编">
+              label="邮编"
+              min-width="90">
             </el-table-column>
 
 
@@ -142,7 +148,7 @@
 
 <script>
   
-  import "../static/dateFormat.js" // 日期格式化
+  import "../lib/dateFormat.js" // 日期格式化
   import { getUserList, removeUserList, editUserList, addUserList } from '../api/api.js'
 
 
@@ -368,8 +374,6 @@
     },
     created() {
         this.fetchData({currentPage: this.currentPage, searchVal: this.searchVal});// 导航完成之后获取数据
-
-        console.log(this.$store.state.count)
     }
 }
 </script>

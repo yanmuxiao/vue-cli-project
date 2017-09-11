@@ -6,8 +6,7 @@ Vue.use(Router)
 
 
 
-// import syncTask from '@/views/sync-task.vue'
-// import editForm from '@/views/edit-form.vue'
+
 
 
 
@@ -56,6 +55,8 @@ export default new Router({
           { path: 'message', component: resolve => require(['@/views/notice/Message'], resolve), name: 'message'},
           { path: 'messageBox', component: resolve => require(['@/views/notice/MessageBox'], resolve), name: 'messageBox'},
           { path: 'notification', component: resolve => require(['@/views/notice/Notification'], resolve), name: 'notification'},
+          { path: 'editForm', name: 'editForm', component: resolve => require(['@/views/edit-form'], resolve)},
+          { path: 'syncTask', name: 'syncTask', component: resolve => require(['@/views/sync-task'], resolve)},
       ]
     },
     {
@@ -63,10 +64,6 @@ export default new Router({
       name: 'LoginVue',
       component: resolve => require(['@/views/Login'], resolve)
     }
-    // ,{
-    //   path: '/editForm',
-    //   name: 'editForm',
-    //   component: resolve => require(['@/views/edit-form'], resolve)
-    // }
+    
   ]
 })
