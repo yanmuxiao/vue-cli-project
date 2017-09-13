@@ -15,8 +15,6 @@ import store from "@/vuex/store"
 
 
 
-
-
 import {
   Pagination,
   Dialog,
@@ -160,7 +158,8 @@ Vue.use(VeeValidate)
 
 
 router.beforeEach((to, from, next) => {
-  // console.log(from.path + ' ==> ' + to.path);
+  // console.log('beforeEach')
+  console.log(from.path + ' ==> ' + to.path);
   next();
 })
 

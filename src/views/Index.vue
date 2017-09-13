@@ -18,26 +18,25 @@ $color: #f00;
 }
 
 </style>
-<style>
-.flex {
-	display: flex;
-}	
-
-	
-</style>
 
 <script>
-	
+	// import { mapState } from 'vuex'
 	export default {
 		data() {
 			return {
 			
 			}
 		},
+		computed: {
+			// ...mapState({
+			// 	asideMenu: state => state.publicM.asideMenu
+			// }),
+		},
 		methods: {
 
 		},
 		created() {
+			// console.log(this.$store.state.publicM.asideMenu)
 			// console.log('Index导航完成后获取数据填充');
 		}
 	}

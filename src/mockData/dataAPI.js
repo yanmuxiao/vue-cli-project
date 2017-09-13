@@ -3,8 +3,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { LoginUsers, taskListObj } from './data/user';
 
 import MD5 from 'MD5/md5.js' // MD5
-import Lodash from 'lodash' 
-
+import _ from '../lib/lodash'
 
 export default {
 
