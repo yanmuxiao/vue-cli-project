@@ -127,7 +127,7 @@
 </template>
 
 
-<style>
+<style lang="scss">
   
   .el-btn-wrap {
       padding-bottom: 15px;
