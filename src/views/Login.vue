@@ -52,6 +52,7 @@
 
 <script>
 
+  import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie'
 
   export default {
     data() {
@@ -79,8 +80,10 @@
             customClass: 'loadingClass'
           });
           setTimeout(() => {
+              if(this.formData.account == 'admin' && this.formData.account == 'admin') {
+                  this.$router.replace('/')
+              }
               loadingInstance.close();
-              this.$router.replace('/')
           }, 3000)
       },
       loginAutoFlase() {

@@ -148,10 +148,8 @@
 
 <script>
   
-  import "../lib/dateFormat.js" // 日期格式化
-  import { getUserList, removeUserList, editUserList, addUserList } from '../api/api.js'
-
-
+  import "@/lib/dateFormat.js" // 日期格式化
+  import { getUserList, removeUserList, editUserList, addUserList } from '@/api/api.js'
 
   export default {
     methods: {
