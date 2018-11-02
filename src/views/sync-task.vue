@@ -9,7 +9,7 @@
             v-model="searchVal"
             :on-icon-click="searchIconClick">
           </el-input>
-          <el-button type="danger" @click="newUser">新建</el-button>
+          <el-button type="danger" @click="newUser">新建{{newFormName}}</el-button>
           <el-button type="info" @click="batchDelete">批量删除</el-button>
       </div>
 
@@ -258,6 +258,7 @@
       },
       // row-click
       rowClickFn(row, event, column) {
+        this.form = 'aaa';
          // console.log('row-click');
       },
 
@@ -372,6 +373,18 @@
     },
     created() {
         this.fetchData({currentPage: this.currentPage, searchVal: this.searchVal});// 导航完成之后获取数据
+    },
+    watch: {
+      // watch只能监听对象本身，不能监听对象属性的变化
+      form(newValue, oldValue) {
+        console.log(newValue);
+        console.log(oldValue);
+      }
+    },
+    computed: {
+      newFormName() {
+        return this.form.name + 'AAAA';
+      }
     }
 }
 </script>
