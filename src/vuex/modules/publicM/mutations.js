@@ -3,7 +3,10 @@ import {
 	ASIDE_MENU,
 	MOBILE_TYPE,
 	ASIDE_SH,
-	MUTATION_ACTION
+	MUTATION_ACTION,
+
+	COUNTER
+
 } from './mutation-type'
 
 
@@ -23,6 +26,10 @@ const mutations = {
 
 	[MUTATION_ACTION](state, data) {
 		state.mobileAside = data;
+	},
+
+	[COUNTER](state, data) {
+		state.counter = data;
 	}
 }
 

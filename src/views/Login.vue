@@ -18,6 +18,12 @@
         <el-form-item style="width:100%;">
           <el-button type="primary" style="width:100%;" @click="loginFn">登录</el-button>
         </el-form-item>
+        
+        <el-form-item style="width:100%;">
+          <el-button type="primary" style="width:100%;" @click="registerFn">注册</el-button>
+        </el-form-item>
+
+
       </el-form>
   </div>
 
@@ -53,6 +59,7 @@
 <script>
 
   import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie'
+  import { userRegister, userLogin } from '@/api/api'
 
   export default {
     data() {
@@ -75,24 +82,26 @@
     },
     methods: {
       loginFn() {
-          let loadingInstance = this.$loading({ 
-            fullscreen: true,
-            customClass: 'loadingClass'
-          });
-          setTimeout(() => {
-              if(this.formData.account == 'admin' && this.formData.account == 'admin') {
-                  this.$router.replace('/')
-              }
-              loadingInstance.close();
-          }, 3000)
+          userLogin({
+            name: this.formData.account,
+            pwd: this.formData.password,
+            uId: new Date().getTime()
+          })
+          .then(res=>{
+            console.log(res);
+          })
+      },
+      registerFn() {
+          userRegister({
+              name: this.formData.account,
+              pwd: this.formData.password,
+              uId: new Date().getTime()
+          })
       },
       loginAutoFlase() {
       }
     },
     created() {
-        console.log(this.$store.getters.count)
-        console.log(this.$store.getters.m)
-
     }
   }
 

@@ -80,8 +80,19 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
-var server = app.listen(port)
 
+/**********2018**********/
+// const bodyParser = require('body-parser');
+// //使用body-parser，对json数据处理，可在后面配置router接口的时候，对req和res进行数据处理
+// app.use(bodyParser.json());// parse application/json
+// app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
+
+// var apiRouter = require('../servers/api.js')
+// app.use(apiRouter)
+/**********2018**********/
+
+
+var server = app.listen(port)
 module.exports = {
   ready: readyPromise,
   close: () => {
