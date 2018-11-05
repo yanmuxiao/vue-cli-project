@@ -27,22 +27,22 @@
 		data() {
 			return {
 				options: [{
-	              value: '选项1',
+	              value: '0100',
 	              label: '黄金糕'
 	            }, {
-	              value: '选项2',
+	              value: '0101',
 	              label: '双皮奶'
 	            }, {
-	              value: '选项3',
+	              value: '0102',
 	              label: '蚵仔煎'
 	            }, {
-	              value: '选项4',
+	              value: '0103',
 	              label: '龙须面'
 	            }, {
-	              value: '选项5',
+	              value: '0104',
 	              label: '北京烤鸭'
 	            }],
-	            value: '',
+	            value: '0102',
 	            options2: [{
 	              value: '选项1',
 	              label: '黄金糕'
