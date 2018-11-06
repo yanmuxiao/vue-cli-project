@@ -37,3 +37,15 @@ export const addUserList = params => {
 
 
 
+// 2018
+// 注册
+let mongoDBBase = '/api';
+export const userRegister = params => {
+	console.log(params)
+	return axios.post(`${mongoDBBase}/user/register`, params);
+}
+export const userLogin = params => {
+	return axios.post(`${mongoDBBase}/user/login`, params);
+}
+
+

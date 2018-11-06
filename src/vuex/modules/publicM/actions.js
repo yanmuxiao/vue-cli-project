@@ -12,6 +12,10 @@ export default {
 	},
 	mutation_action({commit}) {
 		commit('MUTATION_ACTION');
+	},
+
+	counter_action({commit, data}) {
+		commit('COUNTER');
 	}
 
 }

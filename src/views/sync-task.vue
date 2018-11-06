@@ -150,7 +150,7 @@
   
   import "@/lib/dateFormat.js" // 日期格式化
   import { getUserList, removeUserList, editUserList, addUserList } from '@/api/api.js'
-
+// var timer = null
   export default {
     methods: {
 
@@ -258,8 +258,7 @@
       },
       // row-click
       rowClickFn(row, event, column) {
-        this.form = 'aaa';
-         // console.log('row-click');
+         console.log('row-click');
       },
 
       batchDelete() {
@@ -333,12 +332,31 @@
       handleCurrentChange(val) {
         this.currentPage = val;
         this.fetchData({currentPage: val, searchVal: this.searchVal});
-      }
+      },
+      // onSearch() {
+      //     this.state = this.state + 1;
+      //     setTimeout(()=>{
+      //       this.state = this.state - 1;
+      //       if(this.state <= 0) {
+      //           console.log(this.searchVal)
+      //       }
+      //     },500)
+      // },
+      // debounce(delay) {
+      //   clearTimeout(timer);
+      //   timer = setTimeout(() => {
+      //       console.log(`你搜索的是`+this.searchVal)
+      //   }, delay);
+      // },
+      // highSearch() {
+      //   this.debounce(1200);
+      // }
 
     },
     data() {
 
       return {
+        state: 0,
         selected: [],
         dialogFormVisible: false,
         form: {

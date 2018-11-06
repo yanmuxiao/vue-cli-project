@@ -6,8 +6,10 @@ import toLower from 'lodash/toLower'
 import slice from 'lodash/slice'
 import differenceBy from 'lodash/differenceBy'
 import assign from 'lodash/assign'
+import find  from 'lodash/find'
+import findIndex  from 'lodash/findIndex'
 
 
-export default { trim, filter, toLower, slice, differenceBy, assign }
+export default { trim, filter, toLower, slice, differenceBy, assign, find, findIndex  }
 
 
