@@ -33,7 +33,7 @@
 </template>
 
 
-<style  lang="scss">
+<style lang="scss">
 	$rgba0: rgba(0,0,0,0);
     .el-aside {
         position: absolute;

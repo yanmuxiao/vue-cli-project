@@ -177,10 +177,8 @@
         data() {
             return {
                 navModules: [
-                    { navMName: 'basicList', nameLabel: '基本', cur: false },
-                    { navMName: 'formList', nameLabel: '表单', cur: false },
-                    { navMName: 'dataList', nameLabel: '数据', cur: false },
-                    { navMName: 'noticeList', nameLabel: 'Notice', cur: false }
+                    { navMName: 'basicList', nameLabel: '基本ElementUI', cur: false },
+                    { navMName: 'formList', nameLabel: '表单', cur: false }
                 ]
             }
         },

@@ -9,7 +9,7 @@
             v-model="searchVal"
             :on-icon-click="searchIconClick">
           </el-input>
-          <el-button type="danger" @click="newUser">新建{{newFormName}}</el-button>
+          <el-button type="danger" @click="newUser">新建</el-button>
           <el-button type="info" @click="batchDelete">批量删除</el-button>
       </div>
 
@@ -397,6 +397,10 @@
       form(newValue, oldValue) {
         console.log(newValue);
         console.log(oldValue);
+      },
+      searchVal(newValue, oldValue) {
+        console.log(oldValue);
+        console.log(newValue);
       }
     },
     computed: {

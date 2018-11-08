@@ -9,11 +9,7 @@ export default {
             { index: 'icon',name: '图标' },
             { index: 'button',name: '按钮' },
         ]},
-	],
-	formList: [
-		{ index: 'syncTask1', className: 'el-icon-document',name: '用户列表', subMenu: false },
-        { index: 'editForm1', className: 'el-icon-plus',name: '添加用户', subMenu: false },
-	    { index: 'formList', className: 'el-icon-setting',name: '表单', subMenu: true, children: [
+        { index: 'formList', className: 'el-icon-setting',name: '表单', subMenu: true, children: [
 	        { index: 'radio',name: '单选框' },
 	        { index: 'checkbox',name: '多选框' },
 	        { index: 'input',name: '输入框' },
@@ -29,23 +25,15 @@ export default {
 	        { index: 'rate',name: '评分' },
 	        { index: 'colorPicker',name: '颜色选择器' },
 	        { index: 'form',name: '表单' },
-	    ]}
-	],
-	dataList: [
-		{ index: 'syncTask2', className: 'el-icon-document',name: '用户列表', subMenu: false },
-        { index: 'editForm2', className: 'el-icon-plus',name: '添加用户', subMenu: false },
-        { index: 'dataList', className: 'el-icon-message',name: '数据', subMenu: true, children: [
+	    ]},
+	    { index: 'dataList', className: 'el-icon-message',name: '数据', subMenu: true, children: [
             { index: 'table',name: '表格' },
             { index: 'tag',name: '标签' },
             { index: 'progress',name: '进度条' },
             { index: 'tree',name: '树形控件' },
             { index: 'pagination',name: '分页' },
             { index: 'badge',name: '标记' },
-        ]}
-	],
-	noticeList: [
-		{ index: 'syncTask3', className: 'el-icon-document',name: '用户列表', subMenu: false },
-        { index: 'editForm3', className: 'el-icon-plus',name: '添加用户', subMenu: false },
+        ]},
         { index: 'noticeList', className: 'el-icon-message',name: 'Notice', subMenu: true, children: [
             { index: 'alert',name: '警告' },
             { index: 'loading',name: 'loading' },
@@ -54,5 +42,10 @@ export default {
             { index: 'notification',name: '通知' },
             { index: 'badge',name: '标记' },
         ]}
+	],
+	formList: [
+		{ index: 'syncTask1', className: 'el-icon-document',name: '用户列表', subMenu: false },
+        { index: 'editForm1', className: 'el-icon-plus',name: '添加用户', subMenu: false },
+	    
 	]
 }
