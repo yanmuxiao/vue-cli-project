@@ -156,9 +156,12 @@ Vue.prototype.$message = Message
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate)
 
+import VueBus from 'vue-bus';
+Vue.use(VueBus);
+
 
 router.beforeEach((to, from, next) => {
-  // console.log('beforeEach')
+  console.log('beforeEach: ');
   console.log(from.path + ' ==> ' + to.path);
   next();
 })
@@ -175,3 +178,5 @@ new Vue({
   components: { App },
   store
 })
+
+// index.html <== App.vue(<router-view></router-view>) <== 对应路由：/ <-> Main.vue(<router-view></router-view>) <== 对应path为空的子组件：Index.vue

@@ -9,11 +9,11 @@
         </el-form-item>
 
         <el-form-item prop="password">
-          <el-input type="password" v-model="formData.password" auto-complete="off" @change="loginAutoFlase" placeholder="密码"></el-input>
+          <!-- el-input无法触发原生@keyup.enter键盘事件，加上.native修饰符 -->
+          <el-input type="password" v-model="formData.password" @keyup.enter.native="loginFn" auto-complete="off" @change="loginAutoFlase" placeholder="密码"></el-input>
         </el-form-item>
 
         <el-checkbox v-model="checked" class="el-remember">记住密码</el-checkbox>
-
 
         <el-form-item style="width:100%;">
           <el-button type="primary" style="width:100%;" @click="loginFn">登录</el-button>
@@ -22,7 +22,6 @@
         <el-form-item style="width:100%;">
           <el-button type="primary" style="width:100%;" @click="registerFn">注册</el-button>
         </el-form-item>
-
 
       </el-form>
   </div>
@@ -57,49 +56,67 @@
 </style>
 
 <script>
-
-  import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie'
-  import { userRegister, userLogin } from '@/api/api'
+  
+  import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie';
+  // import { userRegister, userLogin } from '@/api/api';
+  import { userLoginApi } from '@/api/dxhdApi';
+  import { _post } from '@/lib/utils';
 
   export default {
     data() {
       return {
         formData: {
-          account: '',
-          password: ''
+            account: 'admin',
+            password: 'suntek'
         },
         formValidate: {
-          account: [
-            { required: true, message: '请输入账号', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-          ]
+            account: [
+                { required: true, message: '请输入账号', trigger: 'blur' }
+            ],
+            password: [
+                { required: true, message: '请输入密码', trigger: 'blur' }
+            ]
         },
         checked: false,// 是否记住密码
         loginAuto: false,
       }
     },
     methods: {
-      loginFn() {
-          userLogin({
-            name: this.formData.account,
-            pwd: this.formData.password,
-            uId: new Date().getTime()
-          })
-          .then(res=>{
-            console.log(res);
-          })
-      },
-      registerFn() {
-          userRegister({
-              name: this.formData.account,
-              pwd: this.formData.password,
-              uId: new Date().getTime()
-          })
-      },
-      loginAutoFlase() {
-      }
+        loginFn() {
+            // userLogin({
+            //   name: this.formData.account,
+            //   pwd: this.formData.password,
+            //   uId: new Date().getTime()
+            // })
+            // .then(res=>{
+            //   console.log(res);
+            // })
+            var params = {
+                username: this.formData.account,
+                password: this.formData.password,
+            };
+            _post({ url: userLoginApi, params, toForm: true  }).then(res=>{
+                setTimeout(()=>{
+                    if(res.flag === 1) {
+                        this.$router.replace('/');
+                    }else{
+                        this.$message({
+                          type: 'info',
+                          message: res.info
+                        }); 
+                    }
+                }, 3000);
+            })
+        },
+        registerFn() {
+            userRegister({
+                name: this.formData.account,
+                pwd: this.formData.password,
+                uId: new Date().getTime()
+            })
+        },
+        loginAutoFlase() {
+        }
     },
     created() {
     }

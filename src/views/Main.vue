@@ -139,6 +139,10 @@
             }else{
                 this.$store.commit('MOBILE_TYPE', false);
             }
+
+            // this.$bus.on('setMsg', navMName => { 
+            //     this.navModule = navMName;
+            // });
             
         },
         computed: {

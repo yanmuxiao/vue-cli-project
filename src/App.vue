@@ -1,24 +1,60 @@
 <template>
     <div id="app" v-loading="loading">
-      <router-view></router-view>
+      <router-view />
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'app',
   data() {
       return {
+          ajaxStart:0,
+          ajaxEnd:0
       }
   },
+  created() {
+  },
   methods: {
-    
+      ...mapActions(['loading_action']),
   },
   computed: {
-    ...mapGetters(['loading']),
+      ...mapGetters(['loading']),
   },
-  created() {
+  mounted() {
+      var that = this;
+      axios.interceptors.request.use(function (config) {
+          console.log('config==>');
+          console.log(config);
+          that.ajaxStart=0;
+          that.ajaxEnd=0;
+          that.ajaxStart++;
+          that.loading_action(true);
+          return config;
+      }, function (error) {
+          // Do something with request error 
+          return Promise.reject(error);
+      })
+      axios.interceptors.response.use(function (response) {
+          if(response.data.success == false){
+              // 登录过期
+              if((Object(response.data.result).hasOwnProperty('errCode')) && response.data.result.errCode=='NotLogin') {
+                 // that.isNotLogin=true
+              }
+          }
+          that.ajaxEnd++;
+          if(that.ajaxStart <= that.ajaxEnd){
+              setTimeout(()=>{
+                  that.loading_action(false);
+              }, 3000);
+          }
+          return response;
+      }, function (error) {
+          // Do something with response error
+          return Promise.reject(error);
+      })
   }
 }
 
@@ -26,27 +62,24 @@ export default {
 
 
 <style lang="scss">
-#app {
-  font-family: Helvetica Neue,Helvetica,Tahoma,Arial,Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
+    #app {
+      font-family: Helvetica Neue,Helvetica,Tahoma,Arial,Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
 
-  width: 100%;
-  height: 100%;
-  position: relative;
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-}
-
-html {
-  width: 100%;
-  height: 100%;
-}
-body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.el-loading-mask {
-    background-color: rgba(0,0,0,0.1);
-}
-
+    .el-loading-mask {
+        background-color: rgba(0,0,0,0.1);
+    }
 </style>
