@@ -9,6 +9,11 @@ export default new Router({
       component: resolve => require(['@/views/Main'], resolve),
       children: [
           { path: '', component: resolve => require(['@/views/Index'], resolve)},
+
+          // dxhd
+          { path: 'dxhdList', component: resolve => require(['@/views/dxhd/dxhdIndex'], resolve)},
+
+
           { path: 'index', component: resolve => require(['@/views/Index'], resolve)},
           { path: 'layout', component: resolve => require(['@/views/basic/Layout'], resolve), name: 'layout'},
           { path: 'color', component: resolve => require(['@/views/basic/Color'], resolve), name: 'color'},

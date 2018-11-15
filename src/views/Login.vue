@@ -59,8 +59,8 @@
   
   import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie';
   // import { userRegister, userLogin } from '@/api/api';
-  import { userLoginApi } from '@/api/dxhdApi';
-  import { _post } from '@/lib/utils';
+  import { userLoginApi, userInfoApi, getMenusApi, isAcceptanceApi } from '@/api/dxhdApi';
+  import { _get, _post } from '@/lib/utils';
 
   export default {
     data() {
@@ -78,7 +78,7 @@
             ]
         },
         checked: false,// 是否记住密码
-        loginAuto: false,
+        loginAuto: false
       }
     },
     methods: {
@@ -91,21 +91,39 @@
             // .then(res=>{
             //   console.log(res);
             // })
+            var that = this;
             var params = {
                 username: this.formData.account,
                 password: this.formData.password,
             };
             _post({ url: userLoginApi, params, toForm: true  }).then(res=>{
-                setTimeout(()=>{
-                    if(res.flag === 1) {
-                        this.$router.replace('/');
-                    }else{
-                        this.$message({
-                          type: 'info',
-                          message: res.info
-                        }); 
-                    }
-                }, 3000);
+                if(res.flag === 1) {
+                    // // 登录成功后获取用户信息
+                    // _get({ url: userInfoApi }).then(userInfoRes=>{
+                    //     // this.$router.replace('/dxhdList');
+                    // });
+                    // // 登录成功后获取用户菜单权限
+                    // _get({ url: getMenusApi }).then(getMenusRes=>{
+                    //     console.log(getMenusRes);
+                    // });
+                    // // 登录成功后获取验收环节的状态
+                    // _get({ url: isAcceptanceApi }).then(acceptRes=>{
+                    //     console.log(acceptRes);
+                    // });
+
+                    this.axios.all([_get({ url: userInfoApi }), _get({ url: getMenusApi }), _get({ url: isAcceptanceApi })])
+                    .then(this.axios.spread(function (userInfoRes, getMenusRes, acceptRes) {
+                        //3个请求现已完成
+                        that.$router.replace('/dxhdList');
+                    }));
+
+
+                }else{
+                    this.$message({
+                        type: 'info',
+                        message: res.info
+                    }); 
+                }
             })
         },
         registerFn() {

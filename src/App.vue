@@ -46,9 +46,7 @@ export default {
           }
           that.ajaxEnd++;
           if(that.ajaxStart <= that.ajaxEnd){
-              setTimeout(()=>{
-                  that.loading_action(false);
-              }, 3000);
+              that.loading_action(false);
           }
           return response;
       }, function (error) {

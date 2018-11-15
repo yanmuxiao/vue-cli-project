@@ -9,6 +9,7 @@
 
                     
                     <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
+                    <el-menu-item index="dxhdList"><i class="el-icon-message"></i>dxhdList</el-menu-item>
 
 
                     <template v-for="singleList in asideList">
