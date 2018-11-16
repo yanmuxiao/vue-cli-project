@@ -106,7 +106,7 @@
 <script>
   
   import "@/lib/dateFormat.js" // 日期格式化
-  import { activityListApi, activityDetailApi } from '@/api/dxhdApi';
+  import { activityListApi } from '@/api/dxhdApi';
   import { _get } from '@/lib/utils';
 
   export default {
@@ -123,10 +123,19 @@
           },
           // 删除行
           editList(index, rows) {
-              _get({ url: activityDetailApi, params: { activityId: rows[index].activityId} }).then(res=>{
-
-              }).catch(error => {
-              })
+              // 两种路由跳转和传参的方式
+              this.$router.push({
+                  path: '/activityNewEdit', // query参数会显示在url上面
+                  query: {
+                     activityId: rows[index].activityId
+                  }
+              });
+              // this.$router.push({
+              //     name: 'activityNewEdit', // 命名路由的跳转方式
+              //     params: {
+              //        activityId: rows[index].activityId
+              //     }
+              // });
           },
           searchIconClick() {
                 this.currentPage = 1;

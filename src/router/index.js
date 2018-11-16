@@ -8,10 +8,12 @@ export default new Router({
       path: '/',
       component: resolve => require(['@/views/Main'], resolve),
       children: [
+          // 子组件路由path不带 '/'，默认子组件路由path为空
           { path: '', component: resolve => require(['@/views/Index'], resolve)},
 
           // dxhd
           { path: 'dxhdList', component: resolve => require(['@/views/dxhd/dxhdIndex'], resolve)},
+          { path: 'activityNewEdit', name: 'activityNewEdit', component: resolve => require(['@/views/dxhd/activityNewEdit'], resolve)},
 
 
           { path: 'index', component: resolve => require(['@/views/Index'], resolve)},

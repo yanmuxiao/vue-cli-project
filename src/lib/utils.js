@@ -50,22 +50,6 @@ export function _post({ url, params, toForm }) {
     })
 }
 
-// export function _all({ url, params, toForm }) {
-//     if(toForm) {
-//         params = toFormData(params);
-//     }
-//     return axios.post(url, params, {
-//         method: 'post',
-//         headers: { 'Content-Type': 'multipart/form-data' }
-//     }).then(response => {
-//         if (response.status >= 200 && response.status < 300) {
-//             return response.data
-//         }
-//         // return Promise.reject(new Error(response.status))
-//     })
-// }
-
-
 /**
  * 上传文件的post请求
  * @param  {String} options.url   api地址

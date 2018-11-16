@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'app',
@@ -25,7 +24,7 @@ export default {
   },
   mounted() {
       var that = this;
-      axios.interceptors.request.use(function (config) {
+      this.axios.interceptors.request.use(function (config) {
           console.log('config==>');
           console.log(config);
           that.ajaxStart=0;
@@ -37,11 +36,10 @@ export default {
           // Do something with request error 
           return Promise.reject(error);
       })
-      axios.interceptors.response.use(function (response) {
+      this.axios.interceptors.response.use(function (response) {
           if(response.data.success == false){
               // 登录过期
               if((Object(response.data.result).hasOwnProperty('errCode')) && response.data.result.errCode=='NotLogin') {
-                 // that.isNotLogin=true
               }
           }
           that.ajaxEnd++;
