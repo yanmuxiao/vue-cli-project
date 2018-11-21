@@ -1,6 +1,6 @@
 
 import Mock from './../mockData/dataAPI.js'
-Mock.bootstrap();
+// Mock.bootstrap();
 
 import axios from 'axios';
 

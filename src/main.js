@@ -160,6 +160,8 @@ Vue.use(VeeValidate)
 router.beforeEach((to, from, next) => {
   // console.log('beforeEach')
   console.log(from.path + ' ==> ' + to.path);
+  console.log(to.meta);
+  window.document.title = to.meta.title ? to.meta.title : 'vue-cli-project';
   next();
 })
 
