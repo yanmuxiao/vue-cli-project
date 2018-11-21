@@ -6,11 +6,13 @@
             <h1 class="aside-logo"><a href="javascript:;">LOGO</a></h1>
             <div class="el-aside-scroll">
                 <el-menu :default-active="$route.path == '/' ? 'index' : $route.path.replace('/','')" class="el-menu-vertical-demo" unique-opened router>
-
                     
+                    <!-- 固定的菜单 -->
                     <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
+                    <!-- dxhd -->
+                    <el-menu-item index="dxhdList"><i class="el-icon-message"></i>dxhdList</el-menu-item>
 
-
+                    <!-- 非固定的菜单 -->
                     <template v-for="singleList in asideList">
 
                         <el-submenu v-if="singleList.subMenu" :index="singleList.index">
@@ -135,6 +137,7 @@
         props:['navModule'],
         methods: {
             mobileMaskFn() {
+                // 不通过mapActions直接触发mutations
                 this.$store.commit('ASIDE_SH', false);
             }
         },

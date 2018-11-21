@@ -8,7 +8,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: './',
     assetsPublicPath: '../dist/',
-    productionSourceMap: true,
+    productionSourceMap: false,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
@@ -33,7 +33,16 @@ module.exports = {
                 changeOrigin:true,
                 pathRewrite:{
                     '^/api':'/'
-                }
+                },
+                cookieDomainRewrite:""
+        },
+        '/dxhd': {
+            target:'http://172.28.50.57:8080',
+                changeOrigin:true,
+                pathRewrite:{
+                    '^/dxhd':'/'
+                },
+                cookieDomainRewrite:""
         }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

@@ -70,7 +70,7 @@
               label="操作"
               width="100">
 
-              <template scope="scope">
+              <template slot-scope="scope">
                 <el-button type="text" @click="deleteRow(scope.$index, tableData3)" size="small">删除</el-button>
                 <el-button type="text" @click="editRow(scope.$index, tableData3)" size="small">编辑</el-button>
               </template>

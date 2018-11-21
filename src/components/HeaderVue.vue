@@ -192,6 +192,7 @@
                     value.cur = value.navMName == navMName ? true : false;
                 });
                 this.$emit('sendNavModule', navMName);
+                // this.$bus.emit('setMsg', navMName);
             },
             handleCommand(command) {
                 if(command === 'logout') {

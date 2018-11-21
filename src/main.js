@@ -1,7 +1,8 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-
+import axios from 'axios'
+Vue.prototype.axios = axios; // 全局注册axios
 
 import 'element-ui/lib/theme-default/index.css'
 import 'font-awesome/css/font-awesome.css'
@@ -156,9 +157,12 @@ Vue.prototype.$message = Message
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate)
 
+import VueBus from 'vue-bus';
+Vue.use(VueBus);
+
 
 router.beforeEach((to, from, next) => {
-  // console.log('beforeEach')
+  console.log('beforeEach: ');
   console.log(from.path + ' ==> ' + to.path);
   console.log(to.meta);
   window.document.title = to.meta.title ? to.meta.title : 'vue-cli-project';
@@ -177,3 +181,5 @@ new Vue({
   components: { App },
   store
 })
+
+// index.html <== App.vue(<router-view></router-view>) <== 对应路由：/ <-> Main.vue(<router-view></router-view>) <== 对应path为空的子组件：Index.vue
