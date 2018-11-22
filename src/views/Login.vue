@@ -67,7 +67,7 @@
       return {
         formData: {
             account: 'admin',
-            password: 'suntek'
+            password: '123456'
         },
         formValidate: {
             account: [

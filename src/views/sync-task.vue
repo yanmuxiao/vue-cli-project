@@ -36,7 +36,8 @@
             <el-table-column
               prop="date"
               label="日期"
-              min-width="120">
+              min-width="120"
+              :formatter="formatterDate">
             </el-table-column>
             <el-table-column
               prop="name"
@@ -153,6 +154,10 @@
 // var timer = null
   export default {
     methods: {
+
+      formatterDate(row, column) {
+        return new Date(row.date).format('yyyy年MM月dd日');
+      },
 
       // 导航完成之后获取数据
       fetchData(page) {
