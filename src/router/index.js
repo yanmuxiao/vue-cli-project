@@ -2,12 +2,72 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 65d494f4a1a923e17495ac1636b801496c29b665
 export default new Router({
   routes: [
     {
       path: '/',
       component: resolve => require(['@/views/Main'], resolve),
       children: [
+<<<<<<< HEAD
+          { 
+            path: '', 
+            component: resolve => require(['@/views/Index'], resolve),
+            meta: {
+              title: '首页'
+            }
+          },
+          { 
+            path: 'index', 
+            component: resolve => require(['@/views/Index'], resolve),
+            meta: {
+              title: '首页'
+            }
+          },
+          { 
+            path: 'layout', 
+            component: resolve => require(['@/views/basic/Layout'], resolve), 
+            name: 'layout',
+            meta: {
+              title: 'layout'
+            }
+          },
+          { 
+            path: 'color', 
+            component: resolve => require(['@/views/basic/Color'], resolve), 
+            name: 'color',
+            meta: {
+              title: 'color'
+            }
+          },
+          { 
+            path: 'typography', 
+            component: resolve => require(['@/views/basic/Typography'], resolve), 
+            name: 'typography',
+            meta: {
+              title: 'typography'
+            }
+          },
+          { 
+            path: 'icon', 
+            component: resolve => require(['@/views/basic/Icon'], resolve), 
+            name: 'icon',
+            meta: {
+              title: 'icon'
+            }
+          },
+          { 
+            path: 'button', 
+            component: resolve => require(['@/views/basic/Button'], resolve), 
+            name: 'button',
+            meta: {
+              title: 'button'
+            }
+          },
+=======
           // 子组件路由path不带 '/'，默认子组件路由path为空
           { path: '', component: resolve => require(['@/views/Index'], resolve)},
 
@@ -22,6 +82,7 @@ export default new Router({
           { path: 'typography', component: resolve => require(['@/views/basic/Typography'], resolve), name: 'typography'},
           { path: 'icon', component: resolve => require(['@/views/basic/Icon'], resolve), name: 'icon'},
           { path: 'button', component: resolve => require(['@/views/basic/Button'], resolve), name: 'button'},
+>>>>>>> 65d494f4a1a923e17495ac1636b801496c29b665
 
 
           { path: 'radio', component: resolve => require(['@/views/form/Radio'], resolve), name: 'radio'},
@@ -55,13 +116,23 @@ export default new Router({
           { path: 'messageBox', component: resolve => require(['@/views/notice/MessageBox'], resolve), name: 'messageBox'},
           { path: 'notification', component: resolve => require(['@/views/notice/Notification'], resolve), name: 'notification'},
           { path: 'editForm', name: 'editForm', component: resolve => require(['@/views/edit-form'], resolve)},
-          { path: 'syncTask', name: 'syncTask', component: resolve => require(['@/views/sync-task'], resolve)},
+          { 
+            path: 'syncTask', 
+            name: 'syncTask', 
+            component: resolve => require(['@/views/sync-task'], resolve),
+            meta: {
+              title: '用户列表'
+            }
+          },
       ]
     },
     {
       path: '/login',
       name: 'LoginVue',
-      component: resolve => require(['@/views/Login'], resolve)
+      component: resolve => require(['@/views/Login'], resolve),
+      meta: {
+        title: '登录'
+      }
     }
     
   ]
