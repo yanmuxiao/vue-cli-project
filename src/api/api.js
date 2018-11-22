@@ -1,11 +1,6 @@
 
 import Mock from './../mockData/dataAPI.js'
-<<<<<<< HEAD
-// Mock.bootstrap();
-=======
-Mock.bootstrap(); // 注意：Mock与真实接口存在冲突
->>>>>>> 65d494f4a1a923e17495ac1636b801496c29b665
-
+// Mock.bootstrap();// 注意：Mock与真实接口存在冲突
 import axios from 'axios';
 
 

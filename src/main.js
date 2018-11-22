@@ -152,21 +152,26 @@ Vue.prototype.$message = Message
 
 
 
-
-
+// 使用vee-validate（会报冲突， 因为elmentui中fields属性已使用）
 import VeeValidate from 'vee-validate';
-Vue.use(VeeValidate)
+const config = {
+    errorBagName: 'errorBags', // change if property conflicts.
+    fieldsBagName: 'fieldBags',
+};
+Vue.use(VeeValidate, config);
+
 
 import VueBus from 'vue-bus';
 Vue.use(VueBus);
 
 
 router.beforeEach((to, from, next) => {
-  console.log('beforeEach: ');
-  console.log(from.path + ' ==> ' + to.path);
-  console.log(to.meta);
+  console.log('main.js: beforeEach');
   window.document.title = to.meta.title ? to.meta.title : 'vue-cli-project';
   next();
+})
+router.afterEach((to, from, next) => {
+  console.log('main.js: afterEach');
 })
 
 
