@@ -1,7 +1,8 @@
+
 // dxhd
-let base = '/dxhd';
+let base = process.env.NODE_ENV === 'production'?'..':'/dxhd';
 export let userLoginApi = `${base}/user/login`; // 用户登录
-export let userInfoApi = `${base}/user/userInfo`; // 用户登录
+export let userInfoApi = `${base}/user/userInfo`; // 用户信息详情
 export let getMenusApi = `${base}/user/getMenus`; // 用户权限
 
 export let isAcceptanceApi = `${base}/config/isAcceptance`; // 获取验收环节是否开启

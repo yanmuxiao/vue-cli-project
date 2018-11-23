@@ -15,7 +15,16 @@
                 </el-col>
                 <el-col :span="8">
                     <el-form-item label="活动时间：">
-                        <el-input v-model="form.name"></el-input>
+                        <el-date-picker
+                          v-model="form.dateStart"
+                          type="datetime"
+                          placeholder="选择日期时间">
+                        </el-date-picker>
+                        <el-date-picker
+                          v-model="form.dateEnd"
+                          type="datetime"
+                          placeholder="选择日期时间">
+                        </el-date-picker>
                     </el-form-item>
                 </el-col>
                 <el-col :span="8">
@@ -163,6 +172,8 @@
                  audience: '',
                  hostName: '',
                  organizerName: '',
+                 dateStart: '',
+                 dateEnd: ''
               }
           }
 

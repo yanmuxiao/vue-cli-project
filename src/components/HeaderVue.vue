@@ -134,12 +134,12 @@
                 text-decoration: none;
                 line-height: $navHeight;
                 box-sizing: border-box;
+                &:hover {
+                    background: rgba(0, 0, 0, .2);
+                }
                 i:before {
                     font-size: 16px;
                 }
-            }
-            a:hover {
-                background: rgba(0, 0, 0, .2);
             }
 
             .el-dropdown {
