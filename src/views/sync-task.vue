@@ -395,7 +395,7 @@
 
     },
     created() {
-        this.fetchData({currentPage: this.currentPage, searchVal: this.searchVal});// 导航完成之后获取数据
+        // this.fetchData({currentPage: this.currentPage, searchVal: this.searchVal});// 导航完成之后获取数据
     },
     watch: {
       // watch只能监听对象本身，不能监听对象属性的变化
