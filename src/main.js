@@ -165,12 +165,17 @@ import VueBus from 'vue-bus';
 Vue.use(VueBus);
 
 
+// 全局路由钩子
 router.beforeEach((to, from, next) => {
   console.log('main.js: beforeEach');
   window.document.title = to.meta.title ? to.meta.title : 'vue-cli-project';
   next();
 })
-router.afterEach((to, from, next) => {
+router.beforeResolve((to, form, next) => {
+  console.log('main.js: beforeResolve');
+  next();
+})
+router.afterEach((to, from) => {
   // setTimeout(()=>{
   //     window.scrollTo(0,0);
   // }, 100);
