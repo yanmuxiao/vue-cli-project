@@ -2,17 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 65d494f4a1a923e17495ac1636b801496c29b665
 export default new Router({
   routes: [
     {
       path: '/',
       component: resolve => require(['@/views/Main'], resolve),
       children: [
-<<<<<<< HEAD
           { 
             path: '', 
             component: resolve => require(['@/views/Index'], resolve),
@@ -67,24 +62,6 @@ export default new Router({
               title: 'button'
             }
           },
-=======
-          // 子组件路由path不带 '/'，默认子组件路由path为空
-          { path: '', component: resolve => require(['@/views/Index'], resolve)},
-
-          // dxhd
-          { path: 'dxhdList', component: resolve => require(['@/views/dxhd/dxhdIndex'], resolve)},
-          { path: 'activityNewEdit', name: 'activityNewEdit', component: resolve => require(['@/views/dxhd/activityNewEdit'], resolve)},
-
-
-          { path: 'index', component: resolve => require(['@/views/Index'], resolve)},
-          { path: 'layout', component: resolve => require(['@/views/basic/Layout'], resolve), name: 'layout'},
-          { path: 'color', component: resolve => require(['@/views/basic/Color'], resolve), name: 'color'},
-          { path: 'typography', component: resolve => require(['@/views/basic/Typography'], resolve), name: 'typography'},
-          { path: 'icon', component: resolve => require(['@/views/basic/Icon'], resolve), name: 'icon'},
-          { path: 'button', component: resolve => require(['@/views/basic/Button'], resolve), name: 'button'},
->>>>>>> 65d494f4a1a923e17495ac1636b801496c29b665
-
-
           { path: 'radio', component: resolve => require(['@/views/form/Radio'], resolve), name: 'radio'},
           { path: 'checkbox', component: resolve => require(['@/views/form/Checkbox'], resolve), name: 'checkbox'},
           { path: 'input', component: resolve => require(['@/views/form/Input'], resolve), name: 'input'},
