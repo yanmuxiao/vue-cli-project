@@ -200,8 +200,9 @@
           
         </el-form>
 
-        <!-- <p v-if="$validator.errorBag.has('name')">不能为空</p> -->
-        <el-button @click="actConfirm">确定</el-button>
+        <p v-if="$validator.errors.has('name')">name: 不能为空</p>
+        <p v-if="$validator.errors.has('hostName')">hostName: 不能为空</p>
+        <el-button @click="actValidateForm">确定</el-button>
 
     </div>
 
@@ -315,7 +316,7 @@
               companyType5: [],
               companyType6: [],
               form: {
-                 name: 'name',
+                 name: '',
                  place: 'place',
                  audience: '',
                  hostName: '',
@@ -335,32 +336,32 @@
       },
       created() {
 
-          // 
-          _get({ url: regionApi, params: {} }).then(res=>{
-              this.regionOptions = res;
-          }).catch(error => {
-          })
+          // // 归属地下拉列表
+          // _get({ url: regionApi, params: {} }).then(res=>{
+          //     this.regionOptions = res;
+          // }).catch(error => {
+          // })
 
-          // 
-          let companyType = [1, 2, 3, 4, 5, 6];
-          companyType.forEach((value) => {
-              _get({ url: companyTypeApi, params: { companyType: value, all: 'all' } }).then(res=>{
-                  this['companyType' + value] = res;
-              }).catch(error => {
-              })
-          })
+          // // 公司类型下拉列表
+          // let companyType = [1, 2, 3, 4, 5, 6];
+          // companyType.forEach((value) => {
+          //     _get({ url: companyTypeApi, params: { companyType: value, all: 'all' } }).then(res=>{
+          //         this['companyType' + value] = res;
+          //     }).catch(error => {
+          //     })
+          // })
           
 
-          let activityId = this.$route.query.activityId;
-          // let activityId = this.$route.params.activityId;
-          _get({ url: activityDetailApi, params: { activityId: activityId } }).then(res=>{
-              this.form = res.Activity;
-          }).catch(error => {
-          })
+          // let activityId = this.$route.query.activityId;
+          // // let activityId = this.$route.params.activityId;
+          // _get({ url: activityDetailApi, params: { activityId: activityId } }).then(res=>{
+          //     this.form = res.Activity;
+          // }).catch(error => {
+          // })
 
       },
       methods: {
-          actConfirm() {
+          actValidateForm() {
               this.$validator.validateAll().then(result => {
                   if(!result) {
                       console.log('not validated!');
