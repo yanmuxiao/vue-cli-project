@@ -97,7 +97,7 @@
         },
         beforeRouteEnter(to, from, next) {
 
-            console.log('beforeRouteEnter');
+            console.log('Main.vue: beforeRouteEnter');
             // 不能访问this
             // 可以通过给next传入一个函数传参访问
             next(vm => {
@@ -110,11 +110,11 @@
                 this.loading_action(false);
             }, 1000)
             // 通常用来禁止用户在还没保存修改前突然离开
-            console.log('beforeRouteUpdate');
+            console.log('Main.vue: beforeRouteUpdate');
             next();
         },
         beforeRouteLeave(to, from, next) {
-            console.log('beforeRouteLeave');
+            console.log('Main.vue: beforeRouteLeave');
             next();
         },
         methods: {

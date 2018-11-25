@@ -9,7 +9,7 @@ export default new Router({
       component: resolve => require(['@/views/Main'], resolve),
       children: [
           { 
-            path: '', 
+            path: '', // 子组件路由path不带 '/'，默认子组件路由path为空
             component: resolve => require(['@/views/Index'], resolve),
             meta: {
               title: '首页'
@@ -101,6 +101,8 @@ export default new Router({
               title: '用户列表'
             }
           },
+          { path: 'dxhdList', component: resolve => require(['@/views/dxhd/dxhdIndex'], resolve)},
+          { path: 'activityNewEdit', name: 'activityNewEdit', component: resolve => require(['@/views/dxhd/activityNewEdit'], resolve)},
       ]
     },
     {
@@ -112,5 +114,11 @@ export default new Router({
       }
     }
     
-  ]
+  ],
+  // scrollBehavior(to, from,savedPosition) {
+  //   return {
+  //     x: 0,
+  //     y: 0
+  //   }
+  // }
 })

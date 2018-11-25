@@ -25,8 +25,8 @@ export default {
   mounted() {
       var that = this;
       this.axios.interceptors.request.use(function (config) {
-          console.log('config==>');
-          console.log(config);
+          // console.log('config==>');
+          // console.log(config);
           that.ajaxStart=0;
           that.ajaxEnd=0;
           that.ajaxStart++;
