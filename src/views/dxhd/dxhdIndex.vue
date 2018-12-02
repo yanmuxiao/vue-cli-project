@@ -177,7 +177,7 @@
 
       },
       created() {
-          // this.fetchData({ page: this.currentPage, size: 5, state: 'all' });// 导航完成之后获取数据
+          this.fetchData({ page: this.currentPage, size: 5, state: 'all' });// 导航完成之后获取数据
       },
       watch: {
 

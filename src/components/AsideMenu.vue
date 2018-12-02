@@ -3,7 +3,7 @@
     <aside class="el-aside">
         <div class="mobileMask" @click="mobileMaskFn"></div>
         <div class="el-aside-x">
-            <h1 class="aside-logo"><a href="javascript:;">LOGO</a></h1>
+            <h1 class="aside-logo"><a href="javascript:;">PCI</a></h1>
             <div class="el-aside-scroll">
                 <el-menu :default-active="$route.path == '/' ? 'index' : $route.path.replace('/','')" class="el-menu-vertical-demo" unique-opened router>
                     
