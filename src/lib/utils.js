@@ -18,7 +18,7 @@ export function toFormData(opt) {
  * @return { Promise }                    Promise
  */
 export function _get({ url, params }) {
-    return axios.get(url, { params: params }).then(response => {
+    return axios.get(url, { params }).then(response => {
         if (response.status >= 200 && response.status < 300) {
             return response.data
         }
@@ -31,8 +31,8 @@ export function _get({ url, params }) {
 /**
  * post请求
  * @param  { String }    options.url     api地址
- * @param  { Object }    ptions.params   params参数
- * @param  { Boolean }   ptions.params   params参数  是否将ptions.params转化成formData格式
+ * @param  { Object }    options.params   params参数
+ * @param  { Boolean }   options.params   params参数  是否将options.params转化成formData格式
  * @return { Promise }   Promise
  */
 export function _post({ url, params, toForm }) {

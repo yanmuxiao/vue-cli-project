@@ -3,7 +3,7 @@
     <header class="header-menu">
         
         <!-- LOGO -->
-        <h1 class="el-logo"><a href="javascript:;">LOGO</a></h1>
+        <h1 class="el-logo"><a href="javascript:;">PCI</a></h1>
         
 
         <!-- aside Button -->

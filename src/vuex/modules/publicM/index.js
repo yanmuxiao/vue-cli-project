@@ -6,10 +6,12 @@ import mutations from './mutations'
 
 const state = {
 	loading: false,
-	asideMenu: true,
+	asideMenu: false,
 	mobileType: false,
 	mobileAside: false,
-	count: 8800
+	count: 8800,
+
+	axiosCancle: []
 }
 
 

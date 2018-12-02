@@ -151,8 +151,7 @@ Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
 
 
-
-// 使用vee-validate（会报冲突， 因为elmentui中fields属性已使用）
+// 使用vee-validate（会报冲突， 因为elmentui中fields属性已使用，errorBags也有可能冲突）
 import VeeValidate from 'vee-validate';
 const config = {
     errorBagName: 'errorBags', // change if property conflicts.

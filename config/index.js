@@ -37,7 +37,7 @@ module.exports = {
                 cookieDomainRewrite:""
         },
         '/dxhd': {
-            target:'http://172.28.50.57:8080',
+            target:'http://172.28.50.29:8080',
                 changeOrigin:true,
                 pathRewrite:{
                     '^/dxhd':'/'

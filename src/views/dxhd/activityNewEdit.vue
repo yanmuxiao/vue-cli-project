@@ -203,6 +203,7 @@
         <p v-if="$validator.errors.has('name')">name: 不能为空</p>
         <p v-if="$validator.errors.has('hostName')">hostName: 不能为空</p>
         <el-button @click="actValidateForm">确定</el-button>
+        <el-button @click="validateFn">确定</el-button>
 
     </div>
 
@@ -364,7 +365,7 @@
       },
       methods: {
           actValidateForm() {
-              this.$validator.validateAll().then(result => {
+              this.$validator.validate().then(result => {
                   if(!result) {
                       console.log('not validated!');
                   }else{
@@ -373,6 +374,19 @@
               },error => {
                   console.log(err);
               })
+          },
+          validateFn() {
+
+              // errors.first('field') - 获取关于当前field的第一个错误信息
+              // collect('field') - 获取关于当前field的所有错误信息(list)
+              // has('field') - 当前filed是否有错误(true/false)
+              // all() - 当前表单所有错误(list)
+              // any() - 当前表单是否有任何错误(true/false)
+              // add(String field, String msg) - 添加错误
+              // clear() - 清除错误
+              // count() - 错误数量
+              // remove(String field) - 清除指定filed的所有错误
+
           }
       },
       watch: {
