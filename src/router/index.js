@@ -100,9 +100,7 @@ export default new Router({
             meta: {
               title: '用户列表'
             }
-          },
-          { path: 'dxhdList', component: resolve => require(['@/views/dxhd/dxhdIndex'], resolve)},
-          { path: 'activityNewEdit', name: 'activityNewEdit', component: resolve => require(['@/views/dxhd/activityNewEdit'], resolve)},
+          }
       ]
     },
     {
