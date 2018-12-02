@@ -9,8 +9,6 @@
                     
                     <!-- 固定的菜单 -->
                     <el-menu-item index="index"><i class="el-icon-message"></i>控制台</el-menu-item>
-                    <!-- dxhd -->
-                    <el-menu-item index="dxhdList"><i class="el-icon-message"></i>dxhdList</el-menu-item>
 
                     <!-- 非固定的菜单 -->
                     <template v-for="singleList in asideList">

@@ -1,6 +1,6 @@
 
 import Mock from './../mockData/dataAPI.js'
-// Mock.bootstrap(); // 注意：Mock与真实接口存在冲突
+Mock.bootstrap(); // 注意：Mock与真实接口存在冲突
 import axios from 'axios';
 
 
@@ -8,9 +8,9 @@ let base = '';
 
 
 // 用户登录接口
-export const requestLogin = params => {
-	return axios.post(`${base}/login`, params).then(res => res.data); 
-};
+// export const requestLogin = params => {
+// 	return axios.post(`${base}/login`, params).then(res => res.data); 
+// };
 
 
 // 获取用户列表接口
@@ -36,7 +36,7 @@ export const addUserList = params => {
 
 
 
-// 2018
+// 2018 mongodb api
 // 注册
 let mongoDBBase = '/api';
 export const userRegister = params => {
