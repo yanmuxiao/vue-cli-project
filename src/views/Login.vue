@@ -58,15 +58,15 @@
 <script>
   
   import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie';
-  import { userRegister, userLogin } from '@/api/api';
+  import { userLoginApi, userRegisterApi } from '@/api/api';
   import { _get, _post } from '@/lib/utils';
 
   export default {
     data() {
       return {
         formData: {
-            account: 'admin',
-            password: 'suntek'
+            account: '',
+            password: ''
         },
         formValidate: {
             account: [
@@ -82,20 +82,42 @@
     },
     methods: {
         loginFn() {
-            userLogin({
-              name: this.formData.account,
-              pwd: this.formData.password,
-              uId: new Date().getTime()
-            })
-            .then(res=>{
-              console.log(res);
-            })
-        },
-        registerFn() {
-            userRegister({
+            let params = {
                 name: this.formData.account,
                 pwd: this.formData.password,
                 uId: new Date().getTime()
+            };
+            _post({ url: userLoginApi, params  }).then(res=>{
+                if(res.success === true) {
+                    this.$router.replace('/');
+                }else{
+                    this.$message({
+                        type: 'info',
+                        message: res.msg
+                    }); 
+                }
+            })
+        },
+        registerFn() {
+            let params = {
+                name: this.formData.account,
+                pwd: this.formData.password,
+                uId: new Date().getTime()
+            };
+            _post({ url: userRegisterApi, params  }).then(res=>{
+                if(res.success === true) {
+                    this.$message({
+                        type: 'info',
+                        message: res.msg
+                    });
+                    this.formData.account = '';
+                    this.formData.password = '';
+                }else{
+                    this.$message({
+                        type: 'info',
+                        message: res.msg
+                    }); 
+                }
             })
         },
         loginAutoFlase() {

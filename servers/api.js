@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-for
 
 // 用户登录
 app.post('/user/login', function(req, res){
-	var {name,pwd} = req.body
+	var {name,pwd} = req.body;
 	UserModels.Users.findOne({name}, 'pwd', (err, doc) => {
 		if(err) {
 			console.log(err);
@@ -46,7 +46,7 @@ app.post('/user/login', function(req, res){
 			res.send({
 				success: false,
 				status: 222,
-				message: '该账号不存在！'
+				msg: '该账号不存在！'
 			}).end();
 		}
 	})
@@ -61,7 +61,7 @@ app.post('/user/register',  function(req, res){
 			res.send({
 				success: false,
 				status: 222,
-				message: '该用户已存在！'
+				msg: '该用户已存在！'
 			}).end();
 		}else{
 			UserModels.Users(req.body)
@@ -70,7 +70,7 @@ app.post('/user/register',  function(req, res){
 				res.send({
 					success: true,
 					status: 200,
-					message: '注册成功！'
+					msg: '注册成功！'
 				}).end();
 			})
 			.catch(()=>{
