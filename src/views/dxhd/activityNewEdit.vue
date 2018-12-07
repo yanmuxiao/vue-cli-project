@@ -365,9 +365,7 @@
 
       },
       methods: {
-          ...mapMutations({
-              delAxiosCancle: 'delAxiosCancle'
-          }),
+          ...mapMutations(['delAxiosCancle']),
           actValidateForm() {
               // this.$validator.validate().then(result => {
               //     if(!result) {

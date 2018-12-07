@@ -23,12 +23,8 @@ export default {
       this.cancelToken = this.axios.CancelToken;
   },
   methods: {
-      ...mapMutations({
-          addAxiosCancle: 'addAxiosCancle'
-      }),
-      ...mapActions({
-          loading_action: 'loading_action'
-      }),
+      ...mapMutations(['addAxiosCancle']),
+      ...mapActions(['loading_action']),
       removePending(cancelId, cancleF) {
           for(let idx in this.pending){
               if(this.pending[idx].cancelId === cancelId) { //当请求在pending中存在时执行取消操作
@@ -89,7 +85,6 @@ export default {
               that.ajaxEnd = 0;
               that.loading_action(false);
           }
-          
 
           return response;
       }, function (error) {
