@@ -105,10 +105,10 @@
             });
         },
         beforeRouteUpdate(to, from, next) {
-            this.loading_action(true);
-            setTimeout(() => {
-                this.loading_action(false);
-            }, 1000)
+            // this.loading_action(true);
+            // setTimeout(() => {
+            //     this.loading_action(false);
+            // }, 1000)
             // 通常用来禁止用户在还没保存修改前突然离开
             console.log('Main.vue: beforeRouteUpdate');
             next();
@@ -128,10 +128,10 @@
         },
         created() {
             
-            this.loading_action(true);
-            setTimeout(() => {
-                this.loading_action(false);
-            }, 1000)
+            // this.loading_action(true);
+            // setTimeout(() => {
+            //     this.loading_action(false);
+            // }, 1000)
             
             if(this.screenWidth <= 800) {
                 this.$store.commit('MOBILE_TYPE', true);

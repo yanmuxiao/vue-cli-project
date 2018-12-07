@@ -4,9 +4,7 @@ import {
 	MOBILE_TYPE,
 	ASIDE_SH,
 	MUTATION_ACTION,
-
 	COUNTER
-
 } from './mutation-type'
 
 
@@ -23,13 +21,15 @@ const mutations = {
 	[ASIDE_SH](state, data) {
 		state.mobileAside = data;
 	},
-
 	[MUTATION_ACTION](state, data) {
 		state.mobileAside = data;
 	},
-
 	[COUNTER](state, data) {
 		state.counter = data;
+	},
+	addAxiosCancle(state, data) {
+	},
+	delAxiosCancle(state, data) {
 	}
 }
 

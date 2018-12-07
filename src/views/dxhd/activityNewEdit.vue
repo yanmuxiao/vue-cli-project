@@ -200,8 +200,8 @@
           
         </el-form>
 
-        <p v-if="$validator.errors.has('name')">name: 不能为空</p>
-        <p v-if="$validator.errors.has('hostName')">hostName: 不能为空</p>
+        <!-- <p v-if="$validator.errors.has('name')">name: 不能为空</p> -->
+        <!-- <p v-if="$validator.errors.has('hostName')">hostName: 不能为空</p> -->
         <el-button @click="actValidateForm">确定</el-button>
         <el-button @click="validateFn">确定</el-button>
 
@@ -231,7 +231,7 @@
 </style>
 
 <script>
-  
+  import { mapMutations, mapActions } from 'vuex';
   import { regionApi, companyTypeApi, activityDetailApi } from '@/api/dxhdApi';
   import { _get } from '@/lib/utils';
 
@@ -317,6 +317,7 @@
               companyType5: [],
               companyType6: [],
               form: {
+
                  name: '',
                  place: 'place',
                  audience: '',
@@ -329,7 +330,7 @@
                  activityNature: '',
                  size: '',
                  audience: '',
-                 hostName: '',
+                 hostName: ''
 
               }
           }
@@ -337,41 +338,49 @@
       },
       created() {
 
-          // // 归属地下拉列表
-          // _get({ url: regionApi, params: {} }).then(res=>{
-          //     this.regionOptions = res;
-          // }).catch(error => {
-          // })
+          // 归属地下拉列表
+          _get({ url: regionApi, params: { addCancelId: 'regionApi' } }).then(res=>{
+              this.regionOptions = res;
+          })
 
-          // // 公司类型下拉列表
-          // let companyType = [1, 2, 3, 4, 5, 6];
-          // companyType.forEach((value) => {
-          //     _get({ url: companyTypeApi, params: { companyType: value, all: 'all' } }).then(res=>{
-          //         this['companyType' + value] = res;
-          //     }).catch(error => {
-          //     })
-          // })
+          // 公司类型下拉列表
+          let companyType = [1, 2, 3, 4, 5, 6];
+          companyType.forEach((value) => {
+              _get({ url: companyTypeApi, params: { companyType: value, all: 'all' } }).then(res=>{
+                  this['companyType' + value] = res;
+              })
+          })
           
-
-          // let activityId = this.$route.query.activityId;
-          // // let activityId = this.$route.params.activityId;
-          // _get({ url: activityDetailApi, params: { activityId: activityId } }).then(res=>{
-          //     this.form = res.Activity;
-          // }).catch(error => {
+          // 活动详情回填
+          let activityId = this.$route.query.activityId;
+          // let activityId = this.$route.params.activityId;
+          _get({ url: activityDetailApi, params: { activityId: activityId, notLoading: true } }).then(res=>{
+              this.form = res.Activity;
+          })
+          // http://172.25.20.12:9082/vehiclecloud/rest/v6/yisaLogin/doLogin
+          // pending + 失败的请求
+          // _get({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json', params: { addCancelId: 'currentprice' } }).then(res=>{
+          //     this.regionOptions = res;
           // })
 
       },
       methods: {
+          ...mapMutations({
+              delAxiosCancle: 'delAxiosCancle'
+          }),
           actValidateForm() {
-              this.$validator.validate().then(result => {
-                  if(!result) {
-                      console.log('not validated!');
-                  }else{
-                      console.log('validated!');
-                  }
-              },error => {
-                  console.log(err);
-              })
+              // this.$validator.validate().then(result => {
+              //     if(!result) {
+              //         console.log('not validated!');
+              //     }else{
+              //         console.log('validated!');
+              //     }
+              // },error => {
+              //     console.log(err);
+              // })
+              
+              // _get({ url: regionApi, params: { delCancelId: 'regionApi' } }).then(res=>{
+              // });
           },
           validateFn() {
 
