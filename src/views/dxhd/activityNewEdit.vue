@@ -342,7 +342,6 @@
           _get({ url: regionApi, params: { addCancelId: 'regionApi' } }).then(res=>{
               this.regionOptions = res;
           })
-
           // 公司类型下拉列表
           let companyType = [1, 2, 3, 4, 5, 6];
           companyType.forEach((value) => {
@@ -350,19 +349,25 @@
                   this['companyType' + value] = res;
               })
           })
-          
           // 活动详情回填
           let activityId = this.$route.query.activityId;
           // let activityId = this.$route.params.activityId;
           _get({ url: activityDetailApi, params: { activityId: activityId, notLoading: true } }).then(res=>{
               this.form = res.Activity;
           })
-          // http://172.25.20.12:9082/vehiclecloud/rest/v6/yisaLogin/doLogin
-          // pending + 失败的请求
-          // _get({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json', params: { addCancelId: 'currentprice' } }).then(res=>{
-          //     this.regionOptions = res;
-          // })
-
+          // pending + 失败的请求 
+          _get({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json?t='+(new Date()).getTime(), params: { addCancelId: 'currentprice', tips: '请求失败' } }).then(res=>{
+          }).catch(function(error){
+              console.log('_get=>>>>>>>catch');
+              console.log(error);
+              // console.log(error.code);
+              // if(error.code === 'ECONNABORTED') {
+              //     this.$message({
+              //         type: 'info',
+              //         message: '连接超时，请求失败！'
+              //     }); 
+              // }
+          })
       },
       methods: {
           ...mapMutations(['delAxiosCancle']),

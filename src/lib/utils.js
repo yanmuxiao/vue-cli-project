@@ -26,7 +26,7 @@ export function _get({ url, params }) {
         return Promise.reject(new Error(response.status))
     }).catch(error => {
         console.log("_get==>");
-        console.log(error);
+        return Promise.reject(error);
     })
 }
 
@@ -51,7 +51,7 @@ export function _post({ url, params, toForm }) {
         // return Promise.reject(new Error(response.status))
     }).catch(error => {
         console.log("_post==>");
-        console.log(error);
+        return Promise.reject(error);
     })
 }
 

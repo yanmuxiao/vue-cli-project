@@ -26,15 +26,21 @@ export default {
       ...mapMutations(['addAxiosCancle']),
       ...mapActions(['loading_action']),
       removePending(cancelId, cancleF) {
-          for(let idx in this.pending){
-              if(this.pending[idx].cancelId === cancelId) { //当请求在pending中存在时执行取消操作
-                  if(!cancleF) {
-                      this.pending[idx].f(); // 取消正在执行的请求
+          console.log(JSON.stringify(this.pending));
+          if(cancelId) {
+              for(let idx in this.pending){
+                  // if((new RegExp('^' + cancelId)).test(this.pending[idx].cancelId)) { //当请求在pending中存在时执行取消操作
+                  if(this.pending[idx].cancelId === cancelId) { 
+                      if(cancleF) {
+                          this.pending[idx].f(); // 取消正在执行的请求
+                      }
+                      this.pending.splice(idx, 1); // 把已响应的请求从pending中移除
+                      console.log(JSON.stringify(this.pending));
+                      return false;
                   }
-                  this.pending.splice(idx, 1); // 把已响应的请求从pending中移除
-                  return false;
               }
           }
+          
       }
   },
   computed: {
@@ -60,9 +66,8 @@ export default {
           }
           // 根据参数取消指定的请求
           if(configParams && configParams.delCancelId) {
-              that.removePending(configParams.delCancelId); 
+              that.removePending(configParams.delCancelId, true);
           }
-
 
           return config;
       }, function (error) {
@@ -75,7 +80,7 @@ export default {
           let configParams =  response.config.params;
           //在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
           if(configParams && configParams.addCancelId) {
-              that.removePending(configParams.addCancelId, true);  
+              that.removePending(configParams.addCancelId);  
           }
           if(!configParams || !configParams.notLoading) {
               that.ajaxEnd++;
@@ -96,7 +101,7 @@ export default {
           let configParams =  error.config.params;
           //在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
           if(configParams && configParams.addCancelId) {
-              that.removePending(configParams.addCancelId, true);  
+              that.removePending(configParams.addCancelId);  
           }
           if(!configParams || !configParams.notLoading) {
               that.ajaxEnd++;
@@ -135,5 +140,14 @@ export default {
 
     .el-loading-mask {
         background-color: rgba(0,0,0,0.1);
+    }
+
+    .pending {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 60px;
+      bottom: 0;
+      z-index: 1000;
     }
 </style>
