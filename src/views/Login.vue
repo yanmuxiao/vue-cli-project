@@ -23,6 +23,13 @@
           <el-button type="primary" style="width:100%;" @click="registerFn">注册</el-button>
         </el-form-item>
 
+        <el-form-item style="width:100%;">
+          <el-button type="primary" style="width:100%;" @click="getNew">确定</el-button>
+        </el-form-item>
+        <el-form-item style="width:100%;">
+          <el-button type="primary" style="width:100%;" @click="cancelAllFn">清除所有</el-button>
+        </el-form-item>
+
       </el-form>
   </div>
 
@@ -65,8 +72,8 @@
     data() {
       return {
         formData: {
-            account: '',
-            password: ''
+            account: 'admin',
+            password: 'suntek'
         },
         formValidate: {
             account: [
@@ -82,24 +89,35 @@
     },
     methods: {
         loginFn() {
+            var that = this;
             let params = {
                 name: this.formData.account,
                 pwd: this.formData.password,
-                uId: new Date().getTime()
+                uId: new Date().getTime(),
+                addCancelId: 'userLoginApi',
+                delCancelId: 'userLoginApi'
             };
             _post({ url: userLoginApi, params  }).then(res=>{
                 if(res.success === true) {
-                    this.$router.replace('/');
+                    // this.$router.replace('/');
                 }else{
                     this.$message({
                         type: 'info',
                         message: res.msg
                     }); 
                 }
+            }).catch(function(error){
+                // 手动清除或者链接超时失败都会进入这里，只是手动清除和链接超时失败的返回值不同
+                if(error.code === 'ECONNABORTED') {
+                  that.$message({
+                      type: 'info',
+                      message: '连接超时，请求失败！'
+                  }); 
+                }
             })
         },
         registerFn() {
-            let params = {
+            /*let params = {
                 name: this.formData.account,
                 pwd: this.formData.password,
                 uId: new Date().getTime()
@@ -118,9 +136,26 @@
                         message: res.msg
                     }); 
                 }
-            })
+            })*/
         },
         loginAutoFlase() {
+        },
+        getNew() {
+            var that = this;
+            // pending + 失败的请求 
+            _post({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json?t='+(new Date()).getTime(), params: { addCancelId: 'currentprice', delCancelId: 'userLoginApi', tips: '请求失败' } }).then(res=>{
+            }).catch(function(error){
+                if(error.code === 'ECONNABORTED') {
+                  that.$message({
+                      type: 'info',
+                      message: '连接超时，请求失败！'
+                  }); 
+                }
+            })
+        },
+        cancelAllFn() {
+            _get({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json?t='+(new Date()).getTime(), params: { delCancelId: 'cancleAll' } }).then(res=>{
+            }).catch(function(error){})
         }
     },
     created() {

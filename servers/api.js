@@ -30,11 +30,15 @@ app.post('/user/login', function(req, res){
 					msg:'密码输入错误'
 				})
 			}else if(doc.pwd == pwd){
-				res.send({
-					success: true,
-					status: 200,
-					msg:'登录成功'
-				})
+				console.log(1);
+				setTimeout(()=>{
+					console.log(2);
+					res.send({
+						success: true,
+						status: 200,
+						msg:'登录成功'
+					})
+				}, 5000)
 			}else{
 				res.send({
 					success: false,

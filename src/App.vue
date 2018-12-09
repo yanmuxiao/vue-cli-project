@@ -5,74 +5,124 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-
-
-// let pending = []; //声明一个数组用于存储每个ajax请求的取消函数和ajax标识
-// let cancelToken = axios.CancelToken;
-// let removePending = (config) => {
-//     for(let p in pending){
-//         if(pending[p].u === config.cancelId) { //当当前请求在数组中存在时执行函数体
-//             pending[p].f(); //执行取消操作
-//             pending.splice(p, 1); //把这条记录从数组中移除
-//         }
-//     }
-// }
-
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'app',
   data() {
       return {
+
+          cancelToken: null,
+          pending: [],
+
           ajaxStart: 0,
           ajaxEnd: 0
+
       }
   },
   created() {
+      this.cancelToken = this.axios.CancelToken;
   },
   methods: {
-      ...mapActions(['loading_action']),
+      // ...mapMutations(['addAxiosCancle']),
+      // ...mapActions(['loading_action']),
+      removePending(cancelId, cancleF) {
+          console.log(JSON.stringify(this.pending));
+          if(cancelId && this.pending.length > 0) {
+              if(cancelId === 'cancleAll') {
+                  for(let idx = 0; idx < this.pending.length; idx++){
+                      this.pending[idx].f(); // 取消正在执行的请求
+                  }
+                  this.pending = [];
+                  console.log(JSON.stringify(this.pending));
+              }else{
+                  for(let idx = 0; idx < this.pending.length; idx++){
+                      //当请求在pending中存在时执行取消操作
+                      if(this.pending[idx].cancelId === cancelId) { 
+                          if(cancleF) {
+                              this.pending[idx].f(); // 取消正在执行的请求
+                          }
+                          this.pending.splice(idx, 1); // 把已响应的请求从pending中移除
+                          console.log(JSON.stringify(this.pending));
+                          return false;
+                      }
+                  }
+              }
+          }
+          
+      }
   },
   computed: {
       ...mapGetters(['loading']),
   },
   mounted() {
-      var that = this;
+      let that = this;
       this.axios.interceptors.request.use(function (config) {
+          let configParams = config.params || config.data;
+          if(!configParams || !configParams.notLoading) {
+              that.ajaxStart++;
+          }
+          // that.loading_action(true);
+          
+          // 根据参数取消指定的请求
+          if(configParams && configParams.delCancelId) {
+              that.removePending(configParams.delCancelId, true);
+          }
 
-          that.ajaxStart=0;
-          that.ajaxEnd=0;
-          that.ajaxStart++;
-          that.loading_action(true);
-
-          // if(config.cancelId) {
-          //     removePending(config); //在一个ajax发送前执行一下取消操作
-          // }
-          // if(config.addCancelId) {
-          //     config.cancelToken = new cancelToken((c)=>{
-          //         pending.push({ u: config.cancelId, f: c });  
-          //     });
-          // }
+          // 根据参数判断将该请求添加到pending中
+          if(configParams && configParams.addCancelId) {
+              config.cancelToken = new that.cancelToken((c)=>{
+                  that.pending.push({ 
+                      cancelId: configParams.addCancelId, 
+                      f: c 
+                  });
+              });
+          }
+         
 
           return config;
       }, function (error) {
           // Do something with request error 
+          console.log('this.axios.interceptors.request.use: error');
           return Promise.reject(error);
       })
       this.axios.interceptors.response.use(function (response) {
-          if(response.data.success == false){
-              // 登录过期
-              if((Object(response.data.result).hasOwnProperty('errCode')) && response.data.result.errCode=='NotLogin') {
-              }
+
+          let configParams =  response.config.params || response.config.data;
+          //在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
+          if(configParams && configParams.addCancelId) {
+              that.removePending(configParams.addCancelId);  
           }
-          that.ajaxEnd++;
+          if(!configParams || !configParams.notLoading) {
+              that.ajaxEnd++;
+          }
           if(that.ajaxStart <= that.ajaxEnd){
-              that.loading_action(false);
+              that.ajaxStart = 0;
+              that.ajaxEnd = 0;
+              // that.loading_action(false);
           }
 
-          // removePending(res.config);  //在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
           return response;
       }, function (error) {
+
           // Do something with response error
+          console.log('this.axios.interceptors.response.use: error');
+          console.log(arguments);
+          
+          let configParams =  error.config.params || JSON.parse(error.config.data);
+          //在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中移除
+          if(configParams && configParams.addCancelId) {
+              that.removePending(configParams.addCancelId);  
+          }
+          if(!configParams || !configParams.notLoading) {
+              that.ajaxEnd++;
+          }
+          if(that.ajaxStart <= that.ajaxEnd){
+              that.ajaxStart = 0;
+              that.ajaxEnd = 0;
+              // that.loading_action(false);
+          }
+          console.log('this.pending=======>');
+          console.log(JSON.stringify(that.pending));
           return Promise.reject(error);
       })
   }
@@ -101,5 +151,14 @@ export default {
 
     .el-loading-mask {
         background-color: rgba(0,0,0,0.1);
+    }
+
+    .pending {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 60px;
+      bottom: 0;
+      z-index: 1000;
     }
 </style>

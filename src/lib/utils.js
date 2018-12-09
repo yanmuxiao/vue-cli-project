@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+axios.defaults.timeout = 4000; 
 
 export function toFormData(opt) {
     let formData = new FormData();
@@ -23,8 +24,9 @@ export function _get({ url, params }) {
             return response.data
         }
         return Promise.reject(new Error(response.status))
-    }).catch(response => {
-        console.log("error!!!!!!!!!!!")
+    }).catch(error => {
+        console.log("_get==>");
+        return Promise.reject(error);
     })
 }
 
@@ -47,6 +49,9 @@ export function _post({ url, params, toForm }) {
             return response.data
         }
         // return Promise.reject(new Error(response.status))
+    }).catch(error => {
+        console.log("_post==>");
+        return Promise.reject(error);
     })
 }
 
