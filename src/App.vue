@@ -26,6 +26,7 @@ export default {
       // ...mapMutations(['addAxiosCancle']),
       // ...mapActions(['loading_action']),
       removePending(cancelId, cancleF) {
+          console.log("JSON.stringify====>");
           console.log(JSON.stringify(this.pending));
           if(cancelId && this.pending.length > 0) {
               if(cancelId === 'cancleAll') {
@@ -64,12 +65,12 @@ export default {
           // that.loading_action(true);
           
           // 根据参数取消指定的请求
-          if(configParams && configParams.delCancelId) {
+          if(configParams && (configParams.delCancelId)) {
               that.removePending(configParams.delCancelId, true);
           }
-
           // 根据参数判断将该请求添加到pending中
           if(configParams && configParams.addCancelId) {
+              that.removePending(configParams.addCancelId, true); // 添加之前将自己清除
               config.cancelToken = new that.cancelToken((c)=>{
                   that.pending.push({ 
                       cancelId: configParams.addCancelId, 

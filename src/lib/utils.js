@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-axios.defaults.timeout = 4000; 
+axios.defaults.timeout = 3000; 
 
 export function toFormData(opt) {
     let formData = new FormData();

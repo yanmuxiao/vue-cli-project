@@ -94,8 +94,7 @@
                 name: this.formData.account,
                 pwd: this.formData.password,
                 uId: new Date().getTime(),
-                addCancelId: 'userLoginApi',
-                delCancelId: 'userLoginApi'
+                addCancelId: 'userLoginApi'
             };
             _post({ url: userLoginApi, params  }).then(res=>{
                 if(res.success === true) {
@@ -107,6 +106,7 @@
                     }); 
                 }
             }).catch(function(error){
+                console.log('catch');
                 // 手动清除或者链接超时失败都会进入这里，只是手动清除和链接超时失败的返回值不同
                 if(error.code === 'ECONNABORTED') {
                   that.$message({
@@ -117,7 +117,7 @@
             })
         },
         registerFn() {
-            /*let params = {
+            let params = {
                 name: this.formData.account,
                 pwd: this.formData.password,
                 uId: new Date().getTime()
@@ -136,15 +136,18 @@
                         message: res.msg
                     }); 
                 }
-            })*/
+            }).catch(errro=>{
+                console.log('catch');
+            })
         },
         loginAutoFlase() {
         },
         getNew() {
             var that = this;
             // pending + 失败的请求 
-            _post({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json?t='+(new Date()).getTime(), params: { addCancelId: 'currentprice', delCancelId: 'userLoginApi', tips: '请求失败' } }).then(res=>{
+            _post({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json?t='+(new Date()).getTime(), params: { addCancelId: 'currentprice', tips: '请求失败' } }).then(res=>{
             }).catch(function(error){
+                console.log('catch');
                 if(error.code === 'ECONNABORTED') {
                   that.$message({
                       type: 'info',
@@ -155,7 +158,9 @@
         },
         cancelAllFn() {
             _get({ url: 'https://api.coindesk.com/v1/bpi/currentprice.json?t='+(new Date()).getTime(), params: { delCancelId: 'cancleAll' } }).then(res=>{
-            }).catch(function(error){})
+            }).catch(function(error){
+                console.log('catch');
+            })
         }
     },
     created() {

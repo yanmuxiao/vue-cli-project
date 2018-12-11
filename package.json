@@ -43,7 +43,7 @@
     "http-proxy-middleware": "^0.17.3",
     "lodash": "^4.17.4",
     "mockjs": "^1.0.1-beta3",
-    "mongoose": "^5.0.1",
+    "mongoose": "^5.3.15",
     "node-sass": "^4.5.3",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
