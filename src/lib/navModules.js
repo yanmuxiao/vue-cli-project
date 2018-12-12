@@ -43,9 +43,7 @@ export default {
             { index: 'badge',name: '标记' },
         ]}
 	],
-	formList: [
-		{ index: 'syncTask1', className: 'el-icon-document',name: '用户列表', subMenu: false },
-        { index: 'editForm1', className: 'el-icon-plus',name: '添加用户', subMenu: false },
-	    
+	loadsh: [
+		{ index: 'loadsh', className: 'el-icon-document',name: 'loadsh', subMenu: false }
 	]
 }

@@ -178,7 +178,7 @@
             return {
                 navModules: [
                     { navMName: 'basicList', nameLabel: '基本ElementUI', cur: false },
-                    { navMName: 'formList', nameLabel: '表单', cur: false }
+                    { navMName: 'loadsh', nameLabel: 'loadsh', cur: false }
                 ]
             }
         },

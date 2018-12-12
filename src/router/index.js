@@ -100,7 +100,15 @@ export default new Router({
             meta: {
               title: '用户列表'
             }
-          }
+          },
+          { 
+            path: 'loadsh', 
+            component: resolve => require(['@/views/loadsh/loadsh'], resolve), 
+            name: 'loadsh',
+            meta: {
+              title: 'loadsh'
+            }
+          },
       ]
     },
     {
