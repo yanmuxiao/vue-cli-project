@@ -48,7 +48,7 @@ export function _post({ url, params, toForm }) {
         if (response.status >= 200 && response.status < 300) {
             return response.data
         }
-        // return Promise.reject(new Error(response.status))
+        return Promise.reject(new Error(response.status))
     }).catch(error => {
         console.log("_post==>");
         return Promise.reject(error);

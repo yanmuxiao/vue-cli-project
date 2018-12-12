@@ -35,7 +35,7 @@
 
 </template>
 
-<style>
+<style lang="scss">
     
     .el-login-model {
         border-radius: 5px;
