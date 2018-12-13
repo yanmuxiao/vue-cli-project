@@ -14,7 +14,7 @@
             }
         },
         created() {
-            console.log(trim);
+            // console.log(trim);
         },
         computed: {
 
