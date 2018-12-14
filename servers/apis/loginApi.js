@@ -1,3 +1,5 @@
+const cookieParser=require("cookie-parser");
+app.use(cookieParser());
 
 // Models
 const UserModels = require('../models/users.js'); 
@@ -19,6 +21,7 @@ const loginApi = {
 						})
 					}else if(doc.pwd == pwd){
 						setTimeout(()=>{
+							res.cookie("userid", 'abcdefg123456', { expires: new Date(Date.now() + 100), httpOnly: true });
 							res.send({
 								success: true,
 								status: 200,
