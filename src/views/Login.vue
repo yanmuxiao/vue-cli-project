@@ -67,7 +67,7 @@
 <script>
   
   import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie';
-  import { userLoginApi, userRegisterApi } from '@/api/api';
+  import { userLoginApi, userLogoutApi, userRegisterApi } from '@/api/api';
   import { _get, _post } from '@/lib/utils';
 
   export default {
@@ -119,7 +119,7 @@
             })
         },
         logoutFn() {
-            _get({ url: userLoginApi, params: {}  }).then(res=>{
+            _get({ url: userLogoutApi, params: {}  }).then(res=>{
                 if(res.success === true) {
                     this.$message({
                         type: 'info',

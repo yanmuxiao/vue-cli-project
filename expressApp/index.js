@@ -19,29 +19,38 @@ app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-for
 // app.use(cookieParser());
 
 // session
-var session = require('express-session');
+let session = require('express-session');
 app.use(session({
     secret: '12345',
     name: 'sid',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: {maxAge: 800000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: { maxAge: 800000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: true,
 }));
 
 
-// 用户登录注册
-// const loginApi = require('./apis/loginApi.js'); 
-// app.post(loginApi.login.url, loginApi.login.callback);
-// app.post(loginApi.register.url, loginApi.register.callback);
+// app.use(function(req, res, next) {
+// 	console.log('sid：' + req.session.sid)
+// 	console.log('拦截器：' + req.url)
+//     if (!req.session.sid) {
+//         if (req.url == "/user/login") {
+//             next(); //如果请求的地址是登录则通过，进行下一个请求
+//         } else {
+//             res.redirect('/login');//跳转到登录页面
+//         }
+//     } else if (req.session.user) {
+//         next();//如果已经登录，则可以进入
+//     }
+// });
 
 
 // 用户登录
 app.post('/user/login', function(req, res){
-	var {name,pwd} = req.body;
+	let { name, pwd } = req.body;
 	//读取用户 的cookies；
     // const { userid } = req.cookies;
     // console.log(userid);
-	UserModels.Users.findOne({name}, 'pwd', (err, doc) => {
+	UserModels.Users.findOne({ name }, 'pwd', (err, doc) => {
 		if(err) {
 			console.log(err);
 		}else if(doc) {
@@ -52,8 +61,7 @@ app.post('/user/login', function(req, res){
 					msg:'密码输入错误'
 				})
 			}else if(doc.pwd == pwd){
-				// res.cookie("userid", 'abcdefg123455'); // cookieParser写入cookie
-				req.session.sid = '/login';
+				req.session.sid = name;
 				res.send({
 					success: true,
 					status: 200,
@@ -76,20 +84,13 @@ app.post('/user/login', function(req, res){
 	})
 });
 // 用户登出
-app.post('/user/login', function(req, res){
+app.post('/user/logout', function(req, res){console.log('121212');
 	req.session.sid = null; // 删除session
     res.redirect('login');
 });
 // 用户注册
 app.post('/user/register',  function(req, res){
-
-	if(req.session.sid) {
-        console.log('Last page was: ' + req.session.sid + ".");    
-    }else{
-    	console.log('没有req.session.sid');
-    }
-
-	UserModels.Users.findOne({name: req.body.name}, 'name', (err, doc) => {
+	UserModels.Users.findOne({ name: req.body.name }, 'name', (err, doc) => {
 		if(err) {
 			console.log(err);
 		}else if(doc) {

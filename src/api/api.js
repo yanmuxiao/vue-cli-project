@@ -39,4 +39,5 @@ export const addUserList = params => {
 // 2018 mongodb api
 let mongodbApi = process.env.NODE_ENV === 'production'?'..':'/api';
 export let userLoginApi = `${mongodbApi}/user/login`; // 用户登录
+export let userLogoutApi = `${mongodbApi}/user/logout`; // 用户登出
 export let userRegisterApi = `${mongodbApi}/user/register`; // 用户注册
