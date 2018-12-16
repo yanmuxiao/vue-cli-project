@@ -88,6 +88,9 @@
     import HeaderVue from '@/components/HeaderVue'
     import AsideMenu from '@/components/AsideMenu'
 
+    import { userLogoutApi, userInfoApi } from '@/api/api';
+    import { _get, _post } from '@/lib/utils';
+
     export default {
         data() {
             return {
@@ -127,7 +130,7 @@
             }
         },
         created() {
-            
+
             // this.loading_action(true);
             // setTimeout(() => {
             //     this.loading_action(false);
@@ -154,6 +157,17 @@
             }
         },
         mounted () {
+            _get({ url: userInfoApi, params: {} }).then(res=>{
+                if(res.success === true) {
+                    
+                }else{
+                    this.$message({
+                        type: 'info',
+                        message: res.msg
+                    }); 
+                }
+            }).catch(function(error){})
+            
             window.onresize = () => {
                 this.screenWidth = document.body.clientWidth;
             }

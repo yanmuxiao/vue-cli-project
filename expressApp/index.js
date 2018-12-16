@@ -23,25 +23,37 @@ let session = require('express-session');
 app.use(session({
     secret: '12345',
     name: 'sid',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: { maxAge: 800000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: { maxAge: 10*60*1000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: true,
 }));
 
 
-// app.use(function(req, res, next) {
-// 	console.log('sid：' + req.session.sid)
-// 	console.log('拦截器：' + req.url)
-//     if (!req.session.sid) {
-//         if (req.url == "/user/login") {
-//             next(); //如果请求的地址是登录则通过，进行下一个请求
-//         } else {
-//             res.redirect('/login');//跳转到登录页面
-//         }
-//     } else if (req.session.user) {
-//         next();//如果已经登录，则可以进入
-//     }
-// });
+app.use(function(req, res, next) {
+	console.log('sid：' + req.session.sid)
+	console.log('拦截器：' + req.url)
+	if(req.url === '/user/logout') {
+		req.session.sid = null; // 删除session
+	    res.send({
+			success: true,
+			status: 200,
+			msg:'登出成功'
+		})
+	}else if (!req.session.sid) {
+        if (req.url == "/user/login") {
+        	req.session.sid = null; // 删除session
+            next(); //如果请求的地址是登录则通过，进行登录
+        } else {
+            res.send({
+				success: true,
+				status: 401,
+				msg:'登录已过期！'
+			})
+        }
+    } else if (req.session.sid) {
+        next();//如果已经登录，则可以进入
+    }
+});
 
 
 // 用户登录
@@ -84,10 +96,15 @@ app.post('/user/login', function(req, res){
 	})
 });
 // 用户登出
-app.post('/user/logout', function(req, res){console.log('121212');
-	req.session.sid = null; // 删除session
-    res.redirect('login');
-});
+// app.get('/user/logout', function(req, res){console.log('==>' + 3);
+// 	req.session.sid = null; // 删除session
+//     // res.redirect('login');
+//     res.send({
+// 		success: true,
+// 		status: 200,
+// 		msg:'登出成功'
+// 	})
+// });
 // 用户注册
 app.post('/user/register',  function(req, res){
 	UserModels.Users.findOne({ name: req.body.name }, 'name', (err, doc) => {
@@ -119,6 +136,20 @@ app.post('/user/register',  function(req, res){
 	})
 	
 })
+app.get('/user/info', function(req, res){console.log('==>' + 3);
+    setTimeout(()=>{
+    	res.send({
+			success: true,
+			status: 200,
+			data: {
+				name: 'infoName',
+				userId: '1212121212',
+				phone: 18826408772
+			}
+		})
+    }, 3000)
+});
+
 
 
 app.listen(9090, function() {

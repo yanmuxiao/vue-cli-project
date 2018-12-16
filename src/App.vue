@@ -24,7 +24,7 @@ export default {
   },
   methods: {
       // ...mapMutations(['addAxiosCancle']),
-      // ...mapActions(['loading_action']),
+      ...mapActions(['loading_action']),
       removePending(cancelId, cancleF) {
           console.log("JSON.stringify====>");
           console.log(JSON.stringify(this.pending));
@@ -62,7 +62,7 @@ export default {
           if(!configParams || !configParams.notLoading) {
               that.ajaxStart++;
           }
-          // that.loading_action(true);
+          that.loading_action(true);
           
           // 根据参数取消指定的请求
           if(configParams && (configParams.delCancelId)) {
@@ -99,7 +99,17 @@ export default {
           if(that.ajaxStart <= that.ajaxEnd){
               that.ajaxStart = 0;
               that.ajaxEnd = 0;
-              // that.loading_action(false);
+              that.loading_action(false);
+          }
+
+          if(response.data.status == 401) {
+              that.removePending('cancleAll');
+              that.loading_action(false);
+              that.$message({
+                  type: 'info',
+                  message: '登录已过期！'
+              }); 
+              that.$router.push('/login');
           }
 
           return response;
@@ -120,7 +130,7 @@ export default {
           if(that.ajaxStart <= that.ajaxEnd){
               that.ajaxStart = 0;
               that.ajaxEnd = 0;
-              // that.loading_action(false);
+              that.loading_action(false);
           }
           console.log('this.pending=======>');
           console.log(JSON.stringify(that.pending));

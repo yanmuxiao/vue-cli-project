@@ -19,9 +19,6 @@
           <el-button type="primary" style="width:100%;" @click="loginFn">登录</el-button>
         </el-form-item>
         <el-form-item style="width:100%;">
-          <el-button type="primary" style="width:100%;" @click="logoutFn">登出</el-button>
-        </el-form-item>
-        <el-form-item style="width:100%;">
           <el-button type="primary" style="width:100%;" @click="registerFn">注册</el-button>
         </el-form-item>
 
@@ -67,7 +64,7 @@
 <script>
   
   import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie';
-  import { userLoginApi, userLogoutApi, userRegisterApi } from '@/api/api';
+  import { userLoginApi, userRegisterApi } from '@/api/api';
   import { _get, _post } from '@/lib/utils';
 
   export default {
@@ -100,31 +97,11 @@
             };
             _post({ url: userLoginApi, params  }).then(res=>{
                 if(res.success === true) {
-                    // this.$router.replace('/');
-                }else{
                     this.$message({
                         type: 'info',
                         message: res.msg
                     }); 
-                }
-            }).catch(function(error){
-                console.log('catch');
-                // 手动清除或者链接超时失败都会进入这里，只是手动清除和链接超时失败的返回值不同
-                if(error.code === 'ECONNABORTED') {
-                  that.$message({
-                      type: 'info',
-                      message: '连接超时，请求失败！'
-                  }); 
-                }
-            })
-        },
-        logoutFn() {
-            _get({ url: userLogoutApi, params: {}  }).then(res=>{
-                if(res.success === true) {
-                    this.$message({
-                        type: 'info',
-                        message: res.msg
-                    }); 
+                    this.$router.replace('/');
                 }else{
                     this.$message({
                         type: 'info',
