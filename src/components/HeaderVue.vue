@@ -39,7 +39,7 @@
               </span>
               <el-dropdown-menu slot="dropdown" class="header-dropdown">
                 <el-dropdown-item command="message">我的消息</el-dropdown-item>
-                <el-dropdown-item>设置</el-dropdown-item>
+                <el-dropdown-item command="loadsh">设置</el-dropdown-item>
                 <el-dropdown-item command="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -198,7 +198,6 @@
             },
             handleCommand(command) {
                 if(command === 'message') {
-                    // this.$router.push('login')
                     _get({ url: userInfoApi, params: {} }).then(res=>{
                         if(res.success === true) {
                             
@@ -224,6 +223,8 @@
                             }); 
                         }
                     }).catch(function(error){})
+                }else if(command === 'loadsh') {
+                    this.$router.push('/loadsh');
                 }
             }
         },

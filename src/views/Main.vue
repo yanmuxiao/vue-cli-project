@@ -84,7 +84,7 @@
 </style>
 <script>
 
-    // import { mapGetters, mapActions } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     import HeaderVue from '@/components/HeaderVue'
     import AsideMenu from '@/components/AsideMenu'
 
@@ -108,10 +108,6 @@
             });
         },
         beforeRouteUpdate(to, from, next) {
-            // this.loading_action(true);
-            // setTimeout(() => {
-            //     this.loading_action(false);
-            // }, 1000)
             // 通常用来禁止用户在还没保存修改前突然离开
             console.log('Main.vue: beforeRouteUpdate');
             next();
@@ -121,7 +117,7 @@
             next();
         },
         methods: {
-            // ...mapActions(['loading_action']),
+            ...mapActions(['loading_action']),
             mobileAsideFn() {
                 this.$store.commit('ASIDE_SH', true);
             },
@@ -130,11 +126,6 @@
             }
         },
         created() {
-
-            // this.loading_action(true);
-            // setTimeout(() => {
-            //     this.loading_action(false);
-            // }, 1000)
             
             if(this.screenWidth <= 800) {
                 this.$store.commit('MOBILE_TYPE', true);
@@ -157,7 +148,7 @@
             }
         },
         mounted () {
-            _get({ url: userInfoApi, params: {} }).then(res=>{
+            _get({ url: userInfoApi, params: { a: 'ab' } }).then(res=>{
                 if(res.success === true) {
                     
                 }else{

@@ -62,6 +62,8 @@ export default {
           if(!configParams || !configParams.notLoading) {
               that.ajaxStart++;
           }
+          console.log('configParams.url===>');
+          console.log(config);
           that.loading_action(true);
           
           // 根据参数取消指定的请求
@@ -78,8 +80,6 @@ export default {
                   });
               });
           }
-         
-
           return config;
       }, function (error) {
           // Do something with request error 
@@ -96,7 +96,8 @@ export default {
           if(!configParams || !configParams.notLoading) {
               that.ajaxEnd++;
           }
-          if(that.ajaxStart <= that.ajaxEnd){
+          // 登录页面进入首页请求没有触发loading
+          if(that.ajaxStart <= that.ajaxEnd && !(/user\/login/.test(response.config.url))){
               that.ajaxStart = 0;
               that.ajaxEnd = 0;
               that.loading_action(false);

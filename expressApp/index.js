@@ -23,7 +23,7 @@ let session = require('express-session');
 app.use(session({
     secret: '12345',
     name: 'sid',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: { maxAge: 10*60*1000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: { maxAge: 10*60*1000 },  //设置maxAge是10min，即10min后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: true,
 }));
@@ -74,11 +74,13 @@ app.post('/user/login', function(req, res){
 				})
 			}else if(doc.pwd == pwd){
 				req.session.sid = name;
-				res.send({
-					success: true,
-					status: 200,
-					msg:'登录成功'
-				})
+				setTimeout(()=>{
+					res.send({
+						success: true,
+						status: 200,
+						msg:'登录成功'
+					})
+				}, 3000);
 			}else{
 				res.send({
 					success: false,
@@ -96,15 +98,15 @@ app.post('/user/login', function(req, res){
 	})
 });
 // 用户登出
-// app.get('/user/logout', function(req, res){console.log('==>' + 3);
-// 	req.session.sid = null; // 删除session
-//     // res.redirect('login');
-//     res.send({
-// 		success: true,
-// 		status: 200,
-// 		msg:'登出成功'
-// 	})
-// });
+app.get('/user/logout', function(req, res){console.log('==>' + 3);
+	req.session.sid = null; // 删除session
+    // res.redirect('login');
+    res.send({
+		success: true,
+		status: 200,
+		msg:'登出成功'
+	})
+});
 // 用户注册
 app.post('/user/register',  function(req, res){
 	UserModels.Users.findOne({ name: req.body.name }, 'name', (err, doc) => {

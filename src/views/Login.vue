@@ -64,7 +64,7 @@
 <script>
   
   import { setCookie, getCookieValue, deleteCookie } from '@/lib/cookie';
-  import { userLoginApi, userRegisterApi } from '@/api/api';
+  import { userLoginApi, userRegisterApi, userInfoApi } from '@/api/api';
   import { _get, _post } from '@/lib/utils';
 
   export default {
@@ -102,6 +102,17 @@
                         message: res.msg
                     }); 
                     this.$router.replace('/');
+                    // _get({ url: userInfoApi, params: {} }).then(res=>{
+                    //     if(res.success === true) {
+                    //         this.$router.replace('/');
+                    //     }else{
+                    //         this.$message({
+                    //             type: 'info',
+                    //             message: res.msg
+                    //         }); 
+                    //     }
+                    // }).catch(function(error){})
+                    
                 }else{
                     this.$message({
                         type: 'info',
