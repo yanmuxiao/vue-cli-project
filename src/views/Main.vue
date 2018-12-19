@@ -117,7 +117,6 @@
             next();
         },
         methods: {
-            ...mapActions(['loading_action']),
             mobileAsideFn() {
                 this.$store.commit('ASIDE_SH', true);
             },

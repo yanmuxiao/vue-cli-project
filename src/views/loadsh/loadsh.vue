@@ -7,7 +7,7 @@
 
 </style>
 <script>
-    // import _ from '@/lib/loadsh.js'
+    import _ from '@/lib/lodash'
     import { mapGetters, mapActions } from 'vuex';
     import { userInfoApi } from '@/api/api';
     import { _get, _post } from '@/lib/utils';
@@ -35,7 +35,7 @@
 
         },
         mounted () {
-
+            console.log(_.trim('   af  c   '));
         },
         methods: {
 
