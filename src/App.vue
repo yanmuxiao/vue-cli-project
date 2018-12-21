@@ -49,7 +49,6 @@ export default {
                   }
               }
           }
-          
       }
   },
   computed: {
@@ -163,14 +162,5 @@ export default {
 
     .el-loading-mask {
         background-color: rgba(0,0,0,0.1);
-    }
-
-    .pending {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 60px;
-      bottom: 0;
-      z-index: 1000;
     }
 </style>

@@ -7,8 +7,6 @@
 
 </style>
 <script>
-    import _ from '@/lib/lodash'
-    import { mapGetters, mapActions } from 'vuex';
     import { userInfoApi } from '@/api/api';
     import { _get, _post } from '@/lib/utils';
     export default {
@@ -19,7 +17,6 @@
         created() {
 
             _get({ url: userInfoApi, params: {} }).then(res=>{
-                this.loading_action(false);
                 if(res.success === true) {
                     
                 }else{
@@ -35,7 +32,6 @@
 
         },
         mounted () {
-            console.log(_.trim('   af  c   '));
         },
         methods: {
 

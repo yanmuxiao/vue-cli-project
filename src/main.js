@@ -4,6 +4,19 @@ import Vue from 'vue'
 import axios from 'axios'
 Vue.prototype.axios = axios; // 全局注册axios
 
+// 按需引入lodash
+import orderBy from 'lodash/orderBy'
+import difference from 'lodash/difference'
+import differenceBy from 'lodash/differenceBy'
+import differenceWith from 'lodash/differenceWith'
+// 创建一个分成两组的元素数组，第一组包含predicate（断言函数）返回为 truthy（真值）的元素，第二组包含predicate（断言函数）返回为 falsey（假值）的元素。predicate 调用1个参数：(value)。
+import partition from 'lodash/partition' 
+import size from 'lodash/size' // 可计算{}、[]、string的长度
+Vue.prototype._ = {
+    orderBy, difference, differenceBy, differenceWith, partition, size
+}
+
+
 import 'element-ui/lib/theme-default/index.css'
 import 'font-awesome/css/font-awesome.css'
 import '@/assets/style.css'
