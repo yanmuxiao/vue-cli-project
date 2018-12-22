@@ -4,24 +4,32 @@ import Vue from 'vue'
 import axios from 'axios'
 Vue.prototype.axios = axios; // 全局注册axios
 
-
 // 按需引入lodash
-import orderBy from 'lodash/orderBy'
-import size from 'lodash/size' // 可计算{}、[]、string的长度
-// 从一个数组中取出不包含另外一个数组中的
-import difference from 'lodash/difference' // 值唯一
-import differenceBy from 'lodash/differenceBy' // obj中的某个键值不同（第三个参数出入某个键）
-import differenceWith from 'lodash/differenceWith' // 传入方法（第三个参数是一个方法，传入了两个参数）
-// 在一个数组内找唯一的
-import uniq from 'lodash/uniq' // 值唯一
-import uniqBy from 'lodash/uniqBy' // obj中的某个键值唯一（第二个参数出入某个键）
-import uniqWith from 'lodash/uniqWith' // 传入方法（第二个参数是一个方法，传入了一个参数）
+import _ from './lib/lodash';
+Vue.prototype._ = _;
 
-Vue.prototype._ = {
-    orderBy, size,
-    difference, differenceBy, differenceWith, 
-    uniq, uniqBy, uniqWith
-}
+// 按需引入图表（v-charts/echarts）350k+
+import VeLine from 'v-charts/lib/line.common'
+Vue.component(VeLine.name, VeLine)
+import VeHistogram from 'v-charts/lib/histogram.common'
+Vue.component(VeHistogram.name, VeHistogram)
+// |- line.common.js  -------------- 折线图
+// |- bar.common.js  --------------- 条形图
+// |- histogram.common.js  --------- 柱状图
+// |- pie.common.js  --------------- 饼图
+// |- ring.common.js  -------------- 环图
+// |- funnel.common.js  ------------ 漏斗图
+// |- waterfall.common.js  --------- 瀑布图
+// |- radar.common.js  ------------- 雷达图
+// |- map.common.js  --------------- 地图
+// |- sankey.common.js  ------------ 桑基图
+// |- heatmap.common.js  ----------- 热力图
+// |- scatter.common.js  ----------- 散点图
+// |- candle.common.js  ------------ k线图
+// |- gauge.common.js  ------------- 仪表盘
+// |- tree.common.js  -------------- 树图
+// |- bmap.common.js  -------------- 百度地图
+// |- amap.common.js  -------------- 高德地图
 
 
 import 'element-ui/lib/theme-default/index.css'
@@ -194,9 +202,7 @@ router.beforeResolve((to, form, next) => {
   next();
 })
 router.afterEach((to, from) => {
-  // setTimeout(()=>{
-  //     window.scrollTo(0,0);
-  // }, 100);
+  window.scrollTo(0,0);
   console.log('main.js: afterEach');
 })
 

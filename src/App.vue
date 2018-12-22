@@ -97,15 +97,15 @@ export default {
               that.loading_action(false);
           }
 
-          if(response.data.status == 401) {
-              that.removePending('cancleAll');
-              that.loading_action(false);
-              that.$message({
-                  type: 'info',
-                  message: '登录已过期！'
-              }); 
-              that.$router.push('/login');
-          }
+          // if(response.data.status == 401) {
+          //     that.removePending('cancleAll');
+          //     that.loading_action(false);
+          //     that.$message({
+          //         type: 'info',
+          //         message: '登录已过期！'
+          //     }); 
+          //     that.$router.push('/login');
+          // }
 
           return response;
       }, function (error) {

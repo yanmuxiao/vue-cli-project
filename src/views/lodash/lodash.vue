@@ -12,6 +12,7 @@
     export default {
         data() {
             return {
+                ES6: ['some', 'every', 'filter', 'map', 'reduce', 'forEach', 'find/findIndex', 'keys/values/entries', 'indexOf ==> includes']
             }
         },
         created() {
@@ -32,6 +33,8 @@
 
         },
         mounted () {
+            console.log('lodash==>');
+            console.log(this._.difference([1, 2, 3, 4, 5, 6], [2, 5]));
         },
         methods: {
 
