@@ -26,15 +26,12 @@ export default {
       // ...mapMutations(['addAxiosCancle']),
       ...mapActions(['loading_action']),
       removePending(cancelId, cancleF) {
-          console.log("JSON.stringify====>");
-          console.log(JSON.stringify(this.pending));
           if(cancelId && this.pending.length > 0) {
               if(cancelId === 'cancleAll') {
                   for(let idx = 0; idx < this.pending.length; idx++){
                       this.pending[idx].f(); // 取消正在执行的请求
                   }
                   this.pending = [];
-                  console.log(JSON.stringify(this.pending));
               }else{
                   for(let idx = 0; idx < this.pending.length; idx++){
                       //当请求在pending中存在时执行取消操作
@@ -43,7 +40,6 @@ export default {
                               this.pending[idx].f(); // 取消正在执行的请求
                           }
                           this.pending.splice(idx, 1); // 把已响应的请求从pending中移除
-                          console.log(JSON.stringify(this.pending));
                           return false;
                       }
                   }
@@ -61,8 +57,6 @@ export default {
           if(!configParams || !configParams.notLoading) {
               that.ajaxStart++;
           }
-          console.log('configParams.url===>');
-          console.log(config);
           that.loading_action(true);
           
           // 根据参数取消指定的请求
@@ -132,8 +126,6 @@ export default {
               that.ajaxEnd = 0;
               that.loading_action(false);
           }
-          console.log('this.pending=======>');
-          console.log(JSON.stringify(that.pending));
           return Promise.reject(error);
       })
   }

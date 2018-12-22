@@ -39,7 +39,7 @@
               </span>
               <el-dropdown-menu slot="dropdown" class="header-dropdown">
                 <el-dropdown-item command="message">我的消息</el-dropdown-item>
-                <el-dropdown-item command="loadsh">设置</el-dropdown-item>
+                <el-dropdown-item command="lodash">设置</el-dropdown-item>
                 <el-dropdown-item command="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -180,7 +180,7 @@
             return {
                 navModules: [
                     { navMName: 'basicList', nameLabel: '基本ElementUI', cur: false },
-                    { navMName: 'loadsh', nameLabel: 'loadsh', cur: false }
+                    { navMName: 'lodash', nameLabel: 'lodash', cur: false }
                 ]
             }
         },
@@ -223,8 +223,8 @@
                             }); 
                         }
                     }).catch(function(error){})
-                }else if(command === 'loadsh') {
-                    this.$router.push('/loadsh');
+                }else if(command === 'lodash') {
+                    this.$router.push('/lodash');
                 }
             }
         },

@@ -93,20 +93,20 @@ export default new Router({
           { path: 'messageBox', component: resolve => require(['@/views/notice/MessageBox'], resolve), name: 'messageBox'},
           { path: 'notification', component: resolve => require(['@/views/notice/Notification'], resolve), name: 'notification'},
           { path: 'editForm', name: 'editForm', component: resolve => require(['@/views/edit-form'], resolve)},
+          // { 
+          //   path: 'syncTask', 
+          //   name: 'syncTask', 
+          //   component: resolve => require(['@/views/sync-task'], resolve),
+          //   meta: {
+          //     title: '用户列表'
+          //   }
+          // },
           { 
-            path: 'syncTask', 
-            name: 'syncTask', 
-            component: resolve => require(['@/views/sync-task'], resolve),
+            path: 'lodash', 
+            component: resolve => require(['@/views/lodash/lodash'], resolve), 
+            name: 'lodash',
             meta: {
-              title: '用户列表'
-            }
-          },
-          { 
-            path: 'loadsh', 
-            component: resolve => require(['@/views/loadsh/loadsh'], resolve), 
-            name: 'loadsh',
-            meta: {
-              title: 'loadsh'
+              title: 'lodash'
             }
           },
       ]

@@ -43,7 +43,7 @@ export default {
             { index: 'badge',name: '标记' },
         ]}
 	],
-	loadsh: [
-		{ index: 'loadsh', className: 'el-icon-document',name: 'loadsh', subMenu: false }
+	lodash: [
+		{ index: 'lodash', className: 'el-icon-document',name: 'lodash', subMenu: false }
 	]
 }
