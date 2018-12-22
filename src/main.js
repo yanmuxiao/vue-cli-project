@@ -7,19 +7,18 @@ Vue.prototype.axios = axios; // 全局注册axios
 
 // 按需引入lodash
 import orderBy from 'lodash/orderBy'
-import difference from 'lodash/difference'
-import differenceBy from 'lodash/differenceBy'
-import differenceWith from 'lodash/differenceWith'
-// 创建一个分成两组的元素数组，第一组包含predicate（断言函数）返回为 truthy（真值）的元素，第二组包含predicate（断言函数）返回为 falsey（假值）的元素。predicate 调用1个参数：(value)。
-import partition from 'lodash/partition' 
 import size from 'lodash/size' // 可计算{}、[]、string的长度
-
-import uniq from 'lodash/uniq'
-import uniqBy from 'lodash/uniqBy'
-import uniqWith from 'lodash/uniqWith'
+// 从一个数组中取出不包含另外一个数组中的
+import difference from 'lodash/difference' // 值唯一
+import differenceBy from 'lodash/differenceBy' // obj中的某个键值不同（第三个参数出入某个键）
+import differenceWith from 'lodash/differenceWith' // 传入方法（第三个参数是一个方法，传入了两个参数）
+// 在一个数组内找唯一的
+import uniq from 'lodash/uniq' // 值唯一
+import uniqBy from 'lodash/uniqBy' // obj中的某个键值唯一（第二个参数出入某个键）
+import uniqWith from 'lodash/uniqWith' // 传入方法（第二个参数是一个方法，传入了一个参数）
 
 Vue.prototype._ = {
-    orderBy, partition, size,
+    orderBy, size,
     difference, differenceBy, differenceWith, 
     uniq, uniqBy, uniqWith
 }
