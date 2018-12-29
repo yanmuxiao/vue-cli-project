@@ -65,6 +65,50 @@ var map = function(arr, fn) {
 	return mapResult;
 }
 
+var keys = function(arr, fn) {
+	var keysResult = [];
+	for(var i = 0, len = arr.length; i < len; i++) {
+		keysResult.push(i);
+	}
+	return keysResult;
+}
+var values = function(arr, fn) {
+	var valuesResult = [];
+	for(var i = 0, len = arr.length; i < len; i++) {
+		valuesResult.push(arr[i]);
+	}
+	return valuesResult;
+}
+var entries = function(arr, fn) {
+	var entriesResult = [];
+	for(var i = 0, len = arr.length; i < len; i++) {
+		entriesResult.push([i, arr[i]]);
+	}
+	return entriesResult;
+}
+
+var objKeys = function(obj, fn) {
+	var objKeysResult = [];
+	for(var keys in obj) {
+		objKeysResult.push(keys);
+	}
+	return objKeysResult;
+}
+var objValues = function(obj, fn) {
+	var objValuesResult = [];
+	for(var keys in obj) {
+		objValuesResult.push(obj[keys]);
+	}
+	return objValuesResult;
+}
+var objEntries = function(obj, fn) {
+	var objEntriesResult = [];
+	for(var keys in obj) {
+		objEntriesResult.push([keys, obj[keys]]);
+	}
+	return objEntriesResult;
+}
+
 /**
 * 判断两个变量是否SameValueZero相等
 *
