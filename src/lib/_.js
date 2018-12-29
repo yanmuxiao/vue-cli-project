@@ -1,109 +1,68 @@
-// 单个数组
-/**
-* 值类型去重，可对NaN去重，使用indexOf
-*/ 
-var uniq = function(arr) {
-	var len = arr.length;
-	var uniqResult = [];
-	var hasNaN = false;
-	for(var i = 0; i < len; i++) {
-		if(arr[i] !== arr[i]) {
-			if(!hasNaN) {
-				hasNaN = true;
-				uniqResult.push(NaN);
-			}
-		}else if(uniqResult.indexOf(arr[i]) === -1) {
-			uniqResult.push(arr[i]);
-		}
-	}
-	return uniqResult;
-}
-/**
-* 引用类型通过某个键值去重，该键值最好为数字或字符串，不做NaN的对比
-*
-*/ 
-var uniqBy = function(arrObj, key) {
-	var len = arrObj.length;
-	var uniqResult = [];
-	var keyArr = [];
-	for(var i = 0; i < len; i++) {
-		if(arrObj[i][key] && keyArr.indexOf(arrObj[i][key]) === -1) {
-			keyArr.push(arrObj[i][key]);
-			uniqResult.push(arrObj[i]);
-		}
-	}
-	return uniqResult;
-}
-var uniqWith = function(arrObj, fn) {
-	var len = arrObj.length;
-	var uniqResult = [];
-	for(var i = 0; i < len; i++) {
-		var uniqBoolean = true;
-		for(var j = 0; j < uniqResult.length; j++) {
-			if(fn(arrObj[i], uniqResult[j])) {
-				uniqBoolean = false;
-				break;
-			}
-		}
-		if(uniqBoolean) {
-			uniqResult.push(arrObj[i]);
-		}
-	}
-	return uniqResult;
+function log(clog) {
+	console.log(clog);
 }
 
-// 两个数组
-/**
-* 值类型排除，可对NaN排除，使用indexOf
-*/ 
-var difference = function(arr1, arr2) {
-	var diffResult = [];
-	for(var i = 0; i < arr1.length; i++) {
-		var diffBoolean = true;
-		for(var j = 0; j < arr2.length; j++) {
-			if((arr1[i] !== arr1[i] && arr2[j] !== arr2[j]) || arr1[i] === arr2[j]) {
-				diffBoolean = false;
-				break;
-			}
-		}
-		if(diffBoolean) {
-			diffResult.push(arr1[i]);
-		}
+
+var forEach = function(arr, fn) {
+	for(var i = 0, len = arr.length; i < len; i++) {
+		fn(arr[i], i, arr);
 	}
-	return diffResult;
 }
-/**
-* 引用类型通过某个键值排除，该键值最好为数字或字符串，不做NaN的对比
-*
-*/ 
-var differenceBy = function(arrObj1, arrObj2, key) {
-	var diffResult = [];
-	var arrObj2Keys = [];
-	for(var j = 0; j < arrObj2.length; j++) {
-		arrObj2Keys.push(arrObj2[j][key]);
-	}
-	for(var i = 0; i < arrObj1.length; i++) {
-		if(arrObj2Keys.indexOf(arrObj1[i][key]) == -1) {
-			diffResult.push(arrObj1[i]);
+var find = function(arr, fn) {
+	var fValue = false;
+	for(var i = 0, len = arr.length; i < len; i++) {
+		if(fn(arr[i], i, arr)) {
+			fValue = arr[i];
+			break;
 		}
 	}
-	return diffResult;
+	return fValue;
 }
-var differenceWith = function(arrObj1, arrObj2, fn) {
-	var diffResult = [];
-	for(var i = 0; i < arrObj1.length; i++) {
-		var diffBoolean = true;
-		for(var j = 0; j < arrObj2.length; j++) {
-			if(fn(arrObj1[i], arrObj2[j])) {
-				diffBoolean = false;
-				break;
-			}
-		}
-		if(diffBoolean) {
-			diffResult.push(arrObj1[i]);
+var findIndex = function(arr, fn) {
+	var fIndex = false;
+	for(var i = 0, len = arr.length; i < len; i++) {
+		if(fn(arr[i], i, arr)) {
+			fIndex = i;
+			break;
 		}
 	}
-	return diffResult;
+	return fIndex;
+}
+var filter = function(arr, fn) {
+	var filterResult = [];
+	for(var i = 0, len = arr.length; i < len; i++) {
+		if(fn(arr[i], i, arr)) {
+			filterResult.push(arr[i]);
+		}
+	}
+	return filterResult;
+}
+var some = function(arr, fn) {
+	var someTrue = false;
+	for(var i = 0, len = arr.length; i < len; i++) {
+		if(fn(arr[i], i, arr)) {
+			someTrue = true;
+			break;
+		}
+	}
+	return someTrue;
+}
+var every = function(arr, fn) {
+	var everyTrue = true;
+	for(var i = 0, len = arr.length; i < len; i++) {
+		if(!fn(arr[i], i, arr)) {
+			everyTrue = false;
+			break;
+		}
+	}
+	return everyTrue;
+}
+var map = function(arr, fn) {
+	var mapResult = [];
+	for(var i = 0, len = arr.length; i < len; i++) {
+		mapResult.push(fn(arr[i], i, arr));
+	}
+	return mapResult;
 }
 
 /**
@@ -189,15 +148,137 @@ var isEqual = function(e1, e2) {
 		}
 	}
 }
+// 单个数组
+/**
+* 值类型去重，可对NaN去重，使用indexOf
+*/ 
+var uniq = function(arr) {
+	var len = arr.length;
+	var uniqResult = [];
+	var hasNaN = false;
+	for(var i = 0; i < len; i++) {
+		if(arr[i] !== arr[i]) {
+			if(!hasNaN) {
+				hasNaN = true;
+				uniqResult.push(NaN);
+			}
+		}else if(uniqResult.indexOf(arr[i]) === -1) {
+			uniqResult.push(arr[i]);
+		}
+	}
+	return uniqResult;
+}
+/**
+* 数组中的Object通过某个键值去重，该键对应的值最好为数字或字符串
+*
+*/ 
+var uniqBy = function(arrObj, key) {
+	var len = arrObj.length;
+	var uniqResult = [];
+	var keyArr = [];
+	var hasNaN = false;
+	for(var i = 0; i < len; i++) {
+		if(arrObj[i][key] !== undefined && keyArr.indexOf(arrObj[i][key]) === -1) {
+			if(arrObj[i][key] !== arrObj[i][key]) {
+				if(!hasNaN) {
+					hasNaN = true;
+					uniqResult.push(arrObj[i]);
+				}
+			}else{
+				keyArr.push(arrObj[i][key]);
+				uniqResult.push(arrObj[i]);
+			}
+		}
+	}
+	return uniqResult;
+}
+var uniqWith = function(arrObj, fn) {
+	var len = arrObj.length;
+	var uniqResult = [];
+	for(var i = 0; i < len; i++) {
+		var uniqBoolean = true;
+		for(var j = 0; j < uniqResult.length; j++) {
+			if(fn(arrObj[i], uniqResult[j])) {
+				uniqBoolean = false;
+				break;
+			}
+		}
+		if(uniqBoolean) {
+			uniqResult.push(arrObj[i]);
+		}
+	}
+	return uniqResult;
+}
+
+// 两个数组
+/**
+* 值类型排除，可对NaN排除，使用indexOf
+*/ 
+var difference = function(arr1, arr2) {
+	var diffResult = [];
+	for(var i = 0; i < arr1.length; i++) {
+		var diffBoolean = true;
+		for(var j = 0; j < arr2.length; j++) {
+			if((arr1[i] !== arr1[i] && arr2[j] !== arr2[j]) || arr1[i] === arr2[j]) {
+				diffBoolean = false;
+				break;
+			}
+		}
+		if(diffBoolean) {
+			diffResult.push(arr1[i]);
+		}
+	}
+	return diffResult;
+}
+/**
+* 引用类型通过某个键值排除，该键值最好为数字或字符串，不做NaN的对比
+*
+*/ 
+var differenceBy = function(arrObj1, arrObj2, key) {
+	var diffResult = [];
+	var arrObj2Keys = [];
+	for(var j = 0; j < arrObj2.length; j++) {
+		arrObj2Keys.push(arrObj2[j][key]);
+	}
+	for(var i = 0; i < arrObj1.length; i++) {
+		if(arrObj2Keys.indexOf(arrObj1[i][key]) == -1) {
+			diffResult.push(arrObj1[i]);
+		}
+	}
+	return diffResult;
+}
+var differenceWith = function(arrObj1, arrObj2, fn) {
+	var diffResult = [];
+	for(var i = 0; i < arrObj1.length; i++) {
+		var diffBoolean = true;
+		for(var j = 0; j < arrObj2.length; j++) {
+			if(fn(arrObj1[i], arrObj2[j])) {
+				diffBoolean = false;
+				break;
+			}
+		}
+		if(diffBoolean) {
+			diffResult.push(arrObj1[i]);
+		}
+	}
+	return diffResult;
+}
 
 
 export default {
+	forEach,
+	find,
+	findIndex,
+	filter,
+	some,
+	every,
+	map,
+	isEqual,
 	uniq,
 	uniqBy,
 	uniqWith,
 	difference,
 	differenceBy,
-	differenceWith,
-	isEqual: isEqual
+	differenceWith
 }
 
