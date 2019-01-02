@@ -1,16 +1,24 @@
-function log(clog) {
-	console.log(clog);
+function log(clog, json) {
+	json ? console.log(JSON.stringify(clog)) : console.log(clog);
 }
 
+/*	关键点：
+*	typeof instanceof constructor indexOf toString
+*	for..in.. === NaN !== NaN
+* 	JSON.stringify JSON.parse
+*/ 
 
-var forEach = function(arr, fn) {
-	for(var i = 0, len = arr.length; i < len; i++) {
+let isArray = function(arr) {
+	return arr instanceof Array;
+}
+let forEach = function(arr, fn) {
+	for(let i = 0, len = arr.length; i < len; i++) {
 		fn(arr[i], i, arr);
 	}
 }
-var find = function(arr, fn) {
-	var fValue = false;
-	for(var i = 0, len = arr.length; i < len; i++) {
+let find = function(arr, fn) {
+	let fValue = false;
+	for(let i = 0, len = arr.length; i < len; i++) {
 		if(fn(arr[i], i, arr)) {
 			fValue = arr[i];
 			break;
@@ -18,9 +26,9 @@ var find = function(arr, fn) {
 	}
 	return fValue;
 }
-var findIndex = function(arr, fn) {
-	var fIndex = false;
-	for(var i = 0, len = arr.length; i < len; i++) {
+let findIndex = function(arr, fn) {
+	let fIndex = false;
+	for(let i = 0, len = arr.length; i < len; i++) {
 		if(fn(arr[i], i, arr)) {
 			fIndex = i;
 			break;
@@ -28,18 +36,18 @@ var findIndex = function(arr, fn) {
 	}
 	return fIndex;
 }
-var filter = function(arr, fn) {
-	var filterResult = [];
-	for(var i = 0, len = arr.length; i < len; i++) {
+let filter = function(arr, fn) {
+	let filterResult = [];
+	for(let i = 0, len = arr.length; i < len; i++) {
 		if(fn(arr[i], i, arr)) {
 			filterResult.push(arr[i]);
 		}
 	}
 	return filterResult;
 }
-var some = function(arr, fn) {
-	var someTrue = false;
-	for(var i = 0, len = arr.length; i < len; i++) {
+let some = function(arr, fn) {
+	let someTrue = false;
+	for(let i = 0, len = arr.length; i < len; i++) {
 		if(fn(arr[i], i, arr)) {
 			someTrue = true;
 			break;
@@ -47,9 +55,9 @@ var some = function(arr, fn) {
 	}
 	return someTrue;
 }
-var every = function(arr, fn) {
-	var everyTrue = true;
-	for(var i = 0, len = arr.length; i < len; i++) {
+let every = function(arr, fn) {
+	let everyTrue = true;
+	for(let i = 0, len = arr.length; i < len; i++) {
 		if(!fn(arr[i], i, arr)) {
 			everyTrue = false;
 			break;
@@ -57,56 +65,53 @@ var every = function(arr, fn) {
 	}
 	return everyTrue;
 }
-var map = function(arr, fn) {
-	var mapResult = [];
-	for(var i = 0, len = arr.length; i < len; i++) {
+let map = function(arr, fn) {
+	let mapResult = [];
+	for(let i = 0, len = arr.length; i < len; i++) {
 		mapResult.push(fn(arr[i], i, arr));
 	}
 	return mapResult;
 }
 
-var keys = function(arr, fn) {
-	var keysResult = [];
-	for(var i = 0, len = arr.length; i < len; i++) {
-		keysResult.push(i);
+let keys = function(arrOrObj, fn) {
+	let keysResult = [];
+	if(arrOrObj instanceof Array) {
+		for(let i = 0, len = arrOrObj.length; i < len; i++) {
+			keysResult.push(i);
+		}
+	}else{
+		for(let keys in obj) {
+			keysResult.push(keys);
+		}
 	}
 	return keysResult;
 }
-var values = function(arr, fn) {
-	var valuesResult = [];
-	for(var i = 0, len = arr.length; i < len; i++) {
-		valuesResult.push(arr[i]);
+let values = function(arrOrObj, fn) {
+	let valuesResult = [];
+	if(arrOrObj instanceof Array) {
+		for(let i = 0, len = arrOrObj.length; i < len; i++) {
+			valuesResult.push(arrOrObj[i]);
+		}
+	}else{
+		for(let keys in obj) {
+			valuesResult.push(arrOrObj[keys]);
+		}
 	}
 	return valuesResult;
 }
-var entries = function(arr, fn) {
-	var entriesResult = [];
-	for(var i = 0, len = arr.length; i < len; i++) {
-		entriesResult.push([i, arr[i]]);
+let entries = function(arrOrObj, fn) {
+	let entriesResult = [];
+	if(arrOrObj instanceof Array) {
+		for(let i = 0, len = arrOrObj.length; i < len; i++) {
+			entriesResult.push([i, arrOrObj[i]]);
+		}
+	}else{
+		for(let keys in obj) {
+			entriesResult.push([keys, arrOrObj[keys]]);
+		}
 	}
+	
 	return entriesResult;
-}
-
-var objKeys = function(obj, fn) {
-	var objKeysResult = [];
-	for(var keys in obj) {
-		objKeysResult.push(keys);
-	}
-	return objKeysResult;
-}
-var objValues = function(obj, fn) {
-	var objValuesResult = [];
-	for(var keys in obj) {
-		objValuesResult.push(obj[keys]);
-	}
-	return objValuesResult;
-}
-var objEntries = function(obj, fn) {
-	var objEntriesResult = [];
-	for(var keys in obj) {
-		objEntriesResult.push([keys, obj[keys]]);
-	}
-	return objEntriesResult;
 }
 
 /**
@@ -120,9 +125,9 @@ var objEntries = function(obj, fn) {
 // 判断Object的缺陷：
 // 1、key==>value中的value不能是NaN，也就是不能区分null和NaN
 // 2、key==>value中的value不能是undefined，否则不比较当前的键值
-var isEqual = function(e1, e2) {
-	var typeofE1 = typeof e1;
-	var typeofE2 = typeof e2;
+let isEqual = function(e1, e2) {
+	let typeofE1 = typeof e1;
+	let typeofE2 = typeof e2;
 	if(e1 === e2) {
 		log('===');
 		return true;
@@ -139,8 +144,8 @@ var isEqual = function(e1, e2) {
 					log('粗略判断检验:');
 					return false;
 				}else{
-					var arrEqual = true;
-					for(var i = 0, len = e1.length; i < len; i++) {
+					let arrEqual = true;
+					for(let i = 0, len = e1.length; i < len; i++) {
 						if(!isEqual(e1[i], e2[i])) {
 							arrEqual = false;
 							break;
@@ -166,9 +171,9 @@ var isEqual = function(e1, e2) {
 				return false;
 			}
 		}else{ // 不存在null, NaN, function，并且一个是简单类型，一个是复杂类型
-			var e1isObj = typeof e1 === 'object';
-			var e2isObj = typeof e2 === 'object';
-			var E1, E2;
+			let e1isObj = typeof e1 === 'object';
+			let e2isObj = typeof e2 === 'object';
+			let E1, E2;
 			if(e1 instanceof Number || e2 instanceof Number) {
 				log('Number:');
 				E1 = e1isObj ? Number(e1) : e1;
@@ -196,11 +201,11 @@ var isEqual = function(e1, e2) {
 /**
 * 值类型去重，可对NaN去重，使用indexOf
 */ 
-var uniq = function(arr) {
-	var len = arr.length;
-	var uniqResult = [];
-	var hasNaN = false;
-	for(var i = 0; i < len; i++) {
+let uniq = function(arr) {
+	let len = arr.length;
+	let uniqResult = [];
+	let hasNaN = false;
+	for(let i = 0; i < len; i++) {
 		if(arr[i] !== arr[i]) {
 			if(!hasNaN) {
 				hasNaN = true;
@@ -216,12 +221,12 @@ var uniq = function(arr) {
 * 数组中的Object通过某个键值去重，该键对应的值最好为数字或字符串
 *
 */ 
-var uniqBy = function(arrObj, key) {
-	var len = arrObj.length;
-	var uniqResult = [];
-	var keyArr = [];
-	var hasNaN = false;
-	for(var i = 0; i < len; i++) {
+let uniqBy = function(arrObj, key) {
+	let len = arrObj.length;
+	let uniqResult = [];
+	let keyArr = [];
+	let hasNaN = false;
+	for(let i = 0; i < len; i++) {
 		if(arrObj[i][key] !== undefined && keyArr.indexOf(arrObj[i][key]) === -1) {
 			if(arrObj[i][key] !== arrObj[i][key]) {
 				if(!hasNaN) {
@@ -236,12 +241,12 @@ var uniqBy = function(arrObj, key) {
 	}
 	return uniqResult;
 }
-var uniqWith = function(arrObj, fn) {
-	var len = arrObj.length;
-	var uniqResult = [];
-	for(var i = 0; i < len; i++) {
-		var uniqBoolean = true;
-		for(var j = 0; j < uniqResult.length; j++) {
+let uniqWith = function(arrObj, fn) {
+	let len = arrObj.length;
+	let uniqResult = [];
+	for(let i = 0; i < len; i++) {
+		let uniqBoolean = true;
+		for(let j = 0; j < uniqResult.length; j++) {
 			if(fn(arrObj[i], uniqResult[j])) {
 				uniqBoolean = false;
 				break;
@@ -258,11 +263,11 @@ var uniqWith = function(arrObj, fn) {
 /**
 * 值类型排除，可对NaN排除，使用indexOf
 */ 
-var difference = function(arr1, arr2) {
-	var diffResult = [];
-	for(var i = 0; i < arr1.length; i++) {
-		var diffBoolean = true;
-		for(var j = 0; j < arr2.length; j++) {
+let difference = function(arr1, arr2) {
+	let diffResult = [];
+	for(let i = 0; i < arr1.length; i++) {
+		let diffBoolean = true;
+		for(let j = 0; j < arr2.length; j++) {
 			if((arr1[i] !== arr1[i] && arr2[j] !== arr2[j]) || arr1[i] === arr2[j]) {
 				diffBoolean = false;
 				break;
@@ -278,24 +283,24 @@ var difference = function(arr1, arr2) {
 * 引用类型通过某个键值排除，该键值最好为数字或字符串，不做NaN的对比
 *
 */ 
-var differenceBy = function(arrObj1, arrObj2, key) {
-	var diffResult = [];
-	var arrObj2Keys = [];
-	for(var j = 0; j < arrObj2.length; j++) {
+let differenceBy = function(arrObj1, arrObj2, key) {
+	let diffResult = [];
+	let arrObj2Keys = [];
+	for(let j = 0; j < arrObj2.length; j++) {
 		arrObj2Keys.push(arrObj2[j][key]);
 	}
-	for(var i = 0; i < arrObj1.length; i++) {
+	for(let i = 0; i < arrObj1.length; i++) {
 		if(arrObj2Keys.indexOf(arrObj1[i][key]) == -1) {
 			diffResult.push(arrObj1[i]);
 		}
 	}
 	return diffResult;
 }
-var differenceWith = function(arrObj1, arrObj2, fn) {
-	var diffResult = [];
-	for(var i = 0; i < arrObj1.length; i++) {
-		var diffBoolean = true;
-		for(var j = 0; j < arrObj2.length; j++) {
+let differenceWith = function(arrObj1, arrObj2, fn) {
+	let diffResult = [];
+	for(let i = 0; i < arrObj1.length; i++) {
+		let diffBoolean = true;
+		for(let j = 0; j < arrObj2.length; j++) {
 			if(fn(arrObj1[i], arrObj2[j])) {
 				diffBoolean = false;
 				break;
@@ -310,14 +315,23 @@ var differenceWith = function(arrObj1, arrObj2, fn) {
 
 
 export default {
+	log,
+	isArray,
 	forEach,
+	
 	find,
 	findIndex,
 	filter,
 	some,
 	every,
 	map,
+
 	isEqual,
+
+	keys,
+	values,
+	entries,
+
 	uniq,
 	uniqBy,
 	uniqWith,

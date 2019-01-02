@@ -12,7 +12,6 @@
     export default {
         data() {
             return {
-                ES6: ['some', 'every', 'filter', 'map', 'reduce', 'forEach', 'find/findIndex', 'keys/values/entries', 'indexOf ==> includes']
             }
         },
         created() {

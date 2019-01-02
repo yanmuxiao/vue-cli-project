@@ -4,9 +4,12 @@ import Vue from 'vue'
 import axios from 'axios'
 Vue.prototype.axios = axios; // 全局注册axios
 
+
 // 按需引入lodash
-import _ from './lib/lodash';
+// import _ from './lib/lodash';
+import _ from './lib/_';
 Vue.prototype._ = _;
+
 
 // 按需引入图表（v-charts/echarts）350k+
 import VeLine from 'v-charts/lib/line.common'
