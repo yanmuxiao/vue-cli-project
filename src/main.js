@@ -5,17 +5,16 @@ import axios from 'axios'
 Vue.prototype.axios = axios; // 全局注册axios
 
 
-// 按需引入lodash
-// import _ from './lib/lodash';
+// 按需引入_工具函数
 import _ from './lib/_';
 Vue.prototype._ = _;
 
 
 // 按需引入图表（v-charts/echarts）350k+
-import VeLine from 'v-charts/lib/line.common'
-Vue.component(VeLine.name, VeLine)
-import VeHistogram from 'v-charts/lib/histogram.common'
-Vue.component(VeHistogram.name, VeHistogram)
+// import VeLine from 'v-charts/lib/line.common'
+// Vue.component(VeLine.name, VeLine)
+// import VeHistogram from 'v-charts/lib/histogram.common'
+// Vue.component(VeHistogram.name, VeHistogram)
 // |- line.common.js  -------------- 折线图
 // |- bar.common.js  --------------- 条形图
 // |- histogram.common.js  --------- 柱状图

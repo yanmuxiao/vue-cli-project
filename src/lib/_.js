@@ -45,6 +45,21 @@ let filter = function(arr, fn) {
 	}
 	return filterResult;
 }
+/*
+*	arr：操作的原数组(该方法直接操作原数组，不想操作原数组改用filter方法)
+*	fn：function(value, index) {} ==> 从数组的某个索引开始操作可通过index判断
+*	return: array==> if(origin == false) { return 被remove的对象 } else { return 被remove后的原数组 }
+*/ 
+let remove = function(arr, fn, origin) {
+	let removeResult = [];
+	for(let i = 0; i < arr.length; i++) {
+		if(fn(arr[i], i)) {
+			removeResult.push(arr[i]);
+			arr.splice(i--, 1); // 操作原数组，并且i-1重新循环改位置的判断
+		}
+	}
+	return originArr ? arr : removeResult;
+};
 let some = function(arr, fn) {
 	let someTrue = false;
 	for(let i = 0, len = arr.length; i < len; i++) {
@@ -118,7 +133,7 @@ let entries = function(arrOrObj, fn) {
 * 判断两个变量是否SameValueZero相等
 *
 */
-// 复杂类型只考虑Boolean, Number, String, Object, Array
+// 复杂类型只考虑Boolean, Number, String, Object, Array, Date
 // new Boolean()的返回值是一个对象，Boolean(new Boolean())这个为真
 // 判断new Boolean(bool)的真假 ==> new Boolean(bool).toString() ==> 转化为字符串类型
 
@@ -166,8 +181,13 @@ let isEqual = function(e1, e2) {
 			}else if(e1 instanceof Boolean && e2 instanceof Boolean) {
 				log('Boolean:');
 				return e1.toString() === e2.toString();
+			}else if(e1 instanceof Date && e2 instanceof Date){
+				log('Date:');
+				log('e1===>' + e1.getTime());
+				log('e2===>' + e2.getTime());
+				return e1.getTime() === e2.getTime();
 			}else{
-				log('非数组、Object、Number、String、Boolean的判断:');
+				log('非数组、Object、Number、String、Boolean、Date的判断:');
 				return false;
 			}
 		}else{ // 不存在null, NaN, function，并且一个是简单类型，一个是复杂类型
@@ -322,6 +342,7 @@ export default {
 	find,
 	findIndex,
 	filter,
+	remove,
 	some,
 	every,
 	map,
