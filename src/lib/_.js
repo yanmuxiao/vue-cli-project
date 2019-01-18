@@ -58,7 +58,7 @@ let remove = function(arr, fn, origin) {
 			arr.splice(i--, 1); // 操作原数组，并且i-1重新循环改位置的判断
 		}
 	}
-	return originArr ? arr : removeResult;
+	return origin ? arr : removeResult;
 };
 let some = function(arr, fn) {
 	let someTrue = false;
