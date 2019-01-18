@@ -147,7 +147,7 @@
             }
         },
         mounted () {
-            _get({ url: userInfoApi, params: { a: 'ab' } }).then(res=>{
+            _get({ url: userInfoApi, params: {  } }).then(res=>{
                 if(res.success === true) {
                     
                 }else{

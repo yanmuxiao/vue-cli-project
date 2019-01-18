@@ -3,9 +3,16 @@ function log(clog, json) {
 }
 
 /*	关键点：
-*	typeof instanceof constructor indexOf toString
-*	for..in.. === NaN !== NaN
-* 	JSON.stringify JSON.parse
+*	typeof: 结果可以是==>object/undefined/boolean/number/string/function ==> typeof NaN === 'number'/typeof null === 'object'
+*	instanceof 
+*	constructor 
+*	indexOf(ES6使用includes可区分)  不能区分NaN/+0和-0 ==> [NaN].indexOf(NaN) ==> -1、[+0].indexOf(-0) ==> 0、+0 === -0 ==> false
+* 	toString
+*	for..in.. 
+*	=== 
+*	NaN !== NaN
+* 	JSON.stringify 
+*	JSON.parse
 */ 
 
 let isArray = function(arr) {
@@ -48,12 +55,12 @@ let filter = function(arr, fn) {
 /*
 *	arr：操作的原数组(该方法直接操作原数组，不想操作原数组改用filter方法)
 *	fn：function(value, index) {} ==> 从数组的某个索引开始操作可通过index判断
-*	return: array==> if(origin == false) { return 被remove的对象 } else { return 被remove后的原数组 }
+*	origin: return: array==> if(origin == false) { return 被remove的对象 } else { return 被remove后的原数组 }
 */ 
 let remove = function(arr, fn, origin) {
 	let removeResult = [];
 	for(let i = 0; i < arr.length; i++) {
-		if(fn(arr[i], i)) {
+		if(fn(arr[i], i, arr)) {
 			removeResult.push(arr[i]);
 			arr.splice(i--, 1); // 操作原数组，并且i-1重新循环改位置的判断
 		}
@@ -127,6 +134,47 @@ let entries = function(arrOrObj, fn) {
 	}
 	
 	return entriesResult;
+}
+
+let sort = function(arr) {
+    if(arr.length <= 1) {
+        return arr;
+    }
+　　let minIndexVal = arr.pop();// 数组的最后一个
+	let minIndexValArr = [];
+    let leftArr = [];
+    let rightArr = [];
+    for(let i = 0; i < arr.length; i++) {
+        if(parseInt(arr[i]) > parseInt(minIndexVal)) {
+            rightArr.push(arr[i]);
+        }else if(parseInt(arr[i]) === parseInt(minIndexVal)) {
+        	minIndexValArr.push(arr[i]);
+        }else{
+            leftArr.push(arr[i]);
+        }
+    }
+    minIndexValArr.push(minIndexVal);
+    return sort(leftArr).concat(minIndexValArr,sort(rightArr));
+}
+let sortBy = function(arrObj, key) {
+    if(arrObj.length <= 1) {
+        return arrObj;
+    }
+　　let minIndexVal = arrObj.pop();// 数组的最后一个
+	let minIndexValArr = [];
+    let leftArr = [];
+    let rightArr = [];
+    for(let i = 0; i < arrObj.length; i++) {
+        if(parseInt(arrObj[i][key]) > parseInt(minIndexVal[key])) {
+            rightArr.push(arrObj[i]);
+        }else if(parseInt(arrObj[i][key]) === parseInt(minIndexVal[key])) {
+        	minIndexValArr.push(arrObj[i]);
+        }else{
+            leftArr.push(arrObj[i]);
+        }
+    }
+    minIndexValArr.push(minIndexVal);
+    return sortBy(leftArr, key).concat(minIndexValArr,sortBy(rightArr, key));
 }
 
 /**
@@ -346,6 +394,8 @@ export default {
 	some,
 	every,
 	map,
+	sort,
+	sortBy,
 
 	isEqual,
 

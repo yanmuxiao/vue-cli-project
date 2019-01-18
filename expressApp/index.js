@@ -39,6 +39,9 @@ app.use(function(req, res, next) {
 			status: 200,
 			msg:'登出成功'
 		})
+	}else if(req.url == "/user/register") {
+		req.session.sid = null; // 删除session
+        next(); //如果请求的地址是登录则通过，进行登录
 	}else if (!req.session.sid) {
         if (req.url == "/user/login") {
         	req.session.sid = null; // 删除session
@@ -56,89 +59,96 @@ app.use(function(req, res, next) {
 });
 
 
-// 用户登录
-app.post('/user/login', function(req, res){
-	let { name, pwd } = req.body;
-	//读取用户 的cookies；
-    // const { userid } = req.cookies;
-    // console.log(userid);
-	UserModels.Users.findOne({ name }, 'pwd', (err, doc) => {
-		if(err) {
-			console.log(err);
-		}else if(doc) {
-			if(doc.pwd != pwd){
-				res.send({
-					success: false,
-					status: 200,
-					msg:'密码输入错误'
-				})
-			}else if(doc.pwd == pwd){
-				req.session.sid = name;
-				setTimeout(()=>{
-					res.send({
-						success: true,
-						status: 200,
-						msg:'登录成功'
-					})
-				}, 3000);
-			}else{
-				res.send({
-					success: false,
-					status: 200,
-					msg:"未知错误"
-				})
-			}
-		}else{
-			res.send({
-				success: false,
-				status: 222,
-				msg: '该账号不存在！'
-			}).end();
-		}
-	})
-});
-// 用户登出
-app.get('/user/logout', function(req, res){console.log('==>' + 3);
-	req.session.sid = null; // 删除session
-    // res.redirect('login');
-    res.send({
-		success: true,
-		status: 200,
-		msg:'登出成功'
-	})
-});
-// 用户注册
-app.post('/user/register',  function(req, res){
-	UserModels.Users.findOne({ name: req.body.name }, 'name', (err, doc) => {
-		if(err) {
-			console.log(err);
-		}else if(doc) {
-			res.send({
-				success: false,
-				status: 222,
-				msg: '该用户已存在！'
-			}).end();
-		}else{
-			UserModels.Users(req.body)
-			.save()
-			.then(() => {
-				res.send({
-					success: true,
-					status: 200,
-					msg: '注册成功！'
-				}).end();
-			})
-			.catch(()=>{
-				res.send({
-					success: false,
-					status: 500
-				}).end();
-			})
-		}
-	})
+
+// 用户登录注册
+const loginApi = require('./apis/loginApi.js'); 
+app.post(loginApi.login.url, loginApi.login.callback);
+app.post(loginApi.logout.url, loginApi.logout.callback);
+app.post(loginApi.register.url, loginApi.register.callback);
+app.post(loginApi.userinfo.url, loginApi.userinfo.callback);
+
+// // 用户登录
+// app.post('/user/login', function(req, res){
+// 	let { name, pwd } = req.body;
+// 	//读取用户 的cookies；
+//     // const { userid } = req.cookies;
+//     // console.log(userid);
+// 	UserModels.Users.findOne({ name }, 'pwd', (err, doc) => {
+// 		if(err) {
+// 			console.log(err);
+// 		}else if(doc) {
+// 			if(doc.pwd != pwd){
+// 				res.send({
+// 					success: false,
+// 					status: 200,
+// 					msg:'密码输入错误'
+// 				})
+// 			}else if(doc.pwd == pwd){
+// 				req.session.sid = name;
+// 				setTimeout(()=>{
+// 					res.send({
+// 						success: true,
+// 						status: 200,
+// 						msg:'登录成功'
+// 					})
+// 				}, 3000);
+// 			}else{
+// 				res.send({
+// 					success: false,
+// 					status: 200,
+// 					msg:"未知错误"
+// 				})
+// 			}
+// 		}else{
+// 			res.send({
+// 				success: false,
+// 				status: 222,
+// 				msg: '该账号不存在！'
+// 			}).end();
+// 		}
+// 	})
+// });
+// // 用户登出
+// app.get('/user/logout', function(req, res){
+// 	req.session.sid = null; // 删除session
+//     res.send({
+// 		success: true,
+// 		status: 200,
+// 		msg:'登出成功'
+// 	})
+// });
+// // 用户注册
+// app.post('/user/register',  function(req, res){
+// 	UserModels.Users.findOne({ name: req.body.name }, 'name', (err, doc) => {
+// 		if(err) {
+// 			console.log(err);
+// 		}else if(doc) {
+// 			res.send({
+// 				success: false,
+// 				status: 222,
+// 				msg: '该用户已存在！'
+// 			}).end();
+// 		}else{
+// 			UserModels.Users(req.body)
+// 			.save()
+// 			.then(() => {
+// 				res.send({
+// 					success: true,
+// 					status: 200,
+// 					msg: '注册成功！'
+// 				}).end();
+// 			})
+// 			.catch(()=>{
+// 				res.send({
+// 					success: false,
+// 					status: 500
+// 				}).end();
+// 			})
+// 		}
+// 	})
 	
-})
-app.get('/user/info', function(req, res){console.log('==>' + 3);
+// })
+app.get('/user/info', function(req, res){
     setTimeout(()=>{
     	res.send({
 			success: true,

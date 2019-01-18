@@ -6,8 +6,11 @@ const loginApi = {
 	login: {
 		url: '/user/login',
 		callback: (req, res)=>{
-			var {name,pwd} = req.body;
-			UserModels.Users.findOne({name}, 'pwd', (err, doc) => {
+			let { name, pwd } = req.body;
+			//读取用户 的cookies；
+		    // const { userid } = req.cookies;
+		    // console.log(userid);
+			UserModels.Users.findOne({ name }, 'pwd', (err, doc) => {
 				if(err) {
 					console.log(err);
 				}else if(doc) {
@@ -18,13 +21,14 @@ const loginApi = {
 							msg:'密码输入错误'
 						})
 					}else if(doc.pwd == pwd){
+						req.session.sid = name;
 						setTimeout(()=>{
 							res.send({
 								success: true,
 								status: 200,
 								msg:'登录成功'
 							})
-						}, 3000)
+						}, 3000);
 					}else{
 						res.send({
 							success: false,
@@ -42,10 +46,21 @@ const loginApi = {
 			})
 		}
 	},
+	logout: {
+		url: '/user/logout',
+		callback: (req, res)=>{
+			req.session.sid = null; // 删除session
+		    res.send({
+				success: true,
+				status: 200,
+				msg:'登出成功'
+			})
+		}
+	},
 	register: {
 		url: '/user/register',
 		callback: (req, res)=>{
-			UserModels.Users.findOne({name: req.body.name}, 'name', (err, doc) => {
+			UserModels.Users.findOne({ name: req.body.name }, 'name', (err, doc) => {
 				if(err) {
 					console.log(err);
 				}else if(doc) {
@@ -72,6 +87,31 @@ const loginApi = {
 					})
 				}
 			})
+		}
+	},
+	userinfo: {
+		url: '/user/info1',
+		callback: (req, res)=>{console.log(23232);
+			res.send({
+				success: true,
+				status: 200,
+				data: {
+					name: 'infoName',
+					userId: '1212121212',
+					phone: 18826408772
+				}
+			})
+			// setTimeout(()=>{
+		 //    	res.send({
+			// 		success: true,
+			// 		status: 200,
+			// 		data: {
+			// 			name: 'infoName',
+			// 			userId: '1212121212',
+			// 			phone: 18826408772
+			// 		}
+			// 	})
+		 //    }, 3000)
 		}
 	}
 }
