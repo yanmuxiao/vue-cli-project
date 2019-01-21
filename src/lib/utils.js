@@ -44,6 +44,7 @@ export function _post({ url, params, toForm }) {
     return axios.post(url, params, {
         method: 'post',
         // headers: { 'Content-Type': 'multipart/form-data' }
+        // headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then(response => {
         if (response.status >= 200 && response.status < 300) {
             return response.data

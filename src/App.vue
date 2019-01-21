@@ -97,15 +97,22 @@ export default {
               that.loading_action(false);
           }
 
-          // if(response.data.status == 401) {
-          //     that.removePending('cancleAll');
-          //     that.loading_action(false);
-          //     that.$message({
-          //         type: 'info',
-          //         message: '登录已过期！'
-          //     }); 
-          //     that.$router.push('/login');
-          // }
+          if(response.data.status == 401) {
+              that.removePending('cancleAll');
+              that.ajaxStart = 0;
+              that.ajaxEnd = 0;
+              that.loading_action(false);
+              that.$message({
+                  type: 'info',
+                  message: '登录已过期！'
+              }); 
+              that.$router.push('/login');
+          }else if(response.data.status == 201) { // 登录不成功去除loading
+              that.removePending('cancleAll');
+              that.ajaxStart = 0;
+              that.ajaxEnd = 0;
+              that.loading_action(false);
+          }
 
           return response;
       }, function (error) {
