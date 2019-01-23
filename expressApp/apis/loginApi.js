@@ -102,7 +102,7 @@ const loginApi = [{
 					phone: 18826408772
 				}
 			})
-		}, 2000);
+		}, 1000);
 	}
 }];
 module.exports = loginApi;

@@ -1,3 +1,22 @@
+
+/*
+ *	改变原数组的(7个)：
+	shift：将第一个元素删除并且返回删除元素，空即为undefined
+	unshift：向数组开头添加元素，并返回新的长度
+	pop：删除最后一个并返回删除的元素
+	push：向数组末尾添加元素，并返回新的长度
+	reverse：颠倒数组顺序
+	sort：对数组排序
+	splice:splice(start,length,item)删，增，替换数组元素，返回被删除数组，无删除则不返回
+
+ *	不改变原数组的：
+	concat：连接多个数组，返回新的数组
+	join：将数组中所有元素以参数作为分隔符放入一个字符
+	slice：slice(start,end)，返回选定元素
+	map, filter, forEach, some, every等不改变原数组
+*/ 
+
+
 function log(clog, json) {
 	json ? console.log(JSON.stringify(clog)) : console.log(clog);
 }
@@ -13,14 +32,20 @@ function log(clog, json) {
 *	NaN !== NaN
 * 	JSON.stringify 
 *	JSON.parse
+*   数组循环回调传参的顺序：value、index、arr（和原生的一样），jQ的回调传参顺序为：index、value、arr
 */ 
 
 let isArray = function(arr) {
 	return arr instanceof Array;
 }
+/*
+*	和原生的forEach方法相比增加终止循环功能（通过return false;来终止）
+*/ 
 let forEach = function(arr, fn) {
-	for(let i = 0, len = arr.length; i < len; i++) {
-		fn(arr[i], i, arr);
+	for(var i = 0, len = arr.length; i < len; i++) {
+		if(fn(arr[i], i, arr) === false) {
+			break;
+		}
 	}
 }
 let find = function(arr, fn) {
