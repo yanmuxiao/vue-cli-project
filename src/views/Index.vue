@@ -6,7 +6,7 @@
 
 		<!-- <ve-histogram :data="chartData"></ve-histogram> -->
 
-		<input type="file" ref="fileInput" id="fileInput" name="">
+		<input type="file" ref="fileInput" id="fileInput" multiple="multiple" name="">
 		<button @click="uploadFn">上传</button>
 
 	</div>

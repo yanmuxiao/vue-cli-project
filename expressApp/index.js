@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-for
 // 接收Form Data
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
-// app.use(multipart({ uploadDir:'./Temp' }));
+app.use(multipart({uploadDir:'./upload'}));
 
 // cookie
 // const cookieParser=require("cookie-parser");
@@ -75,7 +75,7 @@ const listApi = require('./apis/listApi.js');
 let apis = [];
 apis = apis.concat(loginApi, listApi);
 for(let i = 0; i < apis.length; i++) {
-	if(apis[i].formData) { // Form Data表单数据
+	if (apis[i].formData) { // Form Data表单数据
 		app.post(apis[i].url, multipartMiddleware, apis[i].callback);
 	}else if(apis[i].type === 'POST') {
 		app.post(apis[i].url, apis[i].callback);
