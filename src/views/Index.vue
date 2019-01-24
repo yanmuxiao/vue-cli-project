@@ -6,6 +6,9 @@
 
 		<!-- <ve-histogram :data="chartData"></ve-histogram> -->
 
+		<input type="file" ref="fileInput" id="fileInput" name="">
+		<button @click="uploadFn">上传</button>
+
 	</div>
 
 </template>
@@ -20,6 +23,8 @@ $color: #f00;
 </style>
 
 <script>
+	import { formUploadApi } from '@/api/api';
+  	import { _get, _post, _upload } from '@/lib/utils';
 	export default {
 		data() {
 			return {
@@ -43,7 +48,32 @@ $color: #f00;
 		methods: {
 			handleChange(val) {
 		        console.log(val);
-		    }
+		    },
+		    uploadFn() {
+		    	// var file = e.target.files[0] || e.dataTransfer.files[0];
+		    	let file = this.$refs.fileInput.files[0];
+		    	console.log(file);
+	            var that = this;
+	            let params = {
+	                name: 'name',
+	                fileUpload: file,
+	                addCancelId: 'formUploadApi'
+	            };
+	            _post({ url: formUploadApi, params, toForm: true }).then(res=>{
+	                if(res.success === true) {
+	                    this.$message({
+	                        type: 'info',
+	                        message: res.msg
+	                    }); 
+	                }else{
+	                    this.$message({
+	                        type: 'info',
+	                        message: res.msg
+	                    }); 
+	                }
+	            }).catch(function(error){
+	            })
+	        }
 		},
 		created() {
 		}

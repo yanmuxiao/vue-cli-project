@@ -61,7 +61,7 @@ const loginApi = [{
 							status: 200,
 							msg:'登录成功'
 						})
-					}, 3000);
+					}, 1000);
 				}else{
 					res.send({
 						success: false,

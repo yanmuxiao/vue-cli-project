@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-for
 // 接收Form Data
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
-
+// app.use(multipart({ uploadDir:'./Temp' }));
 
 // cookie
 // const cookieParser=require("cookie-parser");
@@ -65,7 +65,6 @@ app.use(function(req, res, next) {
         next();//如果已经登录，则可以进入
     }
 });
-
 
 
 // 用户登录注册

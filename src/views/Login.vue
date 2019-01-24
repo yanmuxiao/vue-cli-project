@@ -95,7 +95,7 @@
                 uId: new Date().getTime(),
                 addCancelId: 'userLoginApi'
             };
-            _post({ url: userLoginApi, params, toForm: false  }).then(res=>{
+            _post({ url: userLoginApi, params }).then(res=>{
                 if(res.success === true) {
                     this.$message({
                         type: 'info',
