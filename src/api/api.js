@@ -44,3 +44,4 @@ export let userRegisterApi = `${mongodbApi}/user/register`; // 用户注册
 
 export let userInfoApi = `${mongodbApi}/user/info`; // 用户资料
 export let formUploadApi = `${mongodbApi}/form/upload`; // 资料上传
+export let filesApi = `${mongodbApi}/files`; // 资料上传

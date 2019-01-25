@@ -9,6 +9,8 @@
 		<input type="file" ref="fileInput" id="fileInput" multiple="multiple" name="">
 		<button @click="uploadFn">上传</button>
 
+		<img :src="imgSrc" />
+
 	</div>
 
 </template>
@@ -23,7 +25,7 @@ $color: #f00;
 </style>
 
 <script>
-	import { formUploadApi } from '@/api/api';
+	import { formUploadApi, filesApi } from '@/api/api';
   	import { _get, _post, _upload } from '@/lib/utils';
 	export default {
 		data() {
@@ -40,7 +42,9 @@ $color: #f00;
 		          ]
 		        },
 		        name: 'Vue.component',
-		        pNum: 100
+		        pNum: 100,
+
+		        imgSrc: ''
 			}
 		},
 		computed: {
@@ -65,6 +69,7 @@ $color: #f00;
 	                        type: 'info',
 	                        message: res.msg
 	                    }); 
+	                    this.imgSrc = filesApi + res.fileUrl;
 	                }else{
 	                    this.$message({
 	                        type: 'info',
