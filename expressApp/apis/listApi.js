@@ -44,7 +44,6 @@ const listApi = [{
 	url: '/files/*', // 正则匹配
 	callback: (req, res)=>{
 		// __dirname ==> 代表当前文件所在的目录，即: D:\vueJsProject\vue-cli-project\expressApp\apis，但是/apis是多余的
-		console.log(path.join(__dirname.replace(/\\apis$/, ''), './upload/' + encodeURIComponent(req.url.replace('/files/', ''))));
 		fs.readFile(path.join(__dirname.replace(/\\apis$/, ''), './upload' + req.url.replace('/files', '')), "binary", function(error,file){
 	       if(error){
 	            res.writeHead(500,{"Content-Type": "text/plain"});

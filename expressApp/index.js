@@ -1,3 +1,6 @@
+let fs = require('fs');
+let path = require('path');
+
 // 数据库连接
 const db = require('./db/db.js'); 
 
@@ -18,7 +21,12 @@ app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-for
 // 接收Form Data
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
+
+if(!fs.existsSync('./upload')) {
+	fs.mkdirSync('./upload');
+}
 app.use(multipart({uploadDir:'./upload'}));
+
 
 // cookie
 // const cookieParser=require("cookie-parser");
