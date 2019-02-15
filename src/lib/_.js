@@ -223,10 +223,10 @@ let isEqual = function(e1, e2) {
 		if(e1 !== e1 || e2 !== e2){
 			log('NaN:');
 			return (e1 !== e1 && e2 !== e2);
-		}else if(e1 === null || e2 === null || typeofE1 === 'function' || typeofE2 === 'function'){
+		}else if(e1 === null || e2 === null || e1 === undefined || e2 === undefined || typeofE1 === 'function' || typeofE2 === 'function'){
 			log('null || function:');
 			return false;
-		}else if(typeofE1 === 'object' && typeofE2 === 'object') { // 不存在null, NaN, function，并且两个都是复杂类型
+		}else if(typeofE1 === 'object' && typeofE2 === 'object') { // 不存在null, NaN, undefined, function，并且两个都是复杂类型
 			if(e1 instanceof Array && e2 instanceof Array){
 				if(e1.length !== e2.length || JSON.stringify(e1) !== JSON.stringify(e2)) { // 粗略判断检验
 					log('粗略判断检验:');
@@ -263,7 +263,7 @@ let isEqual = function(e1, e2) {
 				log('非数组、Object、Number、String、Boolean、Date的判断:');
 				return false;
 			}
-		}else{ // 不存在null, NaN, function，并且一个是简单类型，一个是复杂类型
+		}else{ // 不存在null, undefined, NaN, function，并且一个是简单类型，一个是复杂类型
 			let e1isObj = typeof e1 === 'object';
 			let e2isObj = typeof e2 === 'object';
 			let E1, E2;
