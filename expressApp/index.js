@@ -78,10 +78,10 @@ app.use(function(req, res, next) {
 // 用户登录注册
 const loginApi = require('./apis/loginApi.js'); 
 // 列表
-const listApi = require('./apis/listApi.js'); 
+const fileApi = require('./apis/fileApi.js'); 
 
 let apis = [];
-apis = apis.concat(loginApi, listApi);
+apis = apis.concat(loginApi, fileApi);
 for(let i = 0; i < apis.length; i++) {
 	if (apis[i].formData) { // Form Data表单数据
 		app.post(apis[i].url, multipartMiddleware, apis[i].callback);

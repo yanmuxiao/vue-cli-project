@@ -36,14 +36,14 @@ module.exports = {
                 },
                 cookieDomainRewrite:""
         },
-        '/dxhd': {
-            target:'http://172.28.50.29:8080',
-                changeOrigin:true,
-                pathRewrite:{
-                    '^/dxhd':'/'
-                },
-                cookieDomainRewrite:""
-        }
+        // '/dxhd': {
+        //     target:'http://172.28.50.29:8080',
+        //         changeOrigin:true,
+        //         pathRewrite:{
+        //             '^/dxhd':'/'
+        //         },
+        //         cookieDomainRewrite:""
+        // }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

@@ -5,7 +5,7 @@ axios.defaults.timeout = 10000;
 export function toFormData(opt) {
     let formData = new FormData();
     window.Object.keys(opt).forEach(v => {
-        if(opt[v] != undefined) {
+        if(opt[v] !== undefined) {
             formData.append(v, opt[v])
         }
     })
