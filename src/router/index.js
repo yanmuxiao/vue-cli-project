@@ -109,6 +109,14 @@ export default new Router({
               title: 'lodash'
             }
           },
+          { 
+            path: 'veLine', 
+            component: resolve => require(['@/views/vCharts/ve-line'], resolve), 
+            name: 'veLine',
+            meta: {
+              title: 'veLine'
+            }
+          },
       ]
     },
     {

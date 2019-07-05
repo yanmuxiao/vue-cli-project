@@ -11,10 +11,14 @@ Vue.prototype._ = _;
 
 
 // 按需引入图表（v-charts/echarts）350k+
-// import VeLine from 'v-charts/lib/line.common'
-// Vue.component(VeLine.name, VeLine)
-// import VeHistogram from 'v-charts/lib/histogram.common'
-// Vue.component(VeHistogram.name, VeHistogram)
+import VeLine from 'v-charts/lib/line.common'
+Vue.component(VeLine.name, VeLine)
+import VeHistogram from 'v-charts/lib/histogram.common'
+Vue.component(VeHistogram.name, VeHistogram)
+import VePie from 'v-charts/lib/pie.common'
+Vue.component(VePie.name, VePie)
+import VeRing from 'v-charts/lib/ring.common'
+Vue.component(VeRing.name, VeRing)
 // |- line.common.js  -------------- 折线图
 // |- bar.common.js  --------------- 条形图
 // |- histogram.common.js  --------- 柱状图

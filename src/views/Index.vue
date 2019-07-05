@@ -4,7 +4,7 @@
 		
 		<h2 class="control">控制台</h2>
 
-		<!-- <ve-histogram :data="chartData"></ve-histogram> -->
+		<ve-ring :data="chartData"></ve-ring>
 
 		<input type="file" ref="fileInput" id="fileInput" multiple="multiple" name="">
 		<button @click="uploadFn">上传</button>

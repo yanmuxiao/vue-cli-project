@@ -80,7 +80,7 @@
           'desc': '活动形式'
       }]
   });
-  Mock.mock('http://editform.cn',taskListObj.taskList);
+  Mock.mock('http://editform.cn', taskListObj.taskList);
 
 
 

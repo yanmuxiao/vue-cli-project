@@ -41,6 +41,9 @@ export default {
             { index: 'messageBox',name: '弹框' },
             { index: 'notification',name: '通知' },
             { index: 'badge',name: '标记' },
+        ]},
+        { index: 'vChartsList', className: 'el-icon-message',name: 'vCharts', subMenu: true, children: [
+            { index: 'veLine',name: '折线图' },
         ]}
 	],
 	lodash: [
