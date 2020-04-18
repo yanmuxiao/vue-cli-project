@@ -147,6 +147,7 @@
             }
         },
         mounted () {
+            console.log(123);
             _get({ url: userInfoApi, params: {  } }).then(res=>{
                 if(res.success === true) {
                     
