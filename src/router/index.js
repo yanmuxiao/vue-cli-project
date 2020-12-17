@@ -117,6 +117,14 @@ export default new Router({
               title: 'veLine'
             }
           },
+          { 
+            path: 'veRing', 
+            component: resolve => require(['@/views/vCharts/ve-ring'], resolve), 
+            name: 'veRing',
+            meta: {
+              title: 'veRing'
+            }
+          },
       ]
     },
     {

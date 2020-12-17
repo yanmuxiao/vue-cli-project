@@ -44,6 +44,7 @@ export default {
         ]},
         { index: 'vChartsList', className: 'el-icon-message',name: 'vCharts', subMenu: true, children: [
             { index: 'veLine',name: '折线图' },
+            { index: 'veRing',name: '环形图' },
         ]}
 	],
 	lodash: [
